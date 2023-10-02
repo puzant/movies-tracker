@@ -1,3 +1,5 @@
 export * from './navbar'
 export * from './filters'
 export * from './movie'
+export * from './loadingSpinner'
+export * from './movieRating'

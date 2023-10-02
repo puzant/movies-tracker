@@ -1,29 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import { useCustomQuery } from '@/queries';
 import { getMovies, getGenres } from '@/api';
-import { ISortingOption, IMovie, IGenre } from '@/interfaces';
-import { Filters, Movie } from '@/components';
+import { IMovie, IGenre, ISortingOption } from '@/interfaces';
+import { sortingOptions } from '@/utils/constants'
+import { Filters, Movie, LoadingSpinner } from '@/components';
 
 export const Home = () => {
-  const sortingOptions: ISortingOption[] = [
-    { id: 1, key: 'popularity.desc', name: 'Popularity Descending' },
-    { id: 2, key: 'popularity.asc', name: 'Popularity Ascending' },
-    { id: 3, key: 'vote_average.desc', name: 'Rating Descending' },
-    { id: 4, key: 'vote_average.asc', name: 'Rating Ascending' },
-    { id: 5, key: 'primary_release_date.desc', name: 'Release Date Descending' },
-    { id: 6, key: 'primary_release_date.asc', name: 'Release Date Ascending' },
-  ];
-
-  const [selectedOption, setSelectedOption] = React.useState(sortingOptions[0])
-  const [selectedGenres, setSelectedGenres] = React.useState([])
+  const [selectedOption, setSelectedOption] = React.useState<ISortingOption>(sortingOptions[0])
+  const [selectedGenres, setSelectedGenres] = React.useState<IGenre[]>([])
 
   const { data: genresData } = useCustomQuery(getGenres, 'genres')
   const { data: moviesData, isLoading } = useCustomQuery(getMovies, 'movies', selectedOption, selectedGenres)
 
   const { genres } = genresData?.data || {}
 
-  const handleGenreSelection = (genre: IGenre) => {
+  const handleGenreSelection = (genre: IGenre): void => {
     if (selectedGenres.includes(genre))
       setSelectedGenres(selectedGenres.filter(selectedGenre => selectedGenre.id !== genre.id))
     else
@@ -42,15 +35,17 @@ export const Home = () => {
           selectedGenres={selectedGenres}
           sortingOptions={sortingOptions}
           selectedOption={selectedOption}
-          onChange={(e) => setSelectedOption(e)}
+          onChange={(e: Event) => setSelectedOption(e)}
           onGenreSelection={handleGenreSelection}
         />
 
         <div className='w-[80%]'>
-          {isLoading ? 'loading' :
+          {isLoading ? <div className='flex justify-center'><LoadingSpinner /></div> :
             <div className='grid grid-cols-2 sm:grid-cols-5 gap-7'>
               {moviesData?.data.results.map((movie: IMovie) => (
-                <Movie key={movie.id} movie={movie} />
+                <Link to={`/movie/${movie.id}`}>
+                  <Movie key={movie.id} movie={movie} />
+                </Link>
               ))}
             </div>
           }

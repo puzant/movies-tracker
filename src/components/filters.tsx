@@ -39,16 +39,12 @@ export const Filters = ({
           >
             <Listbox.Options className="border rounded-md shadow-sm mt-1">
               {sortingOptions.map((option: ISortingOption) => (
-
                 <Listbox.Option
                   key={option.id}
                   value={option}
-                  className={({ active }) =>
-                    `relative cursor-default select-none p-1.5 ${active ? 'bg-[#e4e7eb]' : 'bg-white'
-                    }`
-                  }
+                  className='relative cursor-default p-1.5 ui-not-active:bg-white ui-active:bg-[#e4e7eb]'
                 >
-                  {option.name}
+                  <span className='cursor-pointer'>{option.name}</span>
                 </Listbox.Option>
               ))}
             </Listbox.Options>
