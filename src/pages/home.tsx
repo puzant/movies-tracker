@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-import { useCustomQuery } from '@/queries';
+import { useCustomQuery, usePaginatedQuery } from '@/queries';
 import { getMovies, getGenres } from '@/api';
 import { IMovie, IGenre, ISortingOption } from '@/interfaces';
 import { sortingOptions } from '@/utils/constants'
@@ -12,7 +12,19 @@ export const Home = () => {
   const [selectedGenres, setSelectedGenres] = React.useState<IGenre[]>([])
 
   const { data: genresData } = useCustomQuery(getGenres, 'genres')
-  const { data: moviesData, isLoading } = useCustomQuery(getMovies, 'movies', selectedOption, selectedGenres)
+
+  const {
+    data: moviesData,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = usePaginatedQuery(
+    getMovies,
+    'movies',
+    selectedOption,
+    selectedGenres,
+  );
 
   const { genres } = genresData?.data || {}
 
@@ -22,6 +34,24 @@ export const Home = () => {
     else
       setSelectedGenres([...selectedGenres, genre])
   }
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop >=
+      document.documentElement.scrollHeight - 100
+    ) {
+      if (!isFetchingNextPage && hasNextPage) {
+        fetchNextPage();
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
 
   return (
     <div className='mt-8'>
@@ -42,15 +72,25 @@ export const Home = () => {
         <div className='w-[80%]'>
           {isLoading ? <div className='flex justify-center'><LoadingSpinner /></div> :
             <div className='grid grid-cols-2 sm:grid-cols-5 gap-7'>
-              {moviesData?.data.results.map((movie: IMovie) => (
-                <Link to={`/movie/${movie.id}`}>
-                  <Movie key={movie.id} movie={movie} />
-                </Link>
-              ))}
+              {
+                moviesData.pages.map(page => (
+                  page.data.results.map((movie: IMovie) => (
+                    <Link to={`/movie/${movie.id}`}>
+                      <Movie key={movie.id} movie={movie} />
+                    </Link>
+                  ))
+                ))
+              }
             </div>
           }
+
+          {isFetchingNextPage && (
+            <div className='mt-2 flex justify-center'>
+              <LoadingSpinner />
+            </div>
+          )}
         </div>
       </div>
-    </div>
+    </div >
   )
 }
