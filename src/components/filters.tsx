@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 
 import { IGenre, ISortingOption } from '@/interfaces'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface IFilters {
   genres: IGenre[]
@@ -21,7 +22,7 @@ export const Filters = ({
   selectedGenres
 }: IFilters) => {
   return (
-    <div className='w-[20%] flex flex-col gap-4'>
+    <div className='w-[20%] hidden sm:flex flex-col gap-4'>
       <div className='border shadow-md p-4'>
         <span className='font-semibold'>Sort</span>
         <hr className="my-2" />
@@ -30,7 +31,10 @@ export const Filters = ({
         <div className='h-2'></div>
 
         <Listbox value={selectedOption} onChange={onChange}>
-          <Listbox.Button className="bg-[#e4e7eb] px-4 py-2 rounded-md font-normal w-full text-left">{selectedOption.name}</Listbox.Button>
+          <Listbox.Button className="bg-[#e4e7eb] px-4 py-2 rounded-md font-normal w-full text-left flex justify-between">
+            <span>{selectedOption.name}</span>
+            <ExpandMoreIcon />
+          </Listbox.Button>
           <Transition
             as={Fragment}
             leave="transition ease-in duration-100"

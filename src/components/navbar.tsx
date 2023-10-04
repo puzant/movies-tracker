@@ -7,7 +7,7 @@ export const Navbar = () => {
   const [searchValue, setSearchValue] = React.useState("")
 
   return (
-    <div className="bg-[#172554] p-5 text-white flex items-center justify-between">
+    <div className="bg-[#172554] p-4 text-white flex items-center justify-between">
       <div className="flex gap-5">
         <img width="154" height="20" src={tmdbLogo} />
         <Link to="/"><span>Movies</span></Link>

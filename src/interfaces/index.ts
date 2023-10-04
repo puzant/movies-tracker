@@ -35,3 +35,20 @@ export interface IGenre {
   id: number
   name: string
 }
+
+export interface IReview {
+  author: string
+  authorDetails: IAuthorDetails
+  content: string 
+  created_at: string 
+  id: string
+  updated_at: string
+  url: string
+}
+
+export interface IAuthorDetails {
+  avatar_path: string | null 
+  name: string
+  rating: number
+  username: string
+}

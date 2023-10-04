@@ -55,11 +55,11 @@ export const Home = () => {
 
   return (
     <div className='mt-8'>
-      <div className='px-8'>
+      <div className='px-4 sm:px-8'>
         <span className='text-2xl font-semibold'>Popular Movies</span>
       </div>
 
-      <div className='flex gap-6 px-8 py-4'>
+      <div className='flex gap-6 px-4 sm:px-8 py-4'>
         <Filters
           genres={genres}
           selectedGenres={selectedGenres}
@@ -69,7 +69,7 @@ export const Home = () => {
           onGenreSelection={handleGenreSelection}
         />
 
-        <div className='w-[80%]'>
+        <div className='w-full sm:w-[80%]'>
           {isLoading ? <div className='flex justify-center'><LoadingSpinner /></div> :
             <div className='grid grid-cols-2 sm:grid-cols-5 gap-7'>
               {
