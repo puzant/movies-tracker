@@ -36,6 +36,21 @@ export interface IGenre {
   name: string
 }
 
+export interface ICast {
+  adult: boolean
+  cast_id: number
+  character: string 
+  credit_id: string 
+  gender: number 
+  id: number
+  known_fo_department: string 
+  name: string 
+  order: number
+  original_name: string 
+  popularity: number 
+  profile_path: string 
+}
+
 export interface IReview {
   author: string
   authorDetails: IAuthorDetails
@@ -51,4 +66,10 @@ export interface IAuthorDetails {
   name: string
   rating: number
   username: string
+}
+
+export interface IPostLoginBody {
+  username: string 
+  password: string 
+  requestToken: string 
 }

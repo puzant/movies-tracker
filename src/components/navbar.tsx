@@ -21,7 +21,8 @@ export const Navbar = () => {
           onChange={e => setSearchValue(e.target.value)}
           placeholder='Search...'
         />
-        <span className="cursor-pointer">Login</span>
+        <Link to="/login"><span>Login</span></Link>
+
       </div>
     </div>
   )
