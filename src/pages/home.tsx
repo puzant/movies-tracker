@@ -18,7 +18,7 @@ export const Home = () => {
     isLoading,
     fetchNextPage,
     hasNextPage,
-    isFetchingNextPage,
+    isFetchingNextPage
   } = usePaginatedQuery(
     getMovies,
     'movies',

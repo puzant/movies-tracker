@@ -8,10 +8,11 @@ import { LoadingSpinner, MovieRating, MovieStatus, MovieToolbar, Movie, Actor } 
 
 export const MovieDetails = () => {
   const { movieId } = useParams()
+  const sessionId = localStorage.getItem('sessionId')
 
   const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
 
-  const { data: movieDetails, isLoading } = useCustomQuery(getMovie, 'movieDetails', movieId)
+  const { data: movieDetails, isLoading } = useCustomQuery(getMovie, 'movieDetails', movieId, sessionId)
 
   return (
     <div>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import tmdbLogo from '@/assets/tmdb-logo.svg'
 
 export const Navbar = () => {
+  const isAuthenticated = localStorage.getItem('sessionId')
   const [searchValue, setSearchValue] = React.useState("")
 
   return (
@@ -11,7 +12,7 @@ export const Navbar = () => {
       <div className="flex gap-5">
         <img width="154" height="20" src={tmdbLogo} />
         <Link to="/"><span>Movies</span></Link>
-        <Link to="/"><span>Upcoming</span></Link>
+        <Link to="/upcoming"><span>Upcoming</span></Link>
       </div>
 
       <div className='flex gap-5 items-center'>
@@ -21,7 +22,9 @@ export const Navbar = () => {
           onChange={e => setSearchValue(e.target.value)}
           placeholder='Search...'
         />
+
         <Link to="/login"><span>Login</span></Link>
+        {isAuthenticated && <span className='cursor-pointer'>Logout</span>}
 
       </div>
     </div>

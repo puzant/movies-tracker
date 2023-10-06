@@ -5,27 +5,31 @@ import { getRequestToken, login, createSession } from '@/api'
 import { useCustomMutation } from '@/mutations'
 import { useCustomQuery } from '@/queries'
 
-
 export const Login = () => {
   const navigate = useNavigate()
+
   const [username, setUsername] = React.useState<string>("")
   const [password, setPassword] = React.useState<string>("")
 
   const { data: requestToken } = useCustomQuery(getRequestToken, 'requestQuery')
 
-  const { mutateAsync: loginMutation, isLoading: loginLoading } = useCustomMutation(login)
-  const { mutateAsync: createSessionMutation } = useCustomMutation(createSession)
-
+  const { mutateAsync: loginMutation, isLoading: loginLoading, error } = useCustomMutation(login, 'login')
+  const { mutateAsync: createSessionMutation } = useCustomMutation(createSession, 'userSession')
 
   const handleLogin = async () => {
     try {
-      const loginResponse = await loginMutation({ username: username, password: password, requestToken: requestToken.data.request_token })
+      const loginResponse = await loginMutation({
+        username: username,
+        password: password,
+        requestToken:
+          requestToken.data.request_token
+      })
 
       if (!loginResponse.data.success) return
 
       const createSessionResponse = await createSessionMutation({ requestToken: loginResponse.data.request_token })
       localStorage.setItem('sessionId', createSessionResponse.data.session_id)
-
+      navigate('/')
     } catch (e) {
       console.log(e)
     }
@@ -57,7 +61,11 @@ export const Login = () => {
         </div>
       </div>
 
-      <div onClick={handleLogin} className='rounded-md px-4 py-2 mt-4 bg-blue-400 text-white w-fit'>Login</div>
+      <div className="text-red-500 mt-2">{error && error.response.data.status_message}</div>
+
+      <div onClick={handleLogin} className='rounded-md px-4 py-2 mt-4 bg-blue-400 text-white w-fit'>
+        Login
+      </div>
     </div>
   )
 }
