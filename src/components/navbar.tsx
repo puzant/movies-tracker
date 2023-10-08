@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import tmdbLogo from '@/assets/tmdb-logo.svg'
 
 export const Navbar = () => {
-  const isAuthenticated = localStorage.getItem('sessionId')
   const [searchValue, setSearchValue] = React.useState("")
 
   return (
@@ -24,7 +23,7 @@ export const Navbar = () => {
         />
 
         <Link to="/login"><span>Login</span></Link>
-        {isAuthenticated && <span className='cursor-pointer'>Logout</span>}
+        <span className='cursor-pointer'>Logout</span>
 
       </div>
     </div>

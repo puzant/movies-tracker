@@ -5,6 +5,8 @@ import { getRequestToken, login, createSession } from '@/api'
 import { useCustomMutation } from '@/mutations'
 import { useCustomQuery } from '@/queries'
 
+import { CircularProgress } from '@mui/material'
+
 export const Login = () => {
   const navigate = useNavigate()
 
@@ -64,7 +66,7 @@ export const Login = () => {
       <div className="text-red-500 mt-2">{error && error.response.data.status_message}</div>
 
       <div onClick={handleLogin} className='rounded-md px-4 py-2 mt-4 bg-blue-400 text-white w-fit'>
-        Login
+        {loginLoading ? <CircularProgress size={20} sx={{ color: '#fff' }} /> : 'Login'}
       </div>
     </div>
   )
