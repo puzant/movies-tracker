@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import useMoviesStore from '@/store'
 import { getRequestToken, login, createSession } from '@/api'
 import { useCustomMutation } from '@/mutations'
 import { useCustomQuery } from '@/queries'
@@ -9,6 +10,7 @@ import { CircularProgress } from '@mui/material'
 
 export const Login = () => {
   const navigate = useNavigate()
+  const setAuthenticated = useMoviesStore(state => state.setAuthenticated)
 
   const [username, setUsername] = React.useState<string>("")
   const [password, setPassword] = React.useState<string>("")
@@ -31,6 +33,7 @@ export const Login = () => {
 
       const createSessionResponse = await createSessionMutation({ requestToken: loginResponse.data.request_token })
       localStorage.setItem('sessionId', createSessionResponse.data.session_id)
+      setAuthenticated()
       navigate('/')
     } catch (e) {
       console.log(e)

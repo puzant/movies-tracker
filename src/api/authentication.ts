@@ -15,6 +15,4 @@ export const createSession = ({ requestToken }) =>
   export const deleteSession = ({ sessionId }) =>
   axios.delete('/authentication/session', { data: { session_id: sessionId } });
 
-  export const getAccountDetails = (sessionId: string) => axios.get(`/account?session_id=${sessionId}`);
-
   export const getRequestToken = () => axios.get('/authentication/token/new')

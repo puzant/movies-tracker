@@ -22,7 +22,7 @@ export const Filters = ({
   selectedGenres
 }: IFilters) => {
   return (
-    <div className='w-[20%] hidden sm:flex flex-col gap-4'>
+    <div className='w-1/5 hidden sm:flex flex-col gap-4'>
       <div className='border shadow-md p-4'>
         <span className='font-semibold'>Sort</span>
         <hr className="my-2" />

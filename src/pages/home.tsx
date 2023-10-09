@@ -2,12 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 import { useCustomQuery, usePaginatedQuery } from '@/queries';
-import { getMovies, getGenres } from '@/api';
+import { getMovies, getGenres, getAccountDetails } from '@/api';
 import { IMovie, IGenre, ISortingOption } from '@/interfaces';
 import { sortingOptions } from '@/utils/constants'
 import { Filters, Movie, LoadingSpinner } from '@/components';
 
 export const Home = () => {
+  const sessionId = localStorage.getItem('sessionId')
   const [selectedOption, setSelectedOption] = React.useState<ISortingOption>(sortingOptions[0])
   const [selectedGenres, setSelectedGenres] = React.useState<IGenre[]>([])
 
@@ -25,6 +26,13 @@ export const Home = () => {
     selectedOption,
     selectedGenres,
   );
+
+  const { data: accountData } = useCustomQuery(
+    getAccountDetails,
+    'userAccount',
+    sessionId,
+    { enabled: sessionId }
+  )
 
   const { genres } = genresData?.data || {}
 
@@ -69,7 +77,7 @@ export const Home = () => {
           onGenreSelection={handleGenreSelection}
         />
 
-        <div className='w-full sm:w-[80%]'>
+        <div className='w-full sm:w-4/5'>
           {isLoading ? <div className='flex justify-center'><LoadingSpinner /></div> :
             <div className='grid grid-cols-2 sm:grid-cols-5 gap-7'>
               {

@@ -73,3 +73,8 @@ export interface IPostLoginBody {
   password: string 
   requestToken: string 
 }
+
+export interface IGetFavoriteMoviesParams {
+  sort_by: string 
+  page?: number
+}
