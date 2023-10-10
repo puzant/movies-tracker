@@ -4,13 +4,19 @@ import { useParams, Link } from "react-router-dom"
 import { getMovie } from '@/api'
 import { useCustomQuery } from "@/queries"
 import { IReview, IMovie, ICast, IGenre } from '@/interfaces'
-import { LoadingSpinner, MovieRating, MovieStatus, MovieToolbar, Movie, Actor } from '@/components';
+import {
+  LoadingSpinner,
+  MovieRating,
+  MovieStatus,
+  MovieToolbar,
+  Movie,
+  Actor,
+  Review
+} from '@/components';
 
 export const MovieDetails = () => {
   const { movieId } = useParams()
   const sessionId = localStorage.getItem('sessionId')
-
-  const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
 
   const { data: movieDetails, isLoading } = useCustomQuery(getMovie, 'movieDetails', movieId, sessionId)
 
@@ -26,7 +32,7 @@ export const MovieDetails = () => {
               backgroundPosition: 'center center'
             }}
           >
-            <div className="flex flex-col sm:flex-row items-center m-auto gap-9 py-8 w-[85%]">
+            <div className="flex flex-col sm:flex-row items-center m-auto gap-9 py-8 w-full md:w-[90%] lg:w-[85%]">
               <img className="rounded-md" src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movieDetails.data.poster_path}`} />
 
               <div className="text-center sm:text-left">
@@ -63,10 +69,10 @@ export const MovieDetails = () => {
             </div>
           </div>
 
-          <div className="text-2xl px-20 mt-8 font-semibold">Top Cast</div>
+          <div className="text-2xl px-4 md:px-10 md:px-20 lg:px-20 mt-8 font-semibold">Top Cast</div>
 
-          <div className="mt-2 flex justify-between gap-12 px-20">
-            <div className="flex flex-col w-[80%]">
+          <div className="mt-2 flex justify-between gap-8 px-4 md:px-10 lg:px-20">
+            <div className="flex flex-col w-full md:w-[70%] lg:w-[80%]">
               <div className="overflow-x-auto h-fit p-2">
                 <div className="min-w-max flex gap-3">
                   {movieDetails.data.credits.cast.slice(0, 9).map((c: ICast) => (
@@ -81,17 +87,7 @@ export const MovieDetails = () => {
               <div className="text-2xl mt-6 font-semibold mb-2">Reviews</div>
 
               {movieDetails.data.reviews.results.slice(0, 1).map((review: IReview) => (
-                <div className="shadow-md border rounded-md p-4">
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center justify-center text-white text-xl rounded-full bg-indigo-500 w-[32px] h-[32px]">{review.author.slice(0, 1)}</div>
-                    <span className="font-bold text-xl">A review by {review.author}</span>
-                  </div>
-
-                  <div className="mt-2">
-                    {isExpanded ? <span>{review.content}</span> : <span>{review.content.substring(0, 550)}</span>}
-                    <span className="underline cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>{isExpanded ? ' Read Less' : '...Read More'}</span>
-                  </div>
-                </div>
+                <Review review={review} />
               ))}
 
               <div className="text-md font-semibold hover:text-gray-500 cursor-pointer mt-8">Read All Reviews</div>
@@ -99,14 +95,13 @@ export const MovieDetails = () => {
 
               <div className="text-2xl mt-5 font-semibold">Recommendations</div>
 
-              <div className="grid grid-cols-5 gap-7 mt-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 mt-4">
                 {movieDetails.data.recommendations.results.slice(0, 10).map((movie: IMovie) => (
                   <Link to={`/movie/${movie.id}`}>
                     <Movie key={movie.id} movie={movie} />
                   </Link>
                 ))}
               </div>
-
             </div>
 
             <MovieStatus movieDetails={movieDetails} />

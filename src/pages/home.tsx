@@ -77,9 +77,9 @@ export const Home = () => {
           onGenreSelection={handleGenreSelection}
         />
 
-        <div className='w-full sm:w-4/5'>
+        <div className='w-full md:w-4/5'>
           {isLoading ? <div className='flex justify-center'><LoadingSpinner /></div> :
-            <div className='grid grid-cols-2 sm:grid-cols-5 gap-7'>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7'>
               {
                 moviesData.pages.map(page => (
                   page.data.results.map((movie: IMovie) => (

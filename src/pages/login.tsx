@@ -41,7 +41,7 @@ export const Login = () => {
   }
 
   return (
-    <div className='px-12 mt-10 w-full sm:w-[70%] m-auto'>
+    <div className='px-12 mt-10 w-full md:w-[90%] lg:w-[70%] m-auto'>
       <div className="text-2xl">Login to your account</div>
       <div className='mt-1'>This app gets its data from the TMDb APIs. To view your account information, login with your TMDb credentials in the form below. To create one, click here.</div>
 

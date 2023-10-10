@@ -25,6 +25,11 @@ export interface IMovie {
   vote_count: number
 }
 
+export interface IKeyword {
+  id: number
+  name: string
+}
+
 export interface ISortingOption {
   id: number;
   key: string;

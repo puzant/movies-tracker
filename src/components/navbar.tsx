@@ -20,8 +20,9 @@ export const Navbar = () => {
         <Link to="/upcoming"><span>Upcoming</span></Link>
       </div>
 
-      <div className='block sm:hidden'>
+      <div className='flex justify-between w-full sm:hidden'>
         <MenuIcon />
+        <img width="154" height="20" src={tmdbLogo} />
       </div>
 
       <div className='hidden sm:flex gap-5 items-center'>
