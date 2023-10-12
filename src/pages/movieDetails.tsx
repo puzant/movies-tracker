@@ -1,9 +1,9 @@
-import React from "react"
 import { useParams, Link } from "react-router-dom"
 
 import { getMovie } from '@/api'
 import { useCustomQuery } from "@/queries"
 import { IReview, IMovie, ICast, IGenre } from '@/interfaces'
+import { getMovieLanguage } from "@/utils";
 import {
   LoadingSpinner,
   MovieRating,
@@ -77,6 +77,32 @@ export const MovieDetails = () => {
                 <div className="min-w-max flex gap-3">
                   {movieDetails.data.credits.cast.slice(0, 9).map((c: ICast) => (
                     <Actor actor={c} />
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-5 block md:hidden bg-gray-300 w-full h-[1px]"></div>
+
+              <div className="flex md:hidden flex-col gap-2 mt-4 px-4">
+                <div className="flex gap-2">
+                  <span className="font-bold">Original Language: </span>
+                  <span>{getMovieLanguage(movieDetails.data.original_language)}</span>
+                </div>
+
+                <div className="flex gap-2">
+                  <span className="font-bold">Budget: </span>
+                  <span>${movieDetails.data.budget.toLocaleString()}</span>
+                </div>
+
+                <div className="flex gap-2">
+                  <span className="font-bold">Revenue: </span>
+                  <span>${movieDetails.data.revenue.toLocaleString()}</span>
+                </div>
+
+                <span className="font-bold">Keywords: </span>
+                <div className="flex gap-2 flex-wrap">
+                  {movieDetails.data.keywords.keywords.map((k: IKeyword) => (
+                    <span className="text-xs rounded-sm cursor-pointer bg-gray-200 p-2" key={k.key}>{k.name}</span>
                   ))}
                 </div>
               </div>

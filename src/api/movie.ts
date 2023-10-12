@@ -1,11 +1,43 @@
 import axios from './axiosInstance'
+import moment from 'moment'
+import { IGenre, ISortingOption } from '@/interfaces'
 
-export const getMovies = (sortOption: any = 'popularity.desc', genres = null, page = 1) => {
-  return axios.get(`discover/movie?&page=${page}&sort_by=${sortOption.key}&with_genres=${genres?.map(obj => obj.id).join(',')}`)
+interface IDiscoverMoviesParams {
+  page: number
+  sort_by: ISortingOption 
+  with_genres?: string
+  'primary_release_date.gte'?: string
+  'primary_release_date.lte'?: string
+}
+
+interface ISearchMoviesParams {
+  page?: number
+  query: string
+}
+
+export const getMovies = (sort: ISortingOption = 'popularity.desc', with_genres: IGenre = null, startDate?, endDate?, page) => {
+  return axios.get('discover/movie', {
+    params: {
+      page: page,
+      sort_by: sort.key,
+      with_genres: with_genres?.map((obj: IGenre) => obj.id).join(',') || null,
+      'primary_release_date.gte': startDate ? moment(startDate).format("YYYY-MM-DD") : null,
+      'primary_release_date.lte': endDate ? moment(endDate).format("YYYY-MM-DD") : null,
+    }
+  })
 }
 
 export const getUpcomingMovies = (page = 1) => {
   return axios.get(`/movie/upcoming?language=en-US&page=${page}`)
+}
+
+export const searchMovies = (page = 1, query) => {
+  return axios.get('/serach/movie', {
+    params: {
+      page: page,
+      query: query
+    }
+  })
 }
 
 export const getMovie = (movieId: string, sessionId?: string) => {

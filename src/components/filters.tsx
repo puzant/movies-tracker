@@ -1,26 +1,29 @@
-import { Fragment } from 'react'
+import { Fragment, ReactNode } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 
 import { IGenre, ISortingOption } from '@/interfaces'
+import { sortingOptions } from '@/utils/constants'
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface IFilters {
-  genres: IGenre[]
-  sortingOptions: ISortingOption[]
-  selectedOption: () => void
-  onChange: () => void
-  onGenreSelection: () => void
+  children: ReactNode
   selectedGenres: IGenre[]
+  genres: IGenre[]
+  selectedOption: () => void
+  onSortSelection: () => void
+  onGenreSelection: () => void
 }
 
 export const Filters = ({
+  children,
   genres,
-  sortingOptions,
+  selectedGenres,
   selectedOption,
-  onChange,
+  onSortSelection,
   onGenreSelection,
-  selectedGenres
 }: IFilters) => {
+
   return (
     <div className='w-[20%] hidden sm:flex flex-col gap-4'>
       <div className='border shadow-md p-4'>
@@ -30,7 +33,7 @@ export const Filters = ({
         <span className=''>Sort By</span>
         <div className='h-2'></div>
 
-        <Listbox value={selectedOption} onChange={onChange}>
+        <Listbox value={selectedOption} onChange={onSortSelection}>
           <Listbox.Button className="bg-[#e4e7eb] px-4 py-2 rounded-md font-normal w-full text-left flex justify-between">
             <span>{selectedOption.name}</span>
             <ExpandMoreIcon />
@@ -60,12 +63,19 @@ export const Filters = ({
         <span className='font-semibold'>Filters</span>
         <hr className="my-2" />
 
+        <span>Release Date</span>
+        <div className='flex flex-col gap-4 mt-4'>
+          {children}
+        </div>
+
+        <hr className="my-3" />
+
         <span>Genres</span>
         <div className='flex flex-wrap gap-3 mt-2'>
           {genres?.map((genre: IGenre) => (
             <div
               onClick={() => onGenreSelection(genre)}
-              className={`${selectedGenres.includes(genre) ? 'bg-[#3b82f6] border border-transparent text-white' : 'bg-trasnparent'}  rounded-2xl text-xs border border-gray-400 p-2.5 cursor-pointer ease-in duration-300`}
+              className={`${selectedGenres.includes(genre) ? 'bg-[#3b82f6] border border-transparent text-white' : 'bg-trasnparent'} rounded-2xl text-xs border border-gray-400 p-2.5 cursor-pointer ease-in duration-300`}
               key={genre.id}
             >
               {genre.name}

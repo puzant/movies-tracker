@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 import { useCustomQuery, usePaginatedQuery } from '@/queries';
@@ -7,8 +8,11 @@ import { IMovie, IGenre, ISortingOption } from '@/interfaces';
 import { sortingOptions } from '@/utils/constants'
 import { Filters, Movie, LoadingSpinner } from '@/components';
 
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
 export const Home = () => {
-  const sessionId = localStorage.getItem('sessionId')
+  const [startDate, setStartDate] = React.useState(null)
+  const [endDate, setEndDate] = React.useState(null)
   const [selectedOption, setSelectedOption] = React.useState<ISortingOption>(sortingOptions[0])
   const [selectedGenres, setSelectedGenres] = React.useState<IGenre[]>([])
 
@@ -25,14 +29,16 @@ export const Home = () => {
     'movies',
     selectedOption,
     selectedGenres,
+    startDate,
+    endDate
   );
 
-  const { data: accountData } = useCustomQuery(
-    getAccountDetails,
-    'userAccount',
-    sessionId,
-    { enabled: sessionId }
-  )
+  // const { data: accountData } = useCustomQuery(
+  //   getAccountDetails,
+  //   'userAccount',
+  //   sessionId,
+  //   { enabled: sessionId }
+  // )
 
   const { genres } = genresData?.data || {}
 
@@ -71,11 +77,34 @@ export const Home = () => {
         <Filters
           genres={genres}
           selectedGenres={selectedGenres}
-          sortingOptions={sortingOptions}
           selectedOption={selectedOption}
-          onChange={(e: Event) => setSelectedOption(e)}
+          onSortSelection={(e: Event) => setSelectedOption(e)}
           onGenreSelection={handleGenreSelection}
-        />
+        >
+          <DatePicker
+            label="Start Date"
+            value={startDate}
+            onChange={(newValue) => setStartDate(newValue)}
+            slotProps={{ textField: { size: 'small' } }}
+            sx={{
+              '& .MuiInputBase-root': {
+                borderRadius: 2,
+              },
+            }}
+          />
+
+          <DatePicker
+            label="End Date"
+            value={endDate}
+            onChange={(newValue) => setEndDate(newValue)}
+            slotProps={{ textField: { size: 'small' } }}
+            sx={{
+              '& .MuiInputBase-root': {
+                borderRadius: 2,
+              },
+            }}
+          />
+        </Filters>
 
         <div className='w-full md:w-4/5'>
           {isLoading ? <div className='flex justify-center'><LoadingSpinner /></div> :
