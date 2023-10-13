@@ -15,7 +15,7 @@ interface ISearchMoviesParams {
   query: string
 }
 
-export const getMovies = (sort: ISortingOption = 'popularity.desc', with_genres: IGenre = null, startDate?, endDate?, page) => {
+export const getMovies = (sort: ISortingOption = 'popularity.desc', with_genres: IGenre, startDate: string, endDate: string, page: number) => {
   return axios.get('discover/movie', {
     params: {
       page: page,
@@ -31,11 +31,11 @@ export const getUpcomingMovies = (page = 1) => {
   return axios.get(`/movie/upcoming?language=en-US&page=${page}`)
 }
 
-export const searchMovies = (page = 1, query) => {
-  return axios.get('/serach/movie', {
+export const searchMovies = (query, page = 1) => {
+  return axios.get('/search/movie', {
     params: {
+      query: query,
       page: page,
-      query: query
     }
   })
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 import { useCustomQuery, usePaginatedQuery } from '@/queries';
@@ -11,8 +10,8 @@ import { Filters, Movie, LoadingSpinner } from '@/components';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 export const Home = () => {
-  const [startDate, setStartDate] = React.useState(null)
-  const [endDate, setEndDate] = React.useState(null)
+  const [startDate, setStartDate] = React.useState<Date | null>(null)
+  const [endDate, setEndDate] = React.useState<Date | null>(null)
   const [selectedOption, setSelectedOption] = React.useState<ISortingOption>(sortingOptions[0])
   const [selectedGenres, setSelectedGenres] = React.useState<IGenre[]>([])
 

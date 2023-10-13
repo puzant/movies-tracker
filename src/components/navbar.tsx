@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useMoviesStore from '@/store'
 
 import tmdbLogo from '@/assets/tmdb-logo.svg'
 import MenuIcon from '@mui/icons-material/Menu';
 
-
 export const Navbar = () => {
+  const navigate = useNavigate()
   const isAuthenticated = useMoviesStore(state => state.isAuthenticated)
   const setAuthenticated = useMoviesStore(state => state.setAuthenticated)
 
@@ -26,15 +26,27 @@ export const Navbar = () => {
       </div>
 
       <div className='hidden sm:flex gap-5 items-center'>
-        <input
-          className='px-3 py-2 bg-gray-500/50 rounded-sm px-4 placeholder:text-white focus:outline-none'
-          value={searchValue}
-          onChange={e => setSearchValue(e.target.value)}
-          placeholder='Search...'
-        />
+
+
+        <div className='flex gap-2'>
+          <input
+            className='px-3 py-2 bg-gray-500/50 rounded-sm px-4 placeholder:text-white focus:outline-none'
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+            placeholder='Search...'
+          />
+
+          <div
+            onClick={() => navigate(`/search-results?query=${searchValue}`)}
+            className='bg-blue-400 px-3.5 py-2 cursor-pointer rounded-md text-white'>
+            Search
+          </div>
+        </div>
 
         {!isAuthenticated ? <Link to="/login"><span>Login</span></Link> :
-          <span className='cursor-pointer' onClick={setAuthenticated}>Logout</span>}
+          <span className='cursor-pointer' onClick={setAuthenticated}>Logout</span>
+        }
+
       </div>
     </div>
   )
