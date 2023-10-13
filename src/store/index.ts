@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware';
 
-const useMoviesStore = create(
+const useStore = create(
   persist(
     (set) => ({
       isAuthenticated: false,
@@ -14,4 +14,4 @@ const useMoviesStore = create(
   )
 )
 
-export default useMoviesStore
+export default useStore

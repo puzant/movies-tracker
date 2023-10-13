@@ -3,7 +3,7 @@ import { useQuery, useInfiniteQuery } from 'react-query';
 export const useCustomQuery = (queryFunc, ...params) => {
   const [, ...restParams] = params;
 
-  return useQuery([params], () => queryFunc(...restParams));
+  return useQuery([params], () => queryFunc(...restParams), restParams.at(-1));
 };
 
 export const usePaginatedQuery = (queryFunc, ...params) => {

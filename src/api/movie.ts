@@ -52,6 +52,10 @@ export const getGenres = () => {
   return axios.get('/genre/movie/list?language=en')
 }
 
+export const setFavoriteMovie = () => {}
+
+export const setMovieInWatchList = () => {}
+
 export const rateMovie = (id: string, rating: number, sessionId: string) => {
   return axios.post(`/movie/${id}/rating?session_id=${sessionId}`, { value: rating })
 }

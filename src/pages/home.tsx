@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
+import useStore from '@/store'
+import { sortingOptions } from '@/utils/constants'
 import { useCustomQuery, usePaginatedQuery } from '@/queries';
 import { getMovies, getGenres, getAccountDetails } from '@/api';
 import { IMovie, IGenre, ISortingOption } from '@/interfaces';
-import { sortingOptions } from '@/utils/constants'
 import { Filters, Movie, LoadingSpinner } from '@/components';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -14,6 +15,8 @@ export const Home = () => {
   const [endDate, setEndDate] = React.useState<Date | null>(null)
   const [selectedOption, setSelectedOption] = React.useState<ISortingOption>(sortingOptions[0])
   const [selectedGenres, setSelectedGenres] = React.useState<IGenre[]>([])
+
+  const isAuthenticated = useStore(state => state.isAuthenticated)
 
   const { data: genresData } = useCustomQuery(getGenres, 'genres')
 
@@ -32,12 +35,17 @@ export const Home = () => {
     endDate
   );
 
-  // const { data: accountData } = useCustomQuery(
-  //   getAccountDetails,
-  //   'userAccount',
-  //   sessionId,
-  //   { enabled: sessionId }
-  // )
+  const { data: accountData } = useCustomQuery(
+    getAccountDetails,
+    'userAccount',
+    localStorage.getItem('sessionId'),
+    {
+      enabled: isAuthenticated,
+      onSuccess: (data) => {
+        localStorage.setItem('accountId', data.data.id)
+      }
+    }
+  )
 
   const { genres } = genresData?.data || {}
 
