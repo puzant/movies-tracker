@@ -1,16 +1,9 @@
 import { useParams, Link } from "react-router-dom"
 
 import { useCustomQuery } from "@/queries"
-import { useCustomMutation } from "@/mutations";
 import { IReview, IMovie, ICast, IGenre } from '@/interfaces'
 import { getMovieLanguage } from "@/utils";
-import {
-  getMovie,
-  setFavoriteMovie,
-  setMovieInWatchList,
-  rateMovie,
-  deleteMovieRating
-} from '@/api'
+import { getMovie } from '@/api'
 
 import {
   LoadingSpinner,
@@ -27,27 +20,6 @@ export const MovieDetails = () => {
   const sessionId = localStorage.getItem('sessionId')
 
   const { data: movieDetails, isLoading } = useCustomQuery(getMovie, 'movieDetails', movieId, sessionId)
-
-  const {
-    mutateAsync: setFavorietMovieMutation,
-    isLoading: addingFavoriteLoading
-  } = useCustomMutation(setFavoriteMovie, 'movieDetails')
-
-  const {
-    mutateAsync: setMovieWatchListMutation,
-    isLoading: addingWatchListLoading
-  } = useCustomMutation(setMovieInWatchList, 'movieDetails')
-
-  const {
-    mutateAsync: rateMovieMutation,
-    isLoading: rateingLoading
-  } = useCustomMutation(rateMovie, 'movieDetails')
-
-  const {
-    mutateAsync: deleteRatingMutation,
-    isLoading: deleteRatingLoading
-  } = useCustomMutation(deleteMovieRating, 'movieDetails')
-
 
   return (
     <div>
@@ -92,7 +64,7 @@ export const MovieDetails = () => {
                   </div>
                 </div>
 
-                <MovieToolbar />
+                <MovieToolbar movieDetails={movieDetails.data} />
               </div>
 
             </div>
