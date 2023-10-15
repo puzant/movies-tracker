@@ -44,9 +44,10 @@ export const searchMovies = (query, page = 1) => {
 }
 
 export const getMovie = (movieId: string, sessionId?: string) => {
-  return axios.get(`movie/${movieId}?append_to_response=credits,keywords,reviews,recommendations,account_states`, {
+  return axios.get(`movie/${movieId}`, {
     params: {
-      session_id: sessionId
+      session_id: sessionId,
+      append_to_response: 'credits,keywords,reviews,recommendations,account_states',
     }
   })
 }
@@ -63,7 +64,12 @@ export const setFavoriteMovie = ({id, favorite}) => {
   })
 }
 
-export const setMovieInWatchList = () => {
+export const setMovieInWatchList = ({ id, isInWatchlist }) => {
+  return axios.post(`/account/${accountId}/watchlist?session_id=${sessionId}`, {
+    media_type: 'movie',
+    media_id: id,
+    watchlist: isInWatchlist
+  })
   
 }
 

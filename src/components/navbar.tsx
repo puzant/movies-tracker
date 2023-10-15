@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+
+import { useCustomMutation } from '@/mutations'
+import { deleteSession } from '@/api'
 import useStore from '@/store'
 
 import tmdbLogo from '@/assets/tmdb-logo.svg'
@@ -11,6 +14,16 @@ export const Navbar = () => {
   const setAuthenticated = useStore(state => state.setAuthenticated)
 
   const [searchValue, setSearchValue] = React.useState("")
+
+  const { mutateAsync: deleteSessionMutation } = useCustomMutation(deleteSession, 'userSession')
+
+  const handleLogout = async () => {
+    const mutationResponse = await deleteSessionMutation()
+    if (mutationResponse.success) {
+      setAuthenticated()
+      localStorage.clear();
+    }
+  }
 
   return (
     <div className="bg-[#172554] p-4 text-white flex items-center justify-between">
@@ -41,8 +54,10 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {!isAuthenticated ? <Link to="/login"><span>Login</span></Link> :
-          <span className='cursor-pointer' onClick={setAuthenticated}>Logout</span>
+        {!isAuthenticated ?
+          <Link to="/login"><span>Login</span></Link>
+          :
+          <span className='cursor-pointer' onClick={handleLogout}>Logout</span>
         }
 
       </div>

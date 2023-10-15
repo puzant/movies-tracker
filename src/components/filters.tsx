@@ -1,7 +1,10 @@
 import { Fragment, ReactNode } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 
+import { getGenres } from '@/api'
+import { useCustomQuery } from '../queries'
 import { IGenre, ISortingOption } from '@/interfaces'
+import { LoadingSpinner } from '@/components'
 import { sortingOptions } from '@/utils/constants'
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -9,20 +12,25 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 interface IFilters {
   children: ReactNode
   selectedGenres: IGenre[]
-  genres: IGenre[]
   selectedOption: () => void
   onSortSelection: () => void
-  onGenreSelection: () => void
+  onGenreSelection: (selectedGenre: IGenre) => void
 }
 
 export const Filters = ({
   children,
-  genres,
   selectedGenres,
   selectedOption,
   onSortSelection,
   onGenreSelection,
 }: IFilters) => {
+
+  const {
+    data: genresData,
+    isLoading: genresLoading
+  } = useCustomQuery(getGenres, 'genres')
+
+  const { genres } = genresData?.data || {}
 
   return (
     <div className='w-[20%] hidden sm:flex flex-col gap-4'>
@@ -30,7 +38,7 @@ export const Filters = ({
         <span className='font-semibold'>Sort</span>
         <hr className="my-2" />
 
-        <span className=''>Sort By</span>
+        <span>Sort By</span>
         <div className='h-2'></div>
 
         <Listbox value={selectedOption} onChange={onSortSelection}>
@@ -72,15 +80,16 @@ export const Filters = ({
 
         <span>Genres</span>
         <div className='flex flex-wrap gap-3 mt-2'>
-          {genres?.map((genre: IGenre) => (
-            <div
-              onClick={() => onGenreSelection(genre)}
-              className={`${selectedGenres.includes(genre) ? 'bg-[#3b82f6] border border-transparent text-white' : 'bg-trasnparent'} rounded-2xl text-xs border border-gray-400 p-2.5 cursor-pointer ease-in duration-300`}
-              key={genre.id}
-            >
-              {genre.name}
-            </div>
-          ))}
+          {genresLoading ? <div className='m-auto'><LoadingSpinner /></div> :
+            genres?.map((genre: IGenre) => (
+              <div
+                onClick={() => onGenreSelection(genre)}
+                className={`${selectedGenres.includes(genre) ? 'bg-[#3b82f6] border border-transparent text-white' : 'bg-trasnparent'} rounded-2xl text-xs border border-gray-400 p-2.5 cursor-pointer ease-in duration-300`}
+                key={genre.id}
+              >
+                {genre.name}
+              </div>
+            ))}
         </div>
       </div>
     </div>

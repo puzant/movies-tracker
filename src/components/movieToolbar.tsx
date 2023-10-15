@@ -7,14 +7,15 @@ import Tooltip from '@mui/material/Tooltip';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import StarRateIcon from '@mui/icons-material/StarRate';
+import { CircularProgress } from '@mui/material';
 
 export const MovieToolbar = ({ movieDetails }) => {
-  const { favorite, watchlist, rated } = movieDetails.account_states
+  const { favorite, watchlist, rated } = movieDetails.account_states || {}
   const isAuthenticated = useStore(state => state.isAuthenticated)
 
   const [accountStatus, setAccountStatus] = React.useState({
     isFavorite: favorite,
-    isInWatchList: watchlist,
+    isInWatchlist: watchlist,
     isRated: rated,
   })
 
@@ -39,13 +40,22 @@ export const MovieToolbar = ({ movieDetails }) => {
   } = useCustomMutation(deleteMovieRating, 'movieDetails')
 
   const handleSetMovieToFavorite = async () => {
-    const setFavoriteResponse = await setFavorietMovieMutation({ id: movieDetails.id, favorite: !accountStatus.isFavorite })
+    if (!isAuthenticated) return
+
+    const setFavoriteResponse = await setFavorietMovieMutation({
+      id: movieDetails.id,
+      favorite: !accountStatus.isFavorite
+    })
   }
 
   const handleSetMovieToWatchList = async () => {
-    const setMovieToWatchListResponse = await setMovieWatchListMutation()
-  }
+    if (!isAuthenticated) return
 
+    const setMovieToWatchListResponse = await setMovieWatchListMutation({
+      id: movieDetails.id, isInWatchlist:
+        !accountStatus.isInWatchlist
+    })
+  }
 
   const handleRateMovie = async () => {
     const rateMovieResponse = await rateMovieMutation()
@@ -58,14 +68,27 @@ export const MovieToolbar = ({ movieDetails }) => {
         onClick={handleSetMovieToFavorite}
         title={isAuthenticated ? "Add movie to your favorite list" : "Login to add movie to your favorite list"}
       >
-        <FavoriteIcon sx={{ background: '#0277bd', borderRadius: '50%', padding: '12px', width: '48px', height: '48px', color: accountStatus.isFavorite ? '#b91c1c' : '#fff', fontSize: '28px' }} />
+        {addingFavoriteLoading ?
+          <div className='bg-[#0277bd] rounded-full w-[48px] h-[48px] flex justify-center items-center'>
+            <CircularProgress sx={{ color: "#fff" }} size={30} />
+          </div>
+          :
+          <FavoriteIcon sx={{ background: '#0277bd', borderRadius: '50%', padding: '12px', width: '48px', height: '48px', color: accountStatus.isFavorite ? '#b91c1c' : '#fff', fontSize: '28px' }} />
+        }
       </Tooltip>
 
       <Tooltip
         arrow
+        onClick={handleSetMovieToWatchList}
         title={isAuthenticated ? "Add movie to your watch list" : "Login to add movie to your watch list"}
       >
-        <BookmarkIcon sx={{ background: '#0277bd', borderRadius: '50%', padding: '12px', width: '48px', height: '48px', color: accountStatus.isInWatchList ? '#84cc16' : '#fff', fontSize: '28px' }} />
+        {addingWatchListLoading ?
+          <div className='bg-[#0277bd] rounded-full w-[48px] h-[48px] flex justify-center items-center'>
+            <CircularProgress sx={{ color: "#fff" }} size={30} />
+          </div>
+          :
+          <BookmarkIcon sx={{ background: '#0277bd', borderRadius: '50%', padding: '12px', width: '48px', height: '48px', color: accountStatus.isInWatchlist ? '#84cc16' : '#fff', fontSize: '28px' }} />
+        }
       </Tooltip>
 
       <Tooltip

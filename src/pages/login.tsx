@@ -25,8 +25,7 @@ export const Login = () => {
       const loginResponse = await loginMutation({
         username: username,
         password: password,
-        requestToken:
-          requestToken.data.request_token
+        requestToken: requestToken.data.request_token
       })
 
       if (!loginResponse.data.success) return

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import useStore from '@/store'
 import { sortingOptions } from '@/utils/constants'
 import { useCustomQuery, usePaginatedQuery } from '@/queries';
-import { getMovies, getGenres, getAccountDetails } from '@/api';
+import { getMovies, getAccountDetails } from '@/api';
 import { IMovie, IGenre, ISortingOption } from '@/interfaces';
 import { Filters, Movie, LoadingSpinner } from '@/components';
 
@@ -17,8 +17,6 @@ export const Home = () => {
   const [selectedGenres, setSelectedGenres] = React.useState<IGenre[]>([])
 
   const isAuthenticated = useStore(state => state.isAuthenticated)
-
-  const { data: genresData } = useCustomQuery(getGenres, 'genres')
 
   const {
     data: moviesData,
@@ -46,8 +44,6 @@ export const Home = () => {
       }
     }
   )
-
-  const { genres } = genresData?.data || {}
 
   const handleGenreSelection = (genre: IGenre): void => {
     if (selectedGenres.includes(genre))
@@ -82,7 +78,6 @@ export const Home = () => {
 
       <div className='flex gap-6 px-4 sm:px-8 py-4'>
         <Filters
-          genres={genres}
           selectedGenres={selectedGenres}
           selectedOption={selectedOption}
           onSortSelection={(e: Event) => setSelectedOption(e)}
@@ -116,14 +111,13 @@ export const Home = () => {
         <div className='w-full md:w-4/5'>
           {isLoading ? <div className='flex justify-center'><LoadingSpinner /></div> :
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7'>
-              {
-                moviesData.pages.map(page => (
-                  page.data.results.map((movie: IMovie) => (
-                    <Link to={`/movie/${movie.id}`}>
-                      <Movie key={movie.id} movie={movie} />
-                    </Link>
-                  ))
+              {moviesData.pages.map(page => (
+                page.data.results.map((movie: IMovie) => (
+                  <Link to={`/movie/${movie.id}`}>
+                    <Movie key={movie.id} movie={movie} />
+                  </Link>
                 ))
+              ))
               }
             </div>
           }
