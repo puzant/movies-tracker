@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom"
 
+import useStore from "@/store";
 import { useCustomQuery } from "@/queries"
 import { IReview, IMovie, ICast, IGenre } from '@/interfaces'
 import { getMovieLanguage } from "@/utils";
@@ -17,7 +18,7 @@ import {
 
 export const MovieDetails = () => {
   const { movieId } = useParams()
-  const sessionId = localStorage.getItem('sessionId')
+  const { sessionId } = useStore()
 
   const { data: movieDetails, isLoading } = useCustomQuery(getMovie, 'movieDetails', movieId, sessionId)
 

@@ -10,17 +10,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 export const Navbar = () => {
   const navigate = useNavigate()
-  const isAuthenticated = useStore(state => state.isAuthenticated)
-  const setAuthenticated = useStore(state => state.setAuthenticated)
-
+  const { resetState, isAuthenticated, sessionId } = useStore()
   const [searchValue, setSearchValue] = React.useState("")
 
   const { mutateAsync: deleteSessionMutation } = useCustomMutation(deleteSession, 'userSession')
 
   const handleLogout = async () => {
-    const mutationResponse = await deleteSessionMutation()
-    if (mutationResponse.success) {
-      setAuthenticated()
+    const mutationResponse = await deleteSessionMutation(sessionId)
+    if (mutationResponse.data.success) {
+      resetState()
       localStorage.clear();
     }
   }

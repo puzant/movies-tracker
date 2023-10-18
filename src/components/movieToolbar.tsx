@@ -11,13 +11,21 @@ import { CircularProgress } from '@mui/material';
 
 export const MovieToolbar = ({ movieDetails }) => {
   const { favorite, watchlist, rated } = movieDetails.account_states || {}
-  const isAuthenticated = useStore(state => state.isAuthenticated)
+  const { sessionId, accountId, isAuthenticated } = useStore()
 
   const [accountStatus, setAccountStatus] = React.useState({
-    isFavorite: favorite,
-    isInWatchlist: watchlist,
-    isRated: rated,
+    isFavorite: '',
+    isInWatchlist: '',
+    isRated: '',
   })
+
+  React.useEffect(() => {
+    setAccountStatus({
+      isFavorite: favorite,
+      isInWatchlist: watchlist,
+      isRated: rated,
+    })
+  }, [])
 
   const {
     mutateAsync: setFavorietMovieMutation,
@@ -43,6 +51,8 @@ export const MovieToolbar = ({ movieDetails }) => {
     if (!isAuthenticated) return
 
     const setFavoriteResponse = await setFavorietMovieMutation({
+      accountId,
+      sessionId,
       id: movieDetails.id,
       favorite: !accountStatus.isFavorite
     })
@@ -52,8 +62,10 @@ export const MovieToolbar = ({ movieDetails }) => {
     if (!isAuthenticated) return
 
     const setMovieToWatchListResponse = await setMovieWatchListMutation({
-      id: movieDetails.id, isInWatchlist:
-        !accountStatus.isInWatchlist
+      accountId,
+      sessionId,
+      id: movieDetails.id,
+      isInWatchlist: !accountStatus.isInWatchlist
     })
   }
 

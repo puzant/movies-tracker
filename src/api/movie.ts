@@ -15,9 +15,6 @@ interface ISearchMoviesParams {
   query: string
 }
 
-const sessionId = localStorage.getItem('sessionId')
-const accountId = localStorage.getItem('accountId')
-
 export const getMovies = (sort: ISortingOption = 'popularity.desc', with_genres: IGenre, startDate: string, endDate: string, page: number) => {
   return axios.get('discover/movie', {
     params: {
@@ -56,7 +53,7 @@ export const getGenres = () => {
   return axios.get('/genre/movie/list?language=en')
 }
 
-export const setFavoriteMovie = ({id, favorite}) => {
+export const setFavoriteMovie = ({accountId, sessionId, id, favorite}) => {
   return axios.post(`/account/${accountId}/favorite?session_id=${sessionId}`, {
     media_type: 'movie',
     media_id: id,
@@ -64,7 +61,7 @@ export const setFavoriteMovie = ({id, favorite}) => {
   })
 }
 
-export const setMovieInWatchList = ({ id, isInWatchlist }) => {
+export const setMovieInWatchList = ({ accountId, sessionId, id, isInWatchlist }) => {
   return axios.post(`/account/${accountId}/watchlist?session_id=${sessionId}`, {
     media_type: 'movie',
     media_id: id,

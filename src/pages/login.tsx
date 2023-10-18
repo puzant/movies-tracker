@@ -10,8 +10,6 @@ import { CircularProgress } from '@mui/material'
 
 export const Login = () => {
   const navigate = useNavigate()
-  const setAuthenticated = useStore(state => state.setAuthenticated)
-
   const [username, setUsername] = React.useState<string>("")
   const [password, setPassword] = React.useState<string>("")
 
@@ -31,8 +29,8 @@ export const Login = () => {
       if (!loginResponse.data.success) return
 
       const createSessionResponse = await createSessionMutation({ requestToken: loginResponse.data.request_token })
-      localStorage.setItem('sessionId', createSessionResponse.data.session_id)
-      setAuthenticated()
+      useStore.setState({ sessionId: createSessionResponse.data.session_id });
+      useStore.setState({ isAuthenticated: true });
       navigate('/')
     } catch (e) {
       console.log(e)

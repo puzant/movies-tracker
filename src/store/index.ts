@@ -4,8 +4,10 @@ import { persist } from 'zustand/middleware';
 const useStore = create(
   persist(
     (set) => ({
+      sessionId: '',
+      accountId: '',
       isAuthenticated: false,
-      setAuthenticated: () => set((state) => ({ isAuthenticated: !state.isAuthenticated })),
+      resetState: () => set({ sessionId: '', accountId: '', isAuthenticated: false })
     }),
     {
       name: 'auth-storage',

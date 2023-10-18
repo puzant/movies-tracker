@@ -16,7 +16,7 @@ export const Home = () => {
   const [selectedOption, setSelectedOption] = React.useState<ISortingOption>(sortingOptions[0])
   const [selectedGenres, setSelectedGenres] = React.useState<IGenre[]>([])
 
-  const isAuthenticated = useStore(state => state.isAuthenticated)
+  const { isAuthenticated, sessionId } = useStore()
 
   const {
     data: moviesData,
@@ -36,11 +36,11 @@ export const Home = () => {
   const { data: accountData } = useCustomQuery(
     getAccountDetails,
     'userAccount',
-    localStorage.getItem('sessionId'),
+    sessionId,
     {
       enabled: isAuthenticated,
       onSuccess: (data) => {
-        localStorage.setItem('accountId', data.data.id)
+        useStore.setState({ accountId: data.data.id });
       }
     }
   )
@@ -111,10 +111,10 @@ export const Home = () => {
         <div className='w-full md:w-4/5'>
           {isLoading ? <div className='flex justify-center'><LoadingSpinner /></div> :
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7'>
-              {moviesData.pages.map(page => (
+              {moviesData.pages.map((page: { data: { results: IMovie[] } }) => (
                 page.data.results.map((movie: IMovie) => (
-                  <Link to={`/movie/${movie.id}`}>
-                    <Movie key={movie.id} movie={movie} />
+                  <Link key={movie.id} to={`/movie/${movie.id}`}>
+                    <Movie movie={movie} />
                   </Link>
                 ))
               ))
