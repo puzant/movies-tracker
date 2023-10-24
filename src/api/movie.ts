@@ -70,10 +70,10 @@ export const setMovieInWatchList = ({ accountId, sessionId, id, isInWatchlist })
   
 }
 
-export const rateMovie = (id: string, rating: number, sessionId: string) => {
+export const rateMovie = ({ id, rating, sessionId }) => {
   return axios.post(`/movie/${id}/rating?session_id=${sessionId}`, { value: rating })
 }
 
-export const deleteMovieRating = (id: string, sessionId: string) => {
+export const deleteMovieRating = ({ id, sessionId }) => {
   return axios.delete(`/movie/${id}/rating?session_id=${sessionId}`);
 }

@@ -1,7 +1,7 @@
+import { useQuery } from '@tanstack/react-query'
 import { useParams, Link } from "react-router-dom"
 
 import useStore from "@/store";
-import { useCustomQuery } from "@/queries"
 import { IReview, IMovie, ICast, IGenre } from '@/interfaces'
 import { getMovieLanguage } from "@/utils";
 import { getMovie } from '@/api'
@@ -20,7 +20,10 @@ export const MovieDetails = () => {
   const { movieId } = useParams()
   const { sessionId } = useStore()
 
-  const { data: movieDetails, isLoading } = useCustomQuery(getMovie, 'movieDetails', movieId, sessionId)
+  const { data: movieDetails, isLoading } = useQuery({
+    queryKey: ['movieDetails'],
+    queryFn: () => getMovie(movieId, sessionId)
+  })
 
   return (
     <div>

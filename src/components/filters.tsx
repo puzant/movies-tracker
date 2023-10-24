@@ -1,8 +1,8 @@
 import { Fragment, ReactNode } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
+import { useQuery } from '@tanstack/react-query'
 
 import { getGenres } from '@/api'
-import { useCustomQuery } from '../queries'
 import { IGenre, ISortingOption } from '@/interfaces'
 import { LoadingSpinner } from '@/components'
 import { sortingOptions } from '@/utils/constants'
@@ -25,10 +25,10 @@ export const Filters = ({
   onGenreSelection,
 }: IFilters) => {
 
-  const {
-    data: genresData,
-    isLoading: genresLoading
-  } = useCustomQuery(getGenres, 'genres')
+  const { data: genresData, genresLoading } = useQuery({
+    queryKey: ['genres'],
+    queryFn: getGenres
+  })
 
   const { genres } = genresData?.data || {}
 

@@ -83,3 +83,28 @@ export interface IGetFavoriteMoviesParams {
   sort_by: string 
   page?: number
 }
+
+export interface IFavoriteMoviePayload {
+  accountId: string
+  sessionId: string
+  id: string
+  favorite: boolean
+}
+
+export interface IWatchListPayload {
+  accountId: string
+  sessionId: string
+  id: string
+  isInWatchlist: boolean
+}
+
+export interface IRatingPayload {
+  id: string 
+  rating: number 
+  sessionId: string
+}
+
+export interface IDeleteRatingPayload {
+  id: string
+  sessionId: string
+}

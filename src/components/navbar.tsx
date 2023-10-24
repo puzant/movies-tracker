@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query';
 
-import { useCustomMutation } from '@/mutations'
 import { deleteSession } from '@/api'
 import useStore from '@/store'
 
@@ -10,18 +10,20 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 export const Navbar = () => {
   const navigate = useNavigate()
+
   const { resetState, isAuthenticated, sessionId } = useStore()
   const [searchValue, setSearchValue] = React.useState("")
 
-  const { mutateAsync: deleteSessionMutation } = useCustomMutation(deleteSession, 'userSession')
 
-  const handleLogout = async () => {
-    const mutationResponse = await deleteSessionMutation(sessionId)
-    if (mutationResponse.data.success) {
+  const {
+    mutateAsync: deleteSessionMutation,
+  } = useMutation({
+    mutationFn: (payload) => deleteSession(payload),
+    onSuccess: () => {
       resetState()
       localStorage.clear();
-    }
-  }
+    },
+  })
 
   return (
     <div className="bg-[#172554] p-4 text-white flex items-center justify-between">
@@ -55,7 +57,7 @@ export const Navbar = () => {
         {!isAuthenticated ?
           <Link to="/login"><span>Login</span></Link>
           :
-          <span className='cursor-pointer' onClick={handleLogout}>Logout</span>
+          <span className='cursor-pointer' onClick={() => deleteSessionMutation(sessionId)}>Logout</span>
         }
 
       </div>

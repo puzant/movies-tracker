@@ -1,10 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 import useStore from '@/store'
 import { getRequestToken, login, createSession } from '@/api'
-import { useCustomMutation } from '@/mutations'
-import { useCustomQuery } from '@/queries'
 
 import { CircularProgress } from '@mui/material'
 
@@ -13,10 +12,24 @@ export const Login = () => {
   const [username, setUsername] = React.useState<string>("")
   const [password, setPassword] = React.useState<string>("")
 
-  const { data: requestToken } = useCustomQuery(getRequestToken, 'requestQuery')
+  const { data: requestToken } = useQuery({
+    queryKey: ['requestQuery'],
+    queryFn: getRequestToken
+  })
 
-  const { mutateAsync: loginMutation, isLoading: loginLoading, error } = useCustomMutation(login, 'login')
-  const { mutateAsync: createSessionMutation } = useCustomMutation(createSession, 'userSession')
+  const {
+    mutateAsync: loginMutation,
+    isLoading: loginLoading,
+    error
+  } = useMutation({
+    mutationFn: (payload: ILoginPayload) => login(payload),
+  })
+
+  const {
+    mutateAsync: createSessionMutation,
+  } = useMutation({
+    mutationFn: (payload) => createSession(payload),
+  })
 
   const handleLogin = async () => {
     try {

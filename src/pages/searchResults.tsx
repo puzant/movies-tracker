@@ -2,44 +2,44 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { Movie, LoadingSpinner } from '@/components';
-import { usePaginatedQuery } from "@/queries"
 import { searchMovies } from "@/api"
 import { IMovie } from '@/interfaces'
 
 export const SearchResults = () => {
-  const location = useLocation();
-  const searchQuery = new URLSearchParams(location.search).get('query');
+  // const location = useLocation();
+  // const searchQuery = new URLSearchParams(location.search).get('query');
 
-  const {
-    data: SearchResults,
-    isLoading,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage
-  } = usePaginatedQuery(
-    searchMovies,
-    'searchResults',
-    searchQuery,
-  );
+  // const {
+  //   data: SearchResults,
+  //   isLoading,
+  //   fetchNextPage,
+  //   hasNextPage,
+  //   isFetchingNextPage
+  // } = usePaginatedQuery(
+  //   searchMovies,
+  //   'searchResults',
+  //   searchQuery,
+  // );
 
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop >=
-      document.documentElement.scrollHeight - 100
-    ) {
-      if (!isFetchingNextPage && hasNextPage) {
-        fetchNextPage();
-      }
-    }
-  };
+  // const handleScroll = () => {
+  //   if (
+  //     window.innerHeight + document.documentElement.scrollTop >=
+  //     document.documentElement.scrollHeight - 100
+  //   ) {
+  //     if (!isFetchingNextPage && hasNextPage) {
+  //       fetchNextPage();
+  //     }
+  //   }
+  // };
 
-  React.useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [handleScroll]);
+  // React.useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [handleScroll]);
 
+  return null
   return (
     <div className='px-4 sm:px-8 py-4'>
       <div className='w-full md:w-4/5 m-auto'>

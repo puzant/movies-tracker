@@ -1,76 +1,120 @@
 import React from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import useStore from '@/store'
-import { useCustomMutation } from '@/mutations';
-import { setFavoriteMovie, setMovieInWatchList, rateMovie, deleteMovieRating } from '@/api'
+
+import {
+  IMovie,
+  IFavoriteMoviePayload,
+  IWatchListPayload,
+  IRatingPayload,
+  IDeleteRatingPayload
+} from '@/interfaces';
+
+import {
+  setFavoriteMovie,
+  setMovieInWatchList,
+  rateMovie,
+  deleteMovieRating
+} from '@/api'
 
 import Tooltip from '@mui/material/Tooltip';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import StarRateIcon from '@mui/icons-material/StarRate';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Rating } from '@mui/material';
 
-export const MovieToolbar = ({ movieDetails }) => {
+export const MovieToolbar = ({ movieDetails }: IMovie) => {
+  const queryClient = useQueryClient()
+
   const { favorite, watchlist, rated } = movieDetails.account_states || {}
   const { sessionId, accountId, isAuthenticated } = useStore()
 
-  const [accountStatus, setAccountStatus] = React.useState({
-    isFavorite: '',
-    isInWatchlist: '',
-    isRated: '',
+  const [rating, setRating] = React.useState<number | null>(rated?.value)
+  const [showRating, setShowRating] = React.useState<boolean>(false)
+
+  const {
+    mutate: setFavorietMovieMutation,
+    isPending: addingFavoriteLoading
+  } = useMutation({
+    mutationFn: (payload: IFavoriteMoviePayload) => setFavoriteMovie(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['movieDetails'] })
+    },
   })
 
-  React.useEffect(() => {
-    setAccountStatus({
-      isFavorite: favorite,
-      isInWatchlist: watchlist,
-      isRated: rated,
-    })
-  }, [])
+  const {
+    mutate: setMovieWatchListMutation,
+    isPending: addingWatchListLoading
+  } = useMutation({
+    mutationFn: (payload: IWatchListPayload) => setMovieInWatchList(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['movieDetails'] })
+    },
+  })
 
   const {
-    mutateAsync: setFavorietMovieMutation,
-    isLoading: addingFavoriteLoading
-  } = useCustomMutation(setFavoriteMovie, 'movieDetails')
+    mutate: rateMovieMutation,
+  } = useMutation({
+    mutationFn: (payload: IRatingPayload) => rateMovie(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['movieDetails'] })
+    },
+  })
 
   const {
-    mutateAsync: setMovieWatchListMutation,
-    isLoading: addingWatchListLoading
-  } = useCustomMutation(setMovieInWatchList, 'movieDetails')
+    mutate: deleteRatingMutation,
+  } = useMutation({
+    mutationFn: (payload: IDeleteRatingPayload) => deleteMovieRating(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['movieDetails'] })
+    },
+  })
 
-  const {
-    mutateAsync: rateMovieMutation,
-    isLoading: rateingLoading
-  } = useCustomMutation(rateMovie, 'movieDetails')
-
-  const {
-    mutateAsync: deleteRatingMutation,
-    isLoading: deleteRatingLoading
-  } = useCustomMutation(deleteMovieRating, 'movieDetails')
-
-  const handleSetMovieToFavorite = async () => {
+  const handleSetMovieToFavorite = () => {
     if (!isAuthenticated) return
 
-    const setFavoriteResponse = await setFavorietMovieMutation({
+    setFavorietMovieMutation({
       accountId,
       sessionId,
       id: movieDetails.id,
-      favorite: !accountStatus.isFavorite
+      favorite: !favorite
     })
   }
 
-  const handleSetMovieToWatchList = async () => {
+  const handleSetMovieToWatchList = () => {
     if (!isAuthenticated) return
 
-    const setMovieToWatchListResponse = await setMovieWatchListMutation({
+    setMovieWatchListMutation({
       accountId,
       sessionId,
       id: movieDetails.id,
-      isInWatchlist: !accountStatus.isInWatchlist
+      isInWatchlist: !watchlist
     })
   }
 
-  const handleRateMovie = async () => {
-    const rateMovieResponse = await rateMovieMutation()
+  const handleMovieRating = (ratingValue: number | null) => {
+    if (!isAuthenticated) return
+
+    setRating(ratingValue)
+
+    if (ratingValue === null) {
+      const deleteResponse = deleteRatingMutation({
+        id: movieDetails.id,
+        sessionId
+      })
+
+      if (deleteResponse.status.success) setRating(ratingValue)
+    } else {
+      const ratingResponse = rateMovieMutation({
+        id: movieDetails.id,
+        rating: ratingValue,
+        sessionId
+      })
+
+      if (ratingResponse.status.success) setRating(ratingValue)
+
+    }
   }
 
   return (
@@ -85,7 +129,7 @@ export const MovieToolbar = ({ movieDetails }) => {
             <CircularProgress sx={{ color: "#fff" }} size={30} />
           </div>
           :
-          <FavoriteIcon sx={{ background: '#0277bd', borderRadius: '50%', padding: '12px', width: '48px', height: '48px', color: accountStatus.isFavorite ? '#b91c1c' : '#fff', fontSize: '28px' }} />
+          <FavoriteIcon sx={{ background: '#0277bd', borderRadius: '50%', padding: '12px', width: '48px', height: '48px', color: favorite ? '#b91c1c' : '#fff', fontSize: '28px' }} />
         }
       </Tooltip>
 
@@ -99,16 +143,28 @@ export const MovieToolbar = ({ movieDetails }) => {
             <CircularProgress sx={{ color: "#fff" }} size={30} />
           </div>
           :
-          <BookmarkIcon sx={{ background: '#0277bd', borderRadius: '50%', padding: '12px', width: '48px', height: '48px', color: accountStatus.isInWatchlist ? '#84cc16' : '#fff', fontSize: '28px' }} />
+          <BookmarkIcon sx={{ background: '#0277bd', borderRadius: '50%', padding: '12px', width: '48px', height: '48px', color: watchlist ? '#84cc16' : '#fff', fontSize: '28px' }} />
         }
       </Tooltip>
 
       <Tooltip
         arrow
+        onClick={() => setShowRating(!showRating)}
         title={isAuthenticated ? "Rate movie" : "Login to rate movie"}
       >
-        <StarRateIcon sx={{ background: '#0277bd', borderRadius: '50%', padding: '12px', width: '48px', height: '48px', color: accountStatus.isRated ? '#fbbf24' : '#fff', fontSize: '28px' }} />
+        <StarRateIcon sx={{ background: '#0277bd', borderRadius: '50%', padding: '12px', width: '48px', height: '48px', color: rated?.value ? '#fbbf24' : '#fff', fontSize: '28px' }} />
       </Tooltip>
+
+      {showRating && (
+        <div className='bg-white px-4 flex items-center rounded-md'>
+          <Rating
+            precision={0.5}
+            name="movie-rating"
+            value={rating}
+            onChange={(e, newValue) => handleMovieRating(newValue)}
+          />
+        </div>
+      )}
     </div>
   )
 }
