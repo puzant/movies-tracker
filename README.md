@@ -1,29 +1,54 @@
-# React + TypeScript + Vite
-
 ![app-screenshot](./public/app-screenshot.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Movie Tracker App
 
-Currently, two official plugins are available:
+This React app is a movie tracker with various features to help users discover, manage, and interact with movies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+### 1. Overview Page
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Filters and sorting options for movie lists.
+- Genre selection for customized movie exploration.
+- Infinite loading as users scroll through movie lists.
 
-- Configure the top-level `parserOptions` property like this:
+### 2. Movie Details Page
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- Users can add movies to favorites, watch list, or rate them (requires login).
+- Access to movie reviews, cast, and related information.
+- Display of movie-related details.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 3. Search
+
+- Users can search for movies.
+
+### 4. Upcoming Movies
+
+- A dedicated page displaying upcoming movies.
+- Infinite loading for user convenience.
+
+### 5. User Authentication
+
+- Users can log in.
+- Manage favorite movies, watch later lists, and rate movies.
+- Remove movie ratings.
+
+## Technologies Used
+
+- ReactJS with TypeScript: Building the user interface.
+- React Query: Handling data fetching and state management.
+- React Router: Managing navigation between pages.
+- Tailwind CSS: Styling the app for a modern look.
+- Zustand: State management.
+- Axios: Making API requests.
+- Material UI: UI components.
+- Headless UI: UI elements.
+- Moment: Date formatting.
+
+## Getting Started
+
+To run the project locally, follow these steps:
+
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Start the development server using `npm start`.
