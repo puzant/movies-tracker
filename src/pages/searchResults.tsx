@@ -1,9 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "react-router-dom";
 
-import { Movie, LoadingSpinner } from "@/components";
 import { searchMovies } from "@/api";
 import { IMovie } from "@/interfaces";
+import { Movie, LoadingSpinner } from "@/components";
 
 import ErrorIcon from "@mui/icons-material/Error";
 

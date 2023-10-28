@@ -98,7 +98,7 @@ export const Home = () => {
         </Filters>
 
         {error ? (
-          <div className="flex flex-col items-center justify-center w-4/5 text-3xl">
+          <div className="flex flex-col items-center w-4/5 text-3xl">
             <ErrorIcon sx={{ fontSize: 50, color: "#ff0000" }} />
             <span>There was an error</span>
           </div>
