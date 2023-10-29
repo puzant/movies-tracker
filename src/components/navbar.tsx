@@ -3,21 +3,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
 import { deleteSession } from "@/api";
-import useStore from "@/store";
+import useUserStore from "@/store/useUserStore";
+import useMovieStore from "@/store/useMovieStore";
 
 import tmdbLogo from "@/assets/tmdb-logo.svg";
 import MenuIcon from "@mui/icons-material/Menu";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const { resetState, isAuthenticated, sessionId } = useUserStore();
+  const { resetMovieStatus } = useMovieStore();
 
-  const { resetState, isAuthenticated, sessionId } = useStore();
   const [searchValue, setSearchValue] = React.useState("");
 
   const { mutateAsync: deleteSessionMutation } = useMutation({
     mutationFn: (payload) => deleteSession(payload),
     onSuccess: () => {
       resetState();
+      resetMovieStatus();
       localStorage.clear();
     },
   });

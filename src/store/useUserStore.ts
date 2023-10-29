@@ -1,7 +1,14 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware';
 
-const useStore = create(
+interface IMovieStore {
+  sessionId: string
+  accountId: string
+  isAuthenticated: boolean
+  resetState: () => void
+}
+
+const useUserStore = create(
   persist(
     (set) => ({
       sessionId: '',
@@ -16,4 +23,4 @@ const useStore = create(
   )
 )
 
-export default useStore
+export default useUserStore

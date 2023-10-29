@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 
-import useStore from "@/store";
+import useUserStore from "@/store/useUserStore";
 import { sortingOptions } from "@/utils/constants";
 import { getMovies, getAccountDetails } from "@/api";
 import { IMovie, IGenre, ISortingOption } from "@/interfaces";
@@ -12,7 +12,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import ErrorIcon from "@mui/icons-material/Error";
 
 export const Home = () => {
-  const { isAuthenticated, sessionId } = useStore();
+  const { isAuthenticated, sessionId } = useUserStore();
 
   const [startDate, setStartDate] = React.useState<Date | null>(null);
   const [endDate, setEndDate] = React.useState<Date | null>(null);
@@ -48,7 +48,7 @@ export const Home = () => {
   });
 
   React.useEffect(() => {
-    if (accountData) useStore.setState({ accountId: accountData.data.id });
+    if (accountData) useUserStore.setState({ accountId: accountData.data.id });
   }, [accountData]);
 
   const handleGenreSelection = (genre: IGenre): void => {
