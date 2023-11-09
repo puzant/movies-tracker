@@ -3,7 +3,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getUpcomingMovies } from "@/api";
 import { IMovie } from "@/interfaces";
-import { Movie, LoadingSpinner } from "@/components";
+import { Movie, LoadingSpinner, Filters } from "@/components";
 
 import ErrorIcon from "@mui/icons-material/Error";
 
@@ -28,7 +28,11 @@ export const UpcomingMovies = () => {
   });
 
   return (
-    <div>
+    <div className="mt-8">
+      <div className="px-4 sm:px-8">
+        <span className="text-2xl font-semibold">Upcoming Movies</span>
+      </div>
+
       {error ? (
         <div className="mt-10 flex flex-col items-center justify-center w-full text-3xl">
           <ErrorIcon sx={{ fontSize: 50, color: "#ff0000" }} />

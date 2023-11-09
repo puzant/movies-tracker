@@ -2,19 +2,34 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
-import { deleteSession } from "@/api";
 import useUserStore from "@/store/useUserStore";
 import useMovieStore from "@/store/useMovieStore";
+import { deleteSession } from "@/api";
 
-import tmdbLogo from "@/assets/tmdb-logo.svg";
 import MenuIcon from "@mui/icons-material/Menu";
+import UpcomingIcon from "@mui/icons-material/Upcoming";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MovieIcon from "@mui/icons-material/Movie";
+import tmdbLogo from "@/assets/tmdb-logo.svg";
+
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemButton,
+  ListItemText,
+  Box,
+} from "@mui/material";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const { resetState, isAuthenticated, sessionId } = useUserStore();
   const { resetMovieStatus } = useMovieStore();
 
-  const [searchValue, setSearchValue] = React.useState("");
+  const [searchValue, setSearchValue] = React.useState<string>("");
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState<boolean>(false);
 
   const { mutateAsync: deleteSessionMutation } = useMutation({
     mutationFn: (payload) => deleteSession(payload),
@@ -37,7 +52,10 @@ export const Navbar = () => {
         </Link>
       </div>
 
-      <div className="flex justify-between w-full sm:hidden">
+      <div
+        onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+        className="flex justify-between w-full sm:hidden"
+      >
         <MenuIcon />
         <img width="154" height="20" src={tmdbLogo} />
       </div>
@@ -73,6 +91,39 @@ export const Navbar = () => {
           </span>
         )}
       </div>
+
+      <Drawer
+        variant="temporary"
+        anchor="left"
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(!isDrawerOpen)}
+      >
+        <Box
+          sx={{ width: 250 }}
+          role="presentation"
+          onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+          onKeyDown={() => setIsDrawerOpen(!isDrawerOpen)}
+        >
+          <List>
+            {[
+              { name: "Movies", route: "/", icon: <MovieIcon /> },
+              { name: "Upcoming", route: "/upcoming", icon: <UpcomingIcon /> },
+              isAuthenticated
+                ? { name: "Logout", route: "", icon: <LogoutIcon /> }
+                : { name: "Login", route: "/login", icon: <LoginIcon /> },
+            ].map((nav) => (
+              <Link to={nav.route}>
+                <ListItem key={nav.name} disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>{nav.icon}</ListItemIcon>
+                    <ListItemText primary={nav.name} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
     </div>
   );
 };

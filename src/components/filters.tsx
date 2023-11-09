@@ -1,4 +1,4 @@
-import { Fragment, ReactNode } from "react";
+import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { useQuery } from "@tanstack/react-query";
 
@@ -6,25 +6,22 @@ import { getGenres } from "@/api";
 import { IGenre, ISortingOption } from "@/interfaces";
 import { LoadingSpinner } from "@/components";
 import { sortingOptions } from "@/utils/constants";
+import useFiltersStore from "@/store/useFiltersStore";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-interface IFilters {
-  children: ReactNode;
-  selectedGenres: IGenre[];
-  selectedOption: () => void;
-  onSortSelection: () => void;
-  onGenreSelection: (selectedGenre: IGenre) => void;
-}
+export const Filters = () => {
+  const {
+    sortBy,
+    releaseDate,
+    selectedGenres,
+    setSort,
+    setReleaseDate,
+    setGenres,
+  } = useFiltersStore();
 
-export const Filters = ({
-  children,
-  selectedGenres,
-  selectedOption,
-  onSortSelection,
-  onGenreSelection,
-}: IFilters) => {
-  const { data: genresData, genresLoading } = useQuery({
+  const { data: genresData, isFetching } = useQuery({
     queryKey: ["genres"],
     queryFn: getGenres,
   });
@@ -32,7 +29,7 @@ export const Filters = ({
   const { genres } = genresData?.data || {};
 
   return (
-    <div className="w-[20%] hidden sm:flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <div className="border shadow-md p-4 rounded-md">
         <span className="font-semibold">Sort</span>
         <hr className="my-2" />
@@ -40,9 +37,9 @@ export const Filters = ({
         <span>Sort By</span>
         <div className="h-2"></div>
 
-        <Listbox value={selectedOption} onChange={onSortSelection}>
+        <Listbox value={sortBy} onChange={setSort}>
           <Listbox.Button className="bg-[#e4e7eb] px-4 py-2 rounded-md font-normal w-full text-left flex justify-between">
-            <span>{selectedOption.name}</span>
+            <span>{sortBy.name}</span>
             <ExpandMoreIcon />
           </Listbox.Button>
 
@@ -72,20 +69,45 @@ export const Filters = ({
         <hr className="my-2" />
 
         <span>Release Date</span>
-        <div className="flex flex-col gap-4 mt-4">{children}</div>
+
+        <div className="flex flex-col gap-4 mt-4">
+          <DatePicker
+            label="Start Date"
+            value={releaseDate.start}
+            onChange={(newValue) => setReleaseDate(newValue)}
+            slotProps={{ textField: { size: "small" } }}
+            sx={{
+              "& .MuiInputBase-root": {
+                borderRadius: 2,
+              },
+            }}
+          />
+
+          <DatePicker
+            label="End Date"
+            value={releaseDate.end}
+            onChange={(newValue) => setReleaseDate(newValue)}
+            slotProps={{ textField: { size: "small" } }}
+            sx={{
+              "& .MuiInputBase-root": {
+                borderRadius: 2,
+              },
+            }}
+          />
+        </div>
 
         <hr className="my-3" />
 
         <span>Genres</span>
         <div className="flex flex-wrap gap-3 mt-2">
-          {genresLoading ? (
+          {isFetching ? (
             <div className="m-auto">
               <LoadingSpinner />
             </div>
           ) : (
-            genres?.map((genre: IGenre) => (
+            genres.map((genre: IGenre) => (
               <div
-                onClick={() => onGenreSelection(genre)}
+                onClick={() => setGenres(genre)}
                 className={`${
                   selectedGenres.includes(genre)
                     ? "bg-[#3b82f6] border border-transparent text-white"

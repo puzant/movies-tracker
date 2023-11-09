@@ -30,7 +30,7 @@ export const MovieDetails = () => {
 
   React.useEffect(() => {
     if (isAuthenticated && movieDetails) {
-      setMovieStatus(movieDetails.data.account_states);
+      setMovieStatus(movieDetails?.data.account_states);
     }
   }, [movieDetails, isAuthenticated]);
 

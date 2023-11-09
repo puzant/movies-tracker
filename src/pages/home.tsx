@@ -3,23 +3,16 @@ import { Link } from "react-router-dom";
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 
 import useUserStore from "@/store/useUserStore";
-import { sortingOptions } from "@/utils/constants";
+import useFiltersStore from "@/store/useFiltersStore";
 import { getMovies, getAccountDetails } from "@/api";
-import { IMovie, IGenre, ISortingOption } from "@/interfaces";
+import { IMovie } from "@/interfaces";
 import { Filters, Movie, LoadingSpinner } from "@/components";
 
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import ErrorIcon from "@mui/icons-material/Error";
 
 export const Home = () => {
+  const { sortBy, releaseDate, selectedGenres } = useFiltersStore();
   const { isAuthenticated, sessionId } = useUserStore();
-
-  const [startDate, setStartDate] = React.useState<Date | null>(null);
-  const [endDate, setEndDate] = React.useState<Date | null>(null);
-  const [selectedOption, setSelectedOption] = React.useState<ISortingOption>(
-    sortingOptions[0]
-  );
-  const [selectedGenres, setSelectedGenres] = React.useState<IGenre[]>([]);
 
   const { data: accountData } = useQuery({
     queryKey: ["userAccount", sessionId],
@@ -35,9 +28,21 @@ export const Home = () => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["movies", selectedOption, selectedGenres, startDate, endDate],
+    queryKey: [
+      "movies",
+      sortBy,
+      selectedGenres,
+      releaseDate.start,
+      releaseDate.end,
+    ],
     queryFn: ({ pageParam }) =>
-      getMovies(selectedOption, selectedGenres, startDate, endDate, pageParam),
+      getMovies(
+        sortBy,
+        selectedGenres,
+        releaseDate.start,
+        releaseDate.end,
+        pageParam
+      ),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       if (lastPage.data.page < lastPage.data.total_pages) {
@@ -51,51 +56,16 @@ export const Home = () => {
     if (accountData) useUserStore.setState({ accountId: accountData.data.id });
   }, [accountData]);
 
-  const handleGenreSelection = (genre: IGenre): void => {
-    if (selectedGenres.includes(genre))
-      setSelectedGenres(
-        selectedGenres.filter((selectedGenre) => selectedGenre.id !== genre.id)
-      );
-    else setSelectedGenres([...selectedGenres, genre]);
-  };
-
   return (
     <div className="mt-8">
-      <div className="px-4 sm:px-8">
+      <div className="px-4 sm:px-8 flex justify-between">
         <span className="text-2xl font-semibold">Popular Movies</span>
       </div>
 
       <div className="flex gap-6 px-4 sm:px-8 py-4">
-        <Filters
-          selectedGenres={selectedGenres}
-          selectedOption={selectedOption}
-          onSortSelection={(e: Event) => setSelectedOption(e)}
-          onGenreSelection={handleGenreSelection}
-        >
-          <DatePicker
-            label="Start Date"
-            value={startDate}
-            onChange={(newValue) => setStartDate(newValue)}
-            slotProps={{ textField: { size: "small" } }}
-            sx={{
-              "& .MuiInputBase-root": {
-                borderRadius: 2,
-              },
-            }}
-          />
-
-          <DatePicker
-            label="End Date"
-            value={endDate}
-            onChange={(newValue) => setEndDate(newValue)}
-            slotProps={{ textField: { size: "small" } }}
-            sx={{
-              "& .MuiInputBase-root": {
-                borderRadius: 2,
-              },
-            }}
-          />
-        </Filters>
+        <div className="w-[30%] lg:w-[20%] hidden sm:block">
+          <Filters />
+        </div>
 
         {error ? (
           <div className="flex flex-col items-center w-4/5 text-3xl">
@@ -103,7 +73,7 @@ export const Home = () => {
             <span>There was an error</span>
           </div>
         ) : (
-          <div className="w-full md:w-4/5">
+          <div className="w-full md:w-[70%] lg:w-[80%]">
             {status === "pending" ? (
               <div className="flex justify-center">
                 <LoadingSpinner />
