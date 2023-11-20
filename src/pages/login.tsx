@@ -1,16 +1,21 @@
-import React from "react";
+import * as yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 import useUserStore from "@/store/useUserStore";
+import { ILoginPayload } from "@/interfaces";
 import { getRequestToken, login, createSession } from "@/api";
 
 import { CircularProgress } from "@mui/material";
 
+const loginSchema = yup.object().shape({
+  username: yup.string().required("Username field is required"),
+  password: yup.string().required("Password field is required"),
+});
+
 export const Login = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = React.useState<string>("");
-  const [password, setPassword] = React.useState<string>("");
 
   const { data: requestToken } = useQuery({
     queryKey: ["requestQuery"],
@@ -19,7 +24,7 @@ export const Login = () => {
 
   const {
     mutateAsync: loginMutation,
-    isLoading: loginLoading,
+    isPending: loginLoading,
     error,
   } = useMutation({
     mutationFn: (payload: ILoginPayload) => login(payload),
@@ -29,11 +34,11 @@ export const Login = () => {
     mutationFn: (payload) => createSession(payload),
   });
 
-  const handleLogin = async () => {
+  const handleLogin = async (payload) => {
     try {
       const loginResponse = await loginMutation({
-        username: username,
-        password: password,
+        username: payload.username,
+        password: payload.password,
         requestToken: requestToken.data.request_token,
       });
 
@@ -42,9 +47,11 @@ export const Login = () => {
       const createSessionResponse = await createSessionMutation({
         requestToken: loginResponse.data.request_token,
       });
+
       useUserStore.setState({
         sessionId: createSessionResponse.data.session_id,
       });
+
       useUserStore.setState({ isAuthenticated: true });
       navigate("/");
     } catch (e) {
@@ -61,43 +68,61 @@ export const Login = () => {
         create one, click here.
       </div>
 
-      <div className="flex flex-col gap-4 mt-4">
-        <div>
-          <span>Username</span>
-          <input
-            value={username}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setUsername(e.target.value)
-            }
-            className="border border-gray-400 w-full p-2 rounded-md focus:outline-none"
-          />
-        </div>
-
-        <div>
-          <span>Password</span>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            className="border border-gray-400 w-full p-2 rounded-md focus:outline-none"
-          />
-        </div>
-      </div>
-
-      <div className="text-red-500 mt-2">
-        {error && error.response.data.status_message}
-      </div>
-
-      <div
-        onClick={handleLogin}
-        className="rounded-md px-4 py-2 mt-4 bg-blue-400 text-white w-fit"
+      <Formik
+        initialValues={{ username: "", password: "" }}
+        validationSchema={loginSchema}
+        onSubmit={(values) => {
+          handleLogin(values);
+        }}
       >
-        {loginLoading ? (
-          <CircularProgress size={20} sx={{ color: "#fff" }} />
-        ) : (
-          "Login"
+        {() => (
+          <Form>
+            <div className="flex flex-col gap-4 mt-4">
+              <div>
+                <span>Username</span>
+                <Field
+                  name="username"
+                  className="border border-gray-400 w-full p-2 rounded-md focus:outline-none"
+                />
+                <ErrorMessage
+                  name="username"
+                  component="div"
+                  render={(msg) => (
+                    <div className="text-red-500 font-semibold">{msg}</div>
+                  )}
+                />
+              </div>
+
+              <div>
+                <span>Password</span>
+                <Field
+                  name="password"
+                  type="password"
+                  className="border border-gray-400 w-full p-2 rounded-md focus:outline-none"
+                />
+              </div>
+              <ErrorMessage
+                name="password"
+                component="div"
+                render={(msg) => (
+                  <div className="text-red-500 font-semibold">{msg}</div>
+                )}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="rounded-md px-4 py-2 mt-4 bg-blue-400 text-white w-fit"
+            >
+              {loginLoading ? (
+                <CircularProgress size={20} sx={{ color: "#fff" }} />
+              ) : (
+                "Login"
+              )}
+            </button>
+          </Form>
         )}
-      </div>
+      </Formik>
     </div>
   );
 };
