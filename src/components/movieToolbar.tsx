@@ -115,6 +115,11 @@ export const MovieToolbar = ({ movieDetails }: IMovie) => {
     }
   };
 
+  const onRateMovie = () => {
+    if (isAuthenticated) return setShowRating(!showRating);
+    return;
+  };
+
   return (
     <div className="flex justify-center sm:justify-start gap-4 mt-4">
       <Tooltip
@@ -175,7 +180,7 @@ export const MovieToolbar = ({ movieDetails }: IMovie) => {
 
       <Tooltip
         arrow
-        onClick={() => setShowRating(!showRating)}
+        onClick={onRateMovie}
         title={isAuthenticated ? "Rate movie" : "Login to rate movie"}
       >
         <StarRateIcon
