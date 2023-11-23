@@ -1,4 +1,4 @@
-import { IMovie, IKeyword } from '@/interfaces'
+import { IMovie, IKeyword } from "@/interfaces";
 import { getMovieLanguage } from "@/utils";
 
 export const MovieStatus = ({ movieDetails }: IMovie) => {
@@ -27,9 +27,14 @@ export const MovieStatus = ({ movieDetails }: IMovie) => {
       <span className="font-bold">Keywords: </span>
       <div className="flex gap-2 flex-wrap">
         {movieDetails.data.keywords.keywords.map((k: IKeyword) => (
-          <span className="text-xs rounded-sm cursor-pointer bg-gray-200 p-2" key={k.key}>{k.name}</span>
+          <span
+            className="text-xs rounded-sm cursor-pointer bg-gray-200 p-2"
+            key={k.id}
+          >
+            {k.name}
+          </span>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};

@@ -112,8 +112,8 @@ export const Navbar = () => {
                 ? { name: "Logout", route: "", icon: <LogoutIcon /> }
                 : { name: "Login", route: "/login", icon: <LoginIcon /> },
             ].map((nav) => (
-              <Link to={nav.route}>
-                <ListItem key={nav.name} disablePadding>
+              <Link key={nav.name} to={nav.route}>
+                <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>{nav.icon}</ListItemIcon>
                     <ListItemText primary={nav.name} />

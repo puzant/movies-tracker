@@ -24,7 +24,7 @@ export const MovieDetails = () => {
   const { sessionId, isAuthenticated } = useUserStore();
 
   const { data: movieDetails, isLoading } = useQuery({
-    queryKey: ["movieDetails"],
+    queryKey: ["movieDetails", movieId],
     queryFn: () => getMovie(movieId, sessionId),
   });
 
@@ -144,7 +144,7 @@ export const MovieDetails = () => {
                   {movieDetails.data.keywords.keywords.map((k: IKeyword) => (
                     <span
                       className="text-xs rounded-sm cursor-pointer bg-gray-200 p-2"
-                      key={k.key}
+                      key={k.id}
                     >
                       {k.name}
                     </span>
@@ -176,8 +176,8 @@ export const MovieDetails = () => {
                 {movieDetails.data.recommendations.results
                   .slice(0, 10)
                   .map((movie: IMovie) => (
-                    <Link to={`/movie/${movie.id}`}>
-                      <Movie key={movie.id} movie={movie} />
+                    <Link key={movie.id} to={`/movie/${movie.id}`}>
+                      <Movie movie={movie} />
                     </Link>
                   ))}
               </div>
