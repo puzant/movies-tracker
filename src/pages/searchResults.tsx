@@ -1,13 +1,12 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "react-router-dom";
 
-import { searchMovies } from "@/api";
+import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
 import { IMovie } from "@/interfaces";
 import { Movie, LoadingSpinner } from "@/components";
 
 import ErrorIcon from "@mui/icons-material/Error";
 
-export const SearchResults = () => {
+export const SearchResults = ({ apiFunctions }) => {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
 
@@ -18,17 +17,10 @@ export const SearchResults = () => {
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery({
-    queryKey: ["searchResults", searchQuery],
-    queryFn: ({ pageParam }) => searchMovies(searchQuery, pageParam),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      if (lastPage.data.page < lastPage.data.total_pages) {
-        return lastPage.data.page + 1;
-      }
-      return undefined;
-    },
-  });
+  } = useInfiniteMovieQuery(
+    [apiFunctions.searchMovies.key, searchQuery],
+    ({ pageParam }) => apiFunctions.searchMovies.func(searchQuery, pageParam)
+  );
 
   return (
     <div className="px-4 sm:px-8 py-4">
