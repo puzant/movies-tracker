@@ -1,3 +1,7 @@
+export interface IApiFunction {
+  func: () => void
+  key: string
+}
 export interface IMovies {
   movies: IMovie[]
 }
