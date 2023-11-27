@@ -1,22 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import useUserStore from "@/store/useUserStore";
 import useFiltersStore from "@/store/useFiltersStore";
-import { getMovies, getAccountDetails } from "@/api";
-import { IMovie } from "@/interfaces";
-import { Filters, Movie, LoadingSpinner } from "@/components";
+import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
+import { IMovie, IApiFunction } from "@/interfaces";
 
+import { Filters, Movie, LoadingSpinner } from "@/components";
 import ErrorIcon from "@mui/icons-material/Error";
 
-export const Home = () => {
+export const Home = ({ apiFunctions }: IApiFunction) => {
   const { sortBy, releaseDate, selectedGenres } = useFiltersStore();
   const { isAuthenticated, sessionId } = useUserStore();
 
   const { data: accountData } = useQuery({
-    queryKey: ["userAccount", sessionId],
-    queryFn: () => getAccountDetails(sessionId),
+    queryKey: [apiFunctions.getAccountDetails.key, sessionId],
+    queryFn: () => apiFunctions.getAccountDetails.func(sessionId),
     enabled: isAuthenticated,
   });
 
@@ -27,30 +27,23 @@ export const Home = () => {
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery({
-    queryKey: [
-      "movies",
+  } = useInfiniteMovieQuery(
+    [
+      apiFunctions.getMovies.key,
       sortBy,
       selectedGenres,
       releaseDate.start,
       releaseDate.end,
     ],
-    queryFn: ({ pageParam }) =>
-      getMovies(
+    ({ pageParam }) =>
+      apiFunctions.getMovies.func(
         sortBy,
         selectedGenres,
         releaseDate.start,
         releaseDate.end,
         pageParam
-      ),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      if (lastPage.data.page < lastPage.data.total_pages) {
-        return lastPage.data.page + 1;
-      }
-      return undefined;
-    },
-  });
+      )
+  );
 
   React.useEffect(() => {
     if (accountData) useUserStore.setState({ accountId: accountData.data.id });
