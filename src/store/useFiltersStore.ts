@@ -23,12 +23,17 @@ const useFiltersStore = create<IFiltersStore>((set) => ({
     sortBy: sortingOption
   }),
 
-  setReleaseDate: (start, end) => set((state) => ({
-    releaseDate: {
-      start: start,
-      end: end,
-    },
-  })),
+  setStartDate: (startDate: Date) => {
+    set((state) => ({
+      releaseDate: { ...state.releaseDate, start: startDate },
+    }));
+  },
+
+  setEndDate: (endDate: Date) => {
+    set((state) => ({
+      releaseDate: { ...state.releaseDate, end: endDate },
+    }));
+  },
 
   setGenres: (genre: IGenre) => set((state) => {
     const updatedGenres = [...state.selectedGenres]
