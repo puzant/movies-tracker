@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
-import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { getUpcomingMovies } from "@/api";
+import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
 import { IMovie } from "@/interfaces";
-import { Movie, LoadingSpinner, Filters } from "@/components";
+import { Movie, LoadingSpinner } from "@/components";
 
 import ErrorIcon from "@mui/icons-material/Error";
 
-export const UpcomingMovies = () => {
+export const UpcomingMovies = ({ apiFunctions }) => {
   const {
     data: upcomingMovies,
     error,
@@ -15,17 +14,10 @@ export const UpcomingMovies = () => {
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery({
-    queryKey: ["upcomingMovies"],
-    queryFn: ({ pageParam }) => getUpcomingMovies(pageParam),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      if (lastPage.data.page < lastPage.data.total_pages) {
-        return lastPage.data.page + 1;
-      }
-      return undefined;
-    },
-  });
+  } = useInfiniteMovieQuery(
+    [apiFunctions.getUpcomingMovies.key],
+    ({ pageParam }) => apiFunctions.getUpcomingMovies.func(pageParam)
+  );
 
   return (
     <div className="mt-8">
