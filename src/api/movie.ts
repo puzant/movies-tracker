@@ -1,5 +1,5 @@
 import axios from './axiosInstance'
-import moment from 'moment'
+import { DateTime } from 'luxon';
 import { IGenre, ISortingOption } from '@/interfaces'
 
 interface IDiscoverMoviesParams {
@@ -21,8 +21,8 @@ export const getMovies = (sort: ISortingOption = 'popularity.desc', with_genres:
       page: page,
       sort_by: sort.key,
       with_genres: with_genres?.map((obj: IGenre) => obj.id).join(',') || null,
-      'primary_release_date.gte': startDate ? moment(startDate).format("YYYY-MM-DD") : null,
-      'primary_release_date.lte': endDate ? moment(endDate).format("YYYY-MM-DD") : null,
+      'primary_release_date.gte': startDate ? DateTime.fromISO(startDate).toFormat("yyyy-MM-dd") : null,
+      'primary_release_date.lte': endDate ? DateTime.fromISO(endDate).toFormat("yyyy-MM-dd") : null,
     }
   })
 }
