@@ -36,17 +36,22 @@ export const SearchResults = ({ apiFunctions }) => {
               <LoadingSpinner />
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
-              {searchResults &&
-                searchResults.pages.map(
-                  (page: { data: { results: IMovie[] } }) =>
-                    page.data.results.map((movie: IMovie) => (
-                      <Link key={movie.id} to={`/movie/${movie.id}`}>
-                        <Movie movie={movie} />
-                      </Link>
-                    ))
-                )}
-            </div>
+            <>
+              {searchResults.pages.every((p) => p.data.results.length === 0) ? (
+                <div className="text-3xl text-center">No More Results</div>
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
+                  {searchResults.pages.map(
+                    (page: { data: { results: IMovie[] } }) =>
+                      page.data.results.map((movie: IMovie) => (
+                        <Link key={movie.id} to={`/movie/${movie.id}`}>
+                          <Movie movie={movie} />
+                        </Link>
+                      ))
+                  )}
+                </div>
+              )}
+            </>
           )}
 
           <div className="flex justify-center">
