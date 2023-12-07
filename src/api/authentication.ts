@@ -9,10 +9,10 @@ export const login = ({ username, password, requestToken }: IPostLoginBody) => {
   })
 }
 
-export const createSession = ({ requestToken }) =>
+export const createSession = ({ requestToken }: { requestToken: string }) =>
   axios.post('/authentication/session/new', { request_token: requestToken });
 
-  export const deleteSession = (sessionId) => {
+  export const deleteSession = (sessionId: string) => {
     return axios.delete('/authentication/session', { data: { session_id: sessionId } });
   }
 
