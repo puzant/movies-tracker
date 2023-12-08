@@ -4,10 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 import useUserStore from "@/store/useUserStore";
-import { ILoginPayload } from "@/interfaces";
 import { getRequestToken, login, createSession } from "@/api";
 
 import { CircularProgress } from "@mui/material";
+
+interface ILoginPayload {
+  username: string;
+  password: string;
+  requestToken: any;
+}
 
 const loginSchema = yup.object().shape({
   username: yup.string().required("Username field is required"),
@@ -31,15 +36,15 @@ export const Login = () => {
   });
 
   const { mutateAsync: createSessionMutation } = useMutation({
-    mutationFn: (payload) => createSession(payload),
+    mutationFn: (payload: any) => createSession(payload),
   });
 
-  const handleLogin = async (payload) => {
+  const handleLogin = async (payload: ILoginPayload) => {
     try {
       const loginResponse = await loginMutation({
         username: payload.username,
         password: payload.password,
-        requestToken: requestToken.data.request_token,
+        requestToken: requestToken?.data.request_token,
       });
 
       if (!loginResponse.data.success) return;
@@ -71,7 +76,7 @@ export const Login = () => {
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={loginSchema}
-        onSubmit={(values) => {
+        onSubmit={(values: any) => {
           handleLogin(values);
         }}
       >
