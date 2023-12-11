@@ -1,4 +1,5 @@
 ![app-screenshot](./public/app-screenshot.png)
+![mobile-screenshot](./public/mobile-screenshot.png)
 
 # Movie Tracker App
 
