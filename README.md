@@ -1,4 +1,7 @@
+## Desktop view
 ![app-screenshot](./public/app-screenshot.png)
+
+## Mobile view
 ![mobile-screenshot](./public/mobile-screenshot.png)
 
 # Movie Tracker App
