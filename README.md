@@ -55,4 +55,5 @@ To run the project locally, follow these steps:
 
 1. Clone the repository.
 2. Install dependencies using `npm install`.
-3. Start the development server using `npm start`.
+3. Start the development server using `npm run dev`.
+4. The App should be live at `port:5173`
