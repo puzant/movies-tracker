@@ -4,7 +4,7 @@
 ## Mobile view
 ![mobile-screenshot](./public/mobile-screenshot.png)
 
-# Movie Tracker App
+# Movie Tracker App :movie_camera:
 
 This React app is a movie tracker with various features to help users discover, manage, and interact with movies.
 
