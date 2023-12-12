@@ -45,9 +45,9 @@ export const Drawer = ({
               route: "/upcoming",
               icon: <UpcomingIcon />,
             },
-            isAuthenticated
-              ? { name: "Logout", route: "", icon: <LogoutIcon /> }
-              : { name: "Login", route: "/login", icon: <LoginIcon /> },
+            !isAuthenticated
+              ? { name: "Login", route: "/login", icon: <LoginIcon /> }
+              : { name: "", route: "", icon: null },
           ].map((nav) => (
             <Link key={nav.name} to={nav.route}>
               <ListItem disablePadding>
