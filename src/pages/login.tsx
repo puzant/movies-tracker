@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { useTranslation } from "react-i18next";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -20,6 +21,7 @@ const loginSchema = yup.object().shape({
 });
 
 export const Login = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const { data: requestToken } = useQuery({
@@ -66,12 +68,8 @@ export const Login = () => {
 
   return (
     <div className="px-12 mt-10 w-full md:w-[90%] lg:w-[70%] m-auto">
-      <div className="text-2xl">Login to your account</div>
-      <div className="mt-1">
-        This app gets its data from the TMDb APIs. To view your account
-        information, login with your TMDb credentials in the form below. To
-        create one, click here.
-      </div>
+      <div className="text-2xl">{t("login_to_account")}</div>
+      <div className="mt-1">{t("app_disclaimer")}</div>
 
       <Formik
         initialValues={{ username: "", password: "" }}
@@ -84,7 +82,7 @@ export const Login = () => {
           <Form>
             <div className="flex flex-col gap-4 mt-4">
               <div>
-                <span>Username</span>
+                <span>{t("username")}</span>
                 <Field
                   name="username"
                   className="border border-gray-400 w-full p-2 rounded-md focus:outline-none"
@@ -99,7 +97,7 @@ export const Login = () => {
               </div>
 
               <div>
-                <span>Password</span>
+                <span>{t("password")}</span>
                 <Field
                   name="password"
                   type="password"
@@ -122,7 +120,7 @@ export const Login = () => {
               {loginLoading ? (
                 <CircularProgress size={20} sx={{ color: "#fff" }} />
               ) : (
-                "Login"
+                t("login")
               )}
             </button>
           </Form>
