@@ -1,19 +1,21 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware';
 
-interface IMovieStore {
+interface IUser {
   sessionId: string
   accountId: string
+  username: string
   isAuthenticated: boolean
   resetState: () => void
 }
 
 const useUserStore = create(
-  persist(
+  persist<IUser>(
     (set) => ({
       sessionId: '',
       accountId: '',
       isAuthenticated: false,
+      username: '',
       resetState: () => set({ sessionId: '', accountId: '', isAuthenticated: false })
     }),
     {
