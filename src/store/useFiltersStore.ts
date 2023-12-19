@@ -3,12 +3,16 @@ import { IGenre } from "@/interfaces";
 import { sortingOptions } from "@/utils/constants";
 
 interface IFiltersStore {
-  sortBy: string
+  sortBy: any
   releaseDate: {
     start: null | Date
     end: null | Date
   }
   selectedGenres: IGenre[]
+  setSort: (param: any) => void
+  setStartDate: (param: any) => void
+  setEndDate: (param: any) => void
+  setGenres: (param: any) => void
 }
 
 const useFiltersStore = create<IFiltersStore>((set) => ({
