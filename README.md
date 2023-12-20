@@ -12,6 +12,9 @@
 
 Welcome to the React Movie Tracker App! This application allows users to track and manage their favorite movies, explore movie details, search for movies, and much more.
 
+> This front-end React application was developed purely for fun. You can explore the newest movies and obtaining additional details about them. If you have a [TMDb account](https://www.themoviedb.org/), you have the option to log in to the app, enabling you to rate movies, include them in your favorites list, and access your profile overview.
+
+
 ## Preview
 ### Desktop view
 
@@ -53,7 +56,7 @@ Welcome to the React Movie Tracker App! This application allows users to track a
 ## Technologies Used
 
 - ReactJS with TypeScript: Building the user interface.
-- React Query: Handling data fetching and state management.
+- React Query: Handling data fetching and server state management.
 - React Router: Managing navigation between pages.
 - Tailwind CSS: Styling the app for a modern look.
 - Zustand: State management.
