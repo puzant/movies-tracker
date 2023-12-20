@@ -1,12 +1,14 @@
 ## Desktop view
+
 ![app-screenshot](./public/app-screenshot.png)
 
 ## Mobile view
+
 ![mobile-screenshot](./public/mobile-screenshot.png)
 
 # Movie Tracker App :movie_camera:
 
-This React app is a movie tracker with various features to help users discover, manage, and interact with movies.
+Welcome to the React Movie Tracker App! This application allows users to track and manage their favorite movies, explore movie details, search for movies, and much more.
 
 ## Features
 
@@ -47,11 +49,13 @@ This React app is a movie tracker with various features to help users discover, 
 - Axios: Making API requests.
 - Material UI: UI components.
 - Headless UI: UI elements.
-- Moment: Date formatting.
+- Luxon: Date formatting.
+- Formik with Yup: Form handling & validation
+- React i18next: For handling translation
 
 ## Getting Started
 
-To run the project locally, follow these steps:
+This app was bootstrapped using Vite. Follow the steps below to run the app locally:
 
 1. Clone the repository.
 2. Install dependencies using `npm install`.
