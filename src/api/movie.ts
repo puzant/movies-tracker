@@ -9,20 +9,36 @@ import {
   IDeleteRatingPayload
  } from '@/interfaces'
 
-export const getMovies = (sort: ISortingOption | string = 'popularity.desc', with_genres: IGenre[], startDate: string, endDate: string, page: number) => {
-  return axios.get('discover/movie?language=en-Us', {
+ interface IPopularMoviesParams {
+  sortBy: ISortingOption
+  selectedGenres: IGenre[]
+  startDate: string 
+  endDate: string 
+  selectedLanguage: string 
+  page: number
+}
+
+  export const getMovies = ({
+    sortBy, 
+    selectedGenres,
+    startDate,
+    endDate,
+    selectedLanguage,
+    page
+  }: IPopularMoviesParams) => {
+  return axios.get(`discover/movie?language=${selectedLanguage}`, {
     params: {
       page: page,
-      sort_by: (typeof sort === 'object' && 'key' in sort) ? sort.key : sort,
-      with_genres: with_genres?.map((obj: IGenre) => obj.id).join(',') || null,
+      sort_by: (typeof sortBy === 'object' && 'key' in sortBy) ? sortBy.key : sortBy,
+      with_genres: selectedGenres?.map((obj: IGenre) => obj.id).join(',') || null,
       'primary_release_date.gte': startDate ? DateTime.fromISO(startDate).toFormat("yyyy-MM-dd") : null,
       'primary_release_date.lte': endDate ? DateTime.fromISO(endDate).toFormat("yyyy-MM-dd") : null,
     }
   })
 }
 
-export const getUpcomingMovies = (page: number = 1) => {
-  return axios.get(`/movie/upcoming?language=en-US&page=${page}`)
+export const getUpcomingMovies = (selectedLanguage: string, page: number = 1) => {
+  return axios.get(`/movie/upcoming?language=${selectedLanguage}&page=${page}`)
 }
 
 export const searchMovies = (query: string, page = 1) => {
@@ -34,8 +50,8 @@ export const searchMovies = (query: string, page = 1) => {
   })
 }
 
-export const getMovie = (movieId: string | undefined, sessionId?: string) => {
-  return axios.get(`movie/${movieId}`, {
+export const getMovie = (movieId: string | undefined, sessionId: string, selectedLanguage: string) => {
+  return axios.get(`movie/${movieId}?language=${selectedLanguage}`, {
     params: {
       session_id: sessionId,
       append_to_response: 'credits,keywords,reviews,recommendations,account_states',
@@ -43,8 +59,8 @@ export const getMovie = (movieId: string | undefined, sessionId?: string) => {
   })
 }
 
-export const getGenres = () => {
-  return axios.get('/genre/movie/list?language=en')
+export const getGenres = (selectedLanguage: string) => {
+  return axios.get(`/genre/movie/list?language=${selectedLanguage}`)
 }
 
 export const setFavoriteMovie = ({accountId, sessionId, id, favorite}: IFavoriteMoviePayload) => {
