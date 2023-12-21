@@ -22,8 +22,9 @@ const apiManager = {
 
   //  user related api's
   getAccountDetails: { func: api.getAccountDetails, key: 'userAccount' },
-  getFavoriteMovies: { func: api.getFavoriteMovies, key: '' },
-
+  getFavoriteMovies: { func: api.getFavoriteMovies, key: 'favoriteMovies' },
+  getMoviesInWatchlist: { func: api.getMoviesInWatchlist, key: 'watchlistMovies' },
+  getRatedMovies: { func: api.getRatedMovies, key: 'ratedMovies' },
 }
 
 export default apiManager

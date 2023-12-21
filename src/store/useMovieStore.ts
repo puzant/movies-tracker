@@ -1,10 +1,16 @@
 import { create } from 'zustand';
 
+interface IMovieStatus {
+  favorite: boolean
+  watchlist: boolean
+  rated: boolean | {value: number}
+}
+
 interface IMovieStore {
   isFavorite: boolean
   isInWatchlist: boolean
   isRated: number | boolean | null
-  setMovieStatus: (param: any) => void
+  setMovieStatus: (param: IMovieStatus) => void
   resetMovieStatus: () => void
 }
 
@@ -16,7 +22,7 @@ const useMovieStore = create<IMovieStore>((set) => ({
   setMovieStatus: (movieStatus) => set({ 
     isFavorite: movieStatus.favorite, 
     isInWatchlist: movieStatus.watchlist, 
-    isRated: movieStatus.rated ? movieStatus.rated.value : movieStatus.rated
+    isRated: typeof movieStatus.rated === 'boolean' ?  movieStatus.rated : movieStatus.rated.value
   }),
 
   resetMovieStatus: () => set({

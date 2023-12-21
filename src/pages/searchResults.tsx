@@ -1,12 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
-import { IMovie } from "@/interfaces";
+import { IMovie, IApiFunction } from "@/interfaces";
 import { Movie, LoadingSpinner } from "@/components";
 
 import ErrorIcon from "@mui/icons-material/Error";
 
-export const SearchResults = ({ apiFunctions }) => {
+export const SearchResults = ({
+  apiFunctions,
+}: {
+  apiFunctions: IApiFunction;
+}) => {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
 
@@ -19,7 +23,8 @@ export const SearchResults = ({ apiFunctions }) => {
     status,
   } = useInfiniteMovieQuery(
     [apiFunctions.searchMovies.key, searchQuery],
-    ({ pageParam }) => apiFunctions.searchMovies.func(searchQuery, pageParam)
+    ({ pageParam }: { pageParam: number }) =>
+      apiFunctions.searchMovies.func(searchQuery, pageParam)
   );
 
   return (
@@ -37,17 +42,18 @@ export const SearchResults = ({ apiFunctions }) => {
             </div>
           ) : (
             <>
-              {searchResults.pages.every((p) => p.data.results.length === 0) ? (
+              {searchResults.pages.every(
+                (p: any) => p.data.results.length === 0
+              ) ? (
                 <div className="text-3xl text-center">No More Results</div>
               ) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
-                  {searchResults.pages.map(
-                    (page: { data: { results: IMovie[] } }) =>
-                      page.data.results.map((movie: IMovie) => (
-                        <Link key={movie.id} to={`/movie/${movie.id}`}>
-                          <Movie movie={movie} />
-                        </Link>
-                      ))
+                  {searchResults.pages.map((page: any) =>
+                    page.data.results.map((movie: IMovie) => (
+                      <Link key={movie.id} to={`/movie/${movie.id}`}>
+                        <Movie movie={movie} />
+                      </Link>
+                    ))
                   )}
                 </div>
               )}

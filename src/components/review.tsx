@@ -1,7 +1,7 @@
 import React from "react";
-import { IReview } from '@/interfaces'
+import { IReview } from "@/interfaces";
 
-export const Review = ({ review }: IReview) => {
+export const Review = ({ review }: { review: IReview }) => {
   const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
 
   return (
@@ -14,11 +14,18 @@ export const Review = ({ review }: IReview) => {
       </div>
 
       <div className="mt-2">
-        {isExpanded ? <span>{review.content}</span> : <span>{review.content.substring(0, 550)}</span>}
-        <span className="underline cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
-          {isExpanded ? ' Read Less' : '...Read More'}
+        {isExpanded ? (
+          <span>{review.content}</span>
+        ) : (
+          <span>{review.content.substring(0, 550)}</span>
+        )}
+        <span
+          className="underline cursor-pointer"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          {isExpanded ? " Read Less" : "...Read More"}
         </span>
       </div>
     </div>
-  )
-}
+  );
+};

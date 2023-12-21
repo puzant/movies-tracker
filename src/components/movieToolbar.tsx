@@ -1,8 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import {
-  IMovie,
   IFavoriteMoviePayload,
   IWatchListPayload,
   IRatingPayload,
@@ -25,13 +25,14 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import { CircularProgress, Rating } from "@mui/material";
 
-export const MovieToolbar = ({ movieDetails }: IMovie) => {
+export const MovieToolbar = ({ movieId }: { movieId: number }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
-  const { sessionId, accountId, isAuthenticated } = useUserStore();
+  const { sessionId, accountId, isAuthenticated, accentColor } = useUserStore();
   const { isFavorite, isInWatchlist, isRated } = useMovieStore();
 
-  const [rating, setRating] = React.useState<number | null>(isRated);
+  const [rating, setRating] = React.useState<any>(isRated);
   const [showRating, setShowRating] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -76,7 +77,7 @@ export const MovieToolbar = ({ movieDetails }: IMovie) => {
     setFavorietMovieMutation({
       accountId,
       sessionId,
-      id: movieDetails.id,
+      id: movieId,
       favorite: !isFavorite,
     });
   };
@@ -87,7 +88,7 @@ export const MovieToolbar = ({ movieDetails }: IMovie) => {
     setMovieWatchListMutation({
       accountId,
       sessionId,
-      id: movieDetails.id,
+      id: movieId,
       isInWatchlist: !isInWatchlist,
     });
   };
@@ -98,15 +99,15 @@ export const MovieToolbar = ({ movieDetails }: IMovie) => {
     setRating(ratingValue);
 
     if (ratingValue === null) {
-      const deleteResponse = deleteRatingMutation({
-        id: movieDetails.id,
+      const deleteResponse: any = deleteRatingMutation({
+        id: movieId,
         sessionId,
       });
 
       if (deleteResponse.status.success) setRating(ratingValue);
     } else {
-      const ratingResponse = rateMovieMutation({
-        id: movieDetails.id,
+      const ratingResponse: any = rateMovieMutation({
+        id: movieId,
         rating: ratingValue,
         sessionId,
       });
@@ -127,8 +128,8 @@ export const MovieToolbar = ({ movieDetails }: IMovie) => {
         onClick={handleSetMovieToFavorite}
         title={
           isAuthenticated
-            ? "Add movie to your favorite list"
-            : "Login to add movie to your favorite list"
+            ? t("add_movie_to_favorite")
+            : t("login_to_add_movie_to_favorite")
         }
       >
         {addingFavoriteLoading ? (
@@ -138,7 +139,7 @@ export const MovieToolbar = ({ movieDetails }: IMovie) => {
         ) : (
           <FavoriteIcon
             sx={{
-              background: "#0277bd",
+              background: accentColor,
               borderRadius: "50%",
               padding: "12px",
               width: "48px",
@@ -155,8 +156,8 @@ export const MovieToolbar = ({ movieDetails }: IMovie) => {
         onClick={handleSetMovieToWatchList}
         title={
           isAuthenticated
-            ? "Add movie to your watch list"
-            : "Login to add movie to your watch list"
+            ? t("add_movie_to_watch_list")
+            : t("login_to_add_movie_to_watchlist")
         }
       >
         {addingWatchListLoading ? (
@@ -166,7 +167,7 @@ export const MovieToolbar = ({ movieDetails }: IMovie) => {
         ) : (
           <BookmarkIcon
             sx={{
-              background: "#0277bd",
+              background: accentColor,
               borderRadius: "50%",
               padding: "12px",
               width: "48px",
@@ -181,11 +182,11 @@ export const MovieToolbar = ({ movieDetails }: IMovie) => {
       <Tooltip
         arrow
         onClick={onRateMovie}
-        title={isAuthenticated ? "Rate movie" : "Login to rate movie"}
+        title={isAuthenticated ? t("rate_movie") : t("login_to_rate_movie")}
       >
         <StarRateIcon
           sx={{
-            background: "#0277bd",
+            background: accentColor,
             borderRadius: "50%",
             padding: "12px",
             width: "48px",

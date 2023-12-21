@@ -1,6 +1,8 @@
 export interface IApiFunction {
-  func: () => void
-  key: string
+  [key: string]: {
+    func: (...params: any[]) => void
+    key: string
+  }
 }
 export interface IMovies {
   movies: IMovie[]
@@ -27,6 +29,9 @@ export interface IMovie {
   title: string
   vote_average: number
   vote_count: number
+  keywords: {
+    keywords: IKeyword[]
+  }
 }
 
 export interface IKeyword {
@@ -45,19 +50,31 @@ export interface IGenre {
   name: string
 }
 
-export interface ICast {
+export interface IPerson {
   adult: boolean
+  gender: number
+  id: number
+  name: string
+  known_fo_department: string
+  original_name: string
+  popularity: string
+  profile_path: string
+}
+
+
+export interface ICast extends IPerson{
   cast_id: number
   character: string 
   credit_id: string 
   gender: number 
-  id: number
-  known_fo_department: string 
-  name: string 
   order: number
-  original_name: string 
-  popularity: number 
-  profile_path: string 
+}
+
+export interface ICrew extends IPerson {
+  cast_id: number
+  department: string 
+  credit_id: string 
+  job: number 
 }
 
 export interface IReview {
@@ -91,24 +108,24 @@ export interface IGetFavoriteMoviesParams {
 export interface IFavoriteMoviePayload {
   accountId: string
   sessionId: string
-  id: string
+  id: number
   favorite: boolean
 }
 
 export interface IWatchListPayload {
   accountId: string
   sessionId: string
-  id: string
+  id: number
   isInWatchlist: boolean
 }
 
 export interface IRatingPayload {
-  id: string 
+  id: number 
   rating: number 
   sessionId: string
 }
 
 export interface IDeleteRatingPayload {
-  id: string
+  id: number
   sessionId: string
 }

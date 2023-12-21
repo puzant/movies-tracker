@@ -7,7 +7,7 @@ interface IPage {
   }
 }
 
-const useInfiniteMovieQuery = (queryKey, queryFn) => {
+const useInfiniteMovieQuery = (queryKey: any, queryFn: any) => {
   return useInfiniteQuery({
     queryKey,
     queryFn,

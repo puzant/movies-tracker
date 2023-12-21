@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
-import useUserStore from "@/store/useUserStore";
+import { useTranslation } from "react-i18next";
+import { useMutation } from "@tanstack/react-query";
+import ReactCountryFlag from "react-country-flag";
 
+import { deleteSession } from "@/api";
+import useUserStore from "@/store/useUserStore";
+import useMovieStore from "@/store/useMovieStore";
+import { languages } from "@/utils/constants";
 import {
   Drawer as MuiDrawer,
   List,
@@ -9,11 +15,14 @@ import {
   ListItemButton,
   ListItemText,
   Box,
+  Divider,
 } from "@mui/material";
 import UpcomingIcon from "@mui/icons-material/Upcoming";
+import CheckIcon from "@mui/icons-material/Check";
 import LoginIcon from "@mui/icons-material/Login";
-import LogoutIcon from "@mui/icons-material/Logout";
 import MovieIcon from "@mui/icons-material/Movie";
+import LogoutIcon from "@mui/icons-material/Logout";
+import tmdbLogo from "@/assets/tmdb-logo.svg";
 
 export const Drawer = ({
   isDrawerOpen,
@@ -22,7 +31,20 @@ export const Drawer = ({
   isDrawerOpen: boolean;
   onDrawerToggle: () => void;
 }) => {
-  const { isAuthenticated } = useUserStore();
+  const { i18n, t } = useTranslation();
+
+  const { resetMovieStatus } = useMovieStore();
+
+  const { resetState, isAuthenticated, sessionId } = useUserStore();
+
+  const { mutateAsync: deleteSessionMutation } = useMutation({
+    mutationFn: (payload: string) => deleteSession(payload),
+    onSuccess: () => {
+      resetState();
+      resetMovieStatus();
+      localStorage.clear();
+    },
+  });
 
   return (
     <MuiDrawer
@@ -31,6 +53,8 @@ export const Drawer = ({
       open={isDrawerOpen}
       onClose={onDrawerToggle}
     >
+      <img className="p-4" width="154" height="20" src={tmdbLogo} />
+
       <Box
         sx={{ width: 250 }}
         role="presentation"
@@ -39,9 +63,9 @@ export const Drawer = ({
       >
         <List>
           {[
-            { name: "Movies", route: "/", icon: <MovieIcon /> },
+            { name: t("movies"), route: "/", icon: <MovieIcon /> },
             {
-              name: "Upcoming",
+              name: t("upcoming"),
               route: "/upcoming",
               icon: <UpcomingIcon />,
             },
@@ -59,6 +83,48 @@ export const Drawer = ({
             </Link>
           ))}
         </List>
+
+        <Divider />
+
+        <div className="flex flex-col gap-2 p-4 mb-6">
+          <span className="font-semibold">{t("select_language")}</span>
+
+          <div className="flex flex-col gap-4">
+            {languages.map((l) => (
+              <div
+                onClick={() => i18n.changeLanguage(l.iso_639_1)}
+                className="flex items-center gap-1 border rounded-md shadow-md p-4"
+              >
+                {i18n.language === l.iso_639_1 && (
+                  <div className="flex justify-center items-center rounded-full h-[20px] w-[20px] border-2 bg-[#172554]">
+                    <CheckIcon sx={{ color: "#fff", fontSize: 12 }} />
+                  </div>
+                )}
+
+                <ReactCountryFlag countryCode={l.flag} />
+                <span>{l.english_name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <Divider />
+
+        {isAuthenticated && (
+          <List>
+            <ListItem
+              onClick={() => deleteSessionMutation(sessionId)}
+              disablePadding
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  <LogoutIcon />
+                </ListItemIcon>
+                <ListItemText primary={t("logout")} />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        )}
       </Box>
     </MuiDrawer>
   );

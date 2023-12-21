@@ -1,45 +1,55 @@
 import { Fragment } from "react";
+import { useTranslation } from "react-i18next";
 import { Listbox, Transition } from "@headlessui/react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 import { getGenres } from "@/api";
 import { IGenre, ISortingOption } from "@/interfaces";
 import { LoadingSpinner } from "@/components";
 import { sortingOptions } from "@/utils/constants";
 import useFiltersStore from "@/store/useFiltersStore";
+import useUserStore from "@/store/useUserStore";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
+interface IGenersData {
+  data: { genres: IGenre[] };
+}
+
 export const Filters = () => {
+  const { i18n, t } = useTranslation();
+  const { accentColor } = useUserStore();
+
   const {
     sortBy,
     releaseDate,
     selectedGenres,
     setSort,
-    setReleaseDate,
+    setStartDate,
+    setEndDate,
     setGenres,
   } = useFiltersStore();
 
-  const { data: genresData, isFetching } = useQuery({
-    queryKey: ["genres"],
-    queryFn: getGenres,
+  const { data, isFetching }: UseQueryResult<IGenersData> = useQuery({
+    queryKey: ["genres", i18n.language],
+    queryFn: () => getGenres(i18n.language),
   });
 
-  const { genres } = genresData?.data || {};
+  const { genres } = data?.data || {};
 
   return (
     <div className="flex flex-col gap-4">
       <div className="border shadow-md p-4 rounded-md">
-        <span className="font-semibold">Sort</span>
+        <span className="font-semibold">{t("sort")}</span>
         <hr className="my-2" />
 
-        <span>Sort By</span>
+        <span>{t("sort_by")}</span>
         <div className="h-2"></div>
 
         <Listbox value={sortBy} onChange={setSort}>
           <Listbox.Button className="bg-[#e4e7eb] px-4 py-2 rounded-md font-normal w-full text-left flex justify-between">
-            <span>{sortBy.name}</span>
+            <span>{t(`sorting_options.${sortBy.key}`)}</span>
             <ExpandMoreIcon />
           </Listbox.Button>
 
@@ -56,7 +66,9 @@ export const Filters = () => {
                   value={option}
                   className="relative cursor-default p-1.5 ui-not-active:bg-white ui-active:bg-[#e4e7eb]"
                 >
-                  <span className="cursor-pointer">{option.name}</span>
+                  <span className="cursor-pointer">
+                    {t(`sorting_options.${option.key}`)}
+                  </span>
                 </Listbox.Option>
               ))}
             </Listbox.Options>
@@ -65,16 +77,16 @@ export const Filters = () => {
       </div>
 
       <div className="border shadow-md p-4 rounded-md">
-        <span className="font-semibold">Filters</span>
+        <span className="font-semibold">{t("filters")}</span>
         <hr className="my-2" />
 
-        <span>Release Date</span>
+        <span>{t("release_date")}</span>
 
         <div className="flex flex-col gap-4 mt-4">
           <DatePicker
-            label="Start Date"
+            label={t("start_date")}
             value={releaseDate.start}
-            onChange={(newValue) => setReleaseDate(newValue)}
+            onChange={(newValue) => setStartDate(newValue)}
             slotProps={{ textField: { size: "small" } }}
             sx={{
               "& .MuiInputBase-root": {
@@ -84,9 +96,9 @@ export const Filters = () => {
           />
 
           <DatePicker
-            label="End Date"
+            label={t("end_date")}
             value={releaseDate.end}
-            onChange={(newValue) => setReleaseDate(newValue)}
+            onChange={(newValue) => setEndDate(newValue)}
             slotProps={{ textField: { size: "small" } }}
             sx={{
               "& .MuiInputBase-root": {
@@ -98,20 +110,25 @@ export const Filters = () => {
 
         <hr className="my-3" />
 
-        <span>Genres</span>
+        <span>{t("genres")}</span>
         <div className="flex flex-wrap gap-3 mt-2">
           {isFetching ? (
             <div className="m-auto">
               <LoadingSpinner />
             </div>
           ) : (
-            genres.map((genre: IGenre) => (
+            genres?.map((genre: IGenre) => (
               <div
                 onClick={() => setGenres(genre)}
+                style={{
+                  background: selectedGenres.includes(genre)
+                    ? `${accentColor}`
+                    : "transparent",
+                }}
                 className={`${
                   selectedGenres.includes(genre)
-                    ? "bg-[#3b82f6] border border-transparent text-white"
-                    : "bg-trasnparent"
+                    ? ` border border-transparent text-white`
+                    : ""
                 } rounded-2xl text-xs border border-gray-400 p-2.5 cursor-pointer ease-in duration-300`}
                 key={genre.id}
               >

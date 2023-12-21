@@ -34,6 +34,7 @@
     "zustand": "^4.4.3"
   },
   "devDependencies": {
+    "@types/i18next": "^13.0.0",
     "@types/node": "^20.8.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",

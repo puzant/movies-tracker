@@ -12,7 +12,7 @@ import { CircularProgress } from "@mui/material";
 interface ILoginPayload {
   username: string;
   password: string;
-  requestToken: any;
+  requestToken: string;
 }
 
 const loginSchema = yup.object().shape({

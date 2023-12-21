@@ -1,18 +1,17 @@
 import { create } from 'zustand';
-import { IGenre } from "@/interfaces";
+import { IGenre , ISortingOption} from "@/interfaces";
 import { sortingOptions } from "@/utils/constants";
-
 interface IFiltersStore {
-  sortBy: any
+  sortBy: ISortingOption
   releaseDate: {
     start: null | Date
     end: null | Date
   }
   selectedGenres: IGenre[]
-  setSort: (param: any) => void
-  setStartDate: (param: any) => void
-  setEndDate: (param: any) => void
-  setGenres: (param: any) => void
+  setSort: (param: ISortingOption) => void
+  setStartDate: (param: Date |null ) => void
+  setEndDate: (param: Date | null) => void
+  setGenres: (param: IGenre) => void
 }
 
 const useFiltersStore = create<IFiltersStore>((set) => ({
@@ -27,13 +26,13 @@ const useFiltersStore = create<IFiltersStore>((set) => ({
     sortBy: sortingOption
   }),
 
-  setStartDate: (startDate: Date) => {
+  setStartDate: (startDate: null | Date) => {
     set((state) => ({
       releaseDate: { ...state.releaseDate, start: startDate },
     }));
   },
 
-  setEndDate: (endDate: Date) => {
+  setEndDate: (endDate: null | Date) => {
     set((state) => ({
       releaseDate: { ...state.releaseDate, end: endDate },
     }));
