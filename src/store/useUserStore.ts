@@ -6,16 +6,20 @@ interface IUser {
   accountId: string
   username: string
   isAuthenticated: boolean
+  accentColor: string
+  setAccentColor: (prarm: string) => void
   resetState: () => void
 }
 
 const useUserStore = create(
   persist<IUser>(
     (set) => ({
+      accentColor: '#0177d2', // default color
       sessionId: '',
       accountId: '',
       isAuthenticated: false,
       username: '',
+      setAccentColor: (color: string) => set({accentColor: color}),
       resetState: () => set({ sessionId: '', accountId: '', isAuthenticated: false })
     }),
     {

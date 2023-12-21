@@ -4,6 +4,8 @@ interface IMovieStore {
   isFavorite: boolean
   isInWatchlist: boolean
   isRated: number | boolean | null
+  setMovieStatus: (param: any) => void
+  resetMovieStatus: () => void
 }
 
 const useMovieStore = create<IMovieStore>((set) => ({
