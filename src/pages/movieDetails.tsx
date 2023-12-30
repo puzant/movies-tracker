@@ -212,15 +212,24 @@ export const MovieDetails = () => {
               <div className="mt-5 bg-gray-300 w-full h-[1px]"></div>
 
               <div className="text-2xl mt-6 font-semibold mb-2">
-                {t("reviews")}
+                {t("reviews")} ({reviews.results.length})
               </div>
+
               {reviews.results.slice(0, 1).map((review: IReview) => (
                 <Review review={review} />
               ))}
 
-              <div className="text-md font-semibold hover:text-gray-500 cursor-pointer mt-4">
+              <Link
+                to={`/movie/${movieId}/reviews`}
+                state={{
+                  movieDetails: movieDetails?.data,
+                  colorExtract: { red, green, blue },
+                }}
+                className="text-md font-semibold hover:text-gray-500 cursor-pointer mt-8"
+              >
                 {t("all_reviews")}
-              </div>
+              </Link>
+
               <div className="mt-5 bg-gray-300 w-full h-[1px]"></div>
 
               <div className="text-2xl mt-5 font-semibold">
