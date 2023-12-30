@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { AxiosError } from "axios";
 import { useTranslation } from "react-i18next";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
@@ -123,6 +124,13 @@ export const Login = () => {
                 t("login")
               )}
             </button>
+
+            {error && (
+              <div className="text-red-500 mt-4">
+                {error instanceof AxiosError &&
+                  error.response?.data.status_message}
+              </div>
+            )}
           </Form>
         )}
       </Formik>
