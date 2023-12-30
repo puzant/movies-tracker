@@ -5,7 +5,7 @@ export const Review = ({ review }: { review: IReview }) => {
   const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
 
   return (
-    <div className="shadow-md border rounded-md p-4">
+    <div className="shadow-md border rounded-xl p-4">
       <div className="flex items-center gap-2">
         <div className="flex items-center justify-center text-white text-xl rounded-full bg-indigo-500 w-[32px] h-[32px]">
           {review.author.slice(0, 1)}

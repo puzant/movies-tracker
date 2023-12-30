@@ -9,6 +9,7 @@ import {
   SearchResults,
   FullCastCrew,
   Profile,
+  Reviews,
 } from "@/pages";
 
 const HomeWithApi = withApiFunctions(Home);
@@ -26,6 +27,7 @@ const AppRoutes = () => {
       <Route path="/search-results" element={<SearchResultsWithApi />} />
       <Route path="/movie/:movieId" element={<MovieDetailsWithApi />} />
       <Route path="/movie/:movieId/cast" element={<FullCastCrew />} />
+      <Route path="/movie/:movieId/reviews" element={<Reviews />} />
       <Route path="/login" element={<LoginWithApi />} />
       <Route path="/profile" element={<ProfileWithApi />} />
     </Routes>
