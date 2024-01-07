@@ -55,7 +55,7 @@ Welcome to the React Movie Tracker App! This application allows users to track a
 - Manage favorite movies, watch later lists, and rate movies.
 - Remove movie ratings.
 
-## Technologies Used
+## Technologies Used 🤖
 
 - ReactJS with TypeScript: Building the user interface.
 - React Query: Handling data fetching and server state management.
