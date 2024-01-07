@@ -1,5 +1,5 @@
 # Movie Tracker App :movie_camera:
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/69b08752-c859-4ab6-a550-e45447ffb753/deploy-status)](https://app.netlify.com/sites/react-app-movies-tracker/deploys)
 ![Version](https://img.shields.io/badge/version-v1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
