@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import withApiFunctions from "@/HOC/withApiFunctions";
+import { PrivateRoutes } from "./privateRoute";
 
 import {
   Home,
@@ -29,7 +30,9 @@ const AppRoutes = () => {
       <Route path="/movie/:movieId/cast" element={<FullCastCrew />} />
       <Route path="/movie/:movieId/reviews" element={<Reviews />} />
       <Route path="/login" element={<LoginWithApi />} />
-      <Route path="/profile" element={<ProfileWithApi />} />
+      <Route element={<PrivateRoutes />}>
+        <Route path="/profile" element={<ProfileWithApi />} />
+      </Route>
     </Routes>
   );
 };
