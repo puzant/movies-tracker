@@ -115,14 +115,14 @@ export interface IGetFavoriteMoviesParams {
 }
 
 export interface IFavoriteMoviePayload {
-  accountId: string;
+  accountId: number | null;
   sessionId: string;
   id: number;
   favorite: boolean;
 }
 
 export interface IWatchListPayload {
-  accountId: string;
+  accountId: number | null;
   sessionId: string;
   id: number;
   isInWatchlist: boolean;
