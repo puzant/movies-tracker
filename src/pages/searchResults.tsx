@@ -2,7 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
 import { IMovie, IApiFunction } from "@/interfaces";
-import { Movie, LoadingSpinner } from "@/components";
+import { LoadingSpinner } from "@/components/atoms";
+import { Movie } from "@/components/molecules";
 
 import ErrorIcon from "@mui/icons-material/Error";
 

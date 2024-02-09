@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
 import { IApiFunction, IMovie } from "@/interfaces";
-import { Movie, LoadingSpinner } from "@/components";
+import { LoadingSpinner } from "@/components/atoms";
+import { Movie } from "@/components/molecules";
 
 import ErrorIcon from "@mui/icons-material/Error";
 

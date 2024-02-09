@@ -1,26 +1,36 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { extractColors } from "extract-colors";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { useParams, Link } from "react-router-dom";
 
-import { getMovie } from "@/api";
 import { getMovieLanguage } from "@/utils";
-import { IReview, IMovie, ICast, IGenre, IKeyword } from "@/interfaces";
+import {
+  IReview,
+  IMovie,
+  ICast,
+  IGenre,
+  IKeyword,
+  IApiFunction,
+} from "@/interfaces";
 import useMovieStore from "@/store/useMovieStore";
 import useUserStore from "@/store/useUserStore";
 
+import { Divider, LoadingSpinner } from "@/components/atoms";
 import {
-  LoadingSpinner,
-  MovieRating,
-  MovieStatus,
-  MovieToolbar,
-  Movie,
   Actor,
   Review,
-} from "@/components";
+  Movie,
+  MovieRating,
+  MovieStatus,
+} from "@/components/molecules";
+import { MovieToolbar } from "@/components/organisms";
 
-export const MovieDetails = () => {
+export const MovieDetails = ({
+  apiFunctions,
+}: {
+  apiFunctions: IApiFunction;
+}) => {
   const { i18n, t } = useTranslation();
   const { movieId } = useParams();
   const { setMovieStatus } = useMovieStore();
@@ -30,10 +40,12 @@ export const MovieDetails = () => {
     []
   );
 
-  const { data: movieDetails, isLoading } = useQuery({
-    queryKey: ["movieDetails", movieId, i18n.language],
-    queryFn: () => getMovie(movieId, sessionId, i18n.language),
-  });
+  const { data: movieDetails, isLoading }: UseQueryResult<any, boolean> =
+    useQuery({
+      queryKey: [apiFunctions.getMovie.key, movieId, i18n.language],
+      queryFn: () =>
+        apiFunctions.getMovie.func(movieId, sessionId, i18n.language),
+    });
 
   React.useEffect(() => {
     const movieStatus = movieDetails?.data?.account_states;
@@ -167,8 +179,6 @@ export const MovieDetails = () => {
                 </div>
               </div>
 
-              <div className="mt-5 block md:hidden bg-gray-300 w-full h-[1px]"></div>
-
               <div className="flex md:hidden flex-col gap-2 mt-4 px-4">
                 <div className="flex gap-2">
                   <span className="font-bold">{t("original_language")}: </span>
@@ -209,7 +219,7 @@ export const MovieDetails = () => {
                 {t("full_cast")}
               </Link>
 
-              <div className="mt-5 bg-gray-300 w-full h-[1px]"></div>
+              <Divider />
 
               <div className="text-2xl mt-6 font-semibold mb-2">
                 {t("reviews")} ({reviews.results.length})
@@ -230,7 +240,7 @@ export const MovieDetails = () => {
                 {t("all_reviews")}
               </Link>
 
-              <div className="mt-5 bg-gray-300 w-full h-[1px]"></div>
+              <Divider />
 
               <div className="text-2xl mt-5 font-semibold">
                 {t("recommendations")}

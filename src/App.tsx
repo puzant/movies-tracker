@@ -8,7 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 
 import AppRoutes from "@/appRoutes";
-import { Navbar } from "@/components";
+import { Navbar } from "@/components/organisms";
 
 import en from "@/locale/en.json";
 import fr from "@/locale/fr.json";

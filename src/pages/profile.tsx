@@ -4,7 +4,9 @@ import { useQueries } from "@tanstack/react-query";
 
 import { IApiFunction } from "@/interfaces";
 import useUserStore from "@/store/useUserStore";
-import { MovieTabs, PreferencesDialog, LoadingSpinner } from "@/components";
+import { LoadingSpinner } from "@/components/atoms";
+import { PreferencesDialog } from "@/components/organisms";
+import { MovieTabs } from "@/components/molecules";
 
 export const Profile = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const { i18n, t } = useTranslation();
