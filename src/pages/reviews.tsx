@@ -1,8 +1,9 @@
 import { DateTime } from "luxon";
 import { useTranslation } from "react-i18next";
 import { useLocation, Link } from "react-router-dom";
+
 import { IReview } from "@/interfaces";
-import { Review } from "@/components";
+import { Review } from "@/components/molecules";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import useUserStore from "@/store/useUserStore";
-import { Filters } from "@/components";
+import { Filters } from "@/components/organisms";
 
 import {
   Dialog,

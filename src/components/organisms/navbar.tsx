@@ -7,9 +7,9 @@ import ReactCountryFlag from "react-country-flag";
 
 import { deleteSession } from "@/api";
 import { languages } from "@/utils/constants";
-import { Drawer } from "@/components";
 import useUserStore from "@/store/useUserStore";
 import useMovieStore from "@/store/useMovieStore";
+import { Drawer } from "@/components/organisms";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";

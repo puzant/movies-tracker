@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Tab } from "@headlessui/react";
-import { MovieList } from "@/components";
+import { MovieList } from "@/components/organisms";
 
 interface MovieTabsProps {
   favoriteMovies: any;

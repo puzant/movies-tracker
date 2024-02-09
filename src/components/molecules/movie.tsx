@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { IMovie } from "@/interfaces";
-import { MovieRating } from "@/components";
+import { MovieRating } from "@/components/molecules";
 import moviePlacegolder from "@/assets/poster-placeholder.svg";
 
 export const Movie = ({ movie }: { movie: IMovie }) => {

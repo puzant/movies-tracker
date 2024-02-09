@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-import { IApiFunction, IMovie } from "@/interfaces";
 import useUserStore from "@/store/useUserStore";
 import useFiltersStore from "@/store/useFiltersStore";
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
-import { Filters, FiltersDialog, Movie, LoadingSpinner } from "@/components";
+import { IApiFunction, IMovie, IAccount } from "@/interfaces";
+
+import { Button, LoadingSpinner } from "@/components/atoms";
+import { Movie } from "@/components/molecules";
+import { Filters, FiltersDialog } from "@/components/organisms";
 
 import ErrorIcon from "@mui/icons-material/Error";
 import FilterListIcon from "@mui/icons-material/FilterList";
@@ -20,7 +23,7 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
 
   const [openDialog, setOpenDialog] = React.useState(false);
 
-  const { data: accountData }: { data: any } = useQuery({
+  const { data: accountData }: UseQueryResult<IAccount> = useQuery({
     queryKey: [apiFunctions.getAccountDetails.key, sessionId],
     queryFn: () => apiFunctions.getAccountDetails.func(sessionId),
     enabled: isAuthenticated,
@@ -116,9 +119,8 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
 
             <div className="flex justify-center">
               {status === "success" && (
-                <button
+                <Button
                   style={{ background: accentColor }}
-                  className="px-4 py-2 rounded-md text-white mt-4"
                   onClick={() => fetchNextPage()}
                   disabled={!hasNextPage || isFetchingNextPage}
                 >
@@ -127,7 +129,7 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
                     : hasNextPage
                     ? t("load_more")
                     : t("nothing_to_load")}
-                </button>
+                </Button>
               )}
             </div>
           </div>

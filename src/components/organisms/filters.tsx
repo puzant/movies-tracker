@@ -5,10 +5,10 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 import { getGenres } from "@/api";
 import { IGenre, ISortingOption } from "@/interfaces";
-import { LoadingSpinner } from "@/components";
 import { sortingOptions } from "@/utils/constants";
 import useFiltersStore from "@/store/useFiltersStore";
 import useUserStore from "@/store/useUserStore";
+import { Divider, LoadingSpinner } from "@/components/atoms";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -42,47 +42,50 @@ export const Filters = () => {
     <div className="flex flex-col gap-4">
       <div className="border shadow-md p-4 rounded-md">
         <span className="font-semibold">{t("sort")}</span>
-        <hr className="my-2" />
 
-        <span>{t("sort_by")}</span>
-        <div className="h-2"></div>
+        <Divider />
 
-        <Listbox value={sortBy} onChange={setSort}>
-          <Listbox.Button className="bg-[#e4e7eb] px-4 py-2 rounded-md font-normal w-full text-left flex justify-between">
-            <span>{t(`sorting_options.${sortBy.key}`)}</span>
-            <ExpandMoreIcon />
-          </Listbox.Button>
+        <div className="flex gap-2 flex-col">
+          <span>{t("sort_by")}</span>
 
-          <Transition
-            as={Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Listbox.Options className="border rounded-md shadow-sm mt-1">
-              {sortingOptions.map((option: ISortingOption) => (
-                <Listbox.Option
-                  key={option.id}
-                  value={option}
-                  className="relative cursor-default p-1.5 ui-not-active:bg-white ui-active:bg-[#e4e7eb]"
-                >
-                  <span className="cursor-pointer">
-                    {t(`sorting_options.${option.key}`)}
-                  </span>
-                </Listbox.Option>
-              ))}
-            </Listbox.Options>
-          </Transition>
-        </Listbox>
+          <Listbox value={sortBy} onChange={setSort}>
+            <Listbox.Button className="bg-[#e4e7eb] px-4 py-2 rounded-md font-normal w-full text-left flex justify-between">
+              <span>{t(`sorting_options.${sortBy.key}`)}</span>
+              <ExpandMoreIcon />
+            </Listbox.Button>
+
+            <Transition
+              as={Fragment}
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Listbox.Options className="border rounded-md shadow-sm mt-1">
+                {sortingOptions.map((option: ISortingOption) => (
+                  <Listbox.Option
+                    key={option.id}
+                    value={option}
+                    className="relative cursor-default p-1.5 ui-not-active:bg-white ui-active:bg-[#e4e7eb]"
+                  >
+                    <span className="cursor-pointer">
+                      {t(`sorting_options.${option.key}`)}
+                    </span>
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </Transition>
+          </Listbox>
+        </div>
       </div>
 
       <div className="border shadow-md p-4 rounded-md">
         <span className="font-semibold">{t("filters")}</span>
-        <hr className="my-2" />
+
+        <Divider />
 
         <span>{t("release_date")}</span>
 
-        <div className="flex flex-col gap-4 mt-4">
+        <div className="flex flex-col gap-4 mt-2">
           <DatePicker
             label={t("start_date")}
             value={releaseDate.start}
@@ -108,7 +111,7 @@ export const Filters = () => {
           />
         </div>
 
-        <hr className="my-3" />
+        <Divider />
 
         <span>{t("genres")}</span>
         <div className="flex flex-wrap gap-3 mt-2">

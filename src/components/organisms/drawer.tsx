@@ -7,6 +7,7 @@ import { deleteSession } from "@/api";
 import useUserStore from "@/store/useUserStore";
 import useMovieStore from "@/store/useMovieStore";
 import { languages } from "@/utils/constants";
+
 import {
   Drawer as MuiDrawer,
   List,
@@ -34,7 +35,6 @@ export const Drawer = ({
   const { i18n, t } = useTranslation();
 
   const { resetMovieStatus } = useMovieStore();
-
   const { resetState, isAuthenticated, sessionId } = useUserStore();
 
   const { mutateAsync: deleteSessionMutation } = useMutation({
