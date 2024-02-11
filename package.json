@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.14.11",
     "@mui/material": "^5.14.11",
     "@mui/x-date-pickers": "^6.16.1",
+    "@sentry/react": "^7.100.1",
     "@tanstack/react-query": "^5.0.0",
     "@types/luxon": "^3.3.7",
     "axios": "^1.5.1",
