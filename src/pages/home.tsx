@@ -21,7 +21,7 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const { sortBy, releaseDate, selectedGenres } = useFiltersStore();
   const { isAuthenticated, sessionId, accentColor } = useUserStore();
 
-  const [openDialog, setOpenDialog] = React.useState(false);
+  const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 
   const { data: accountData }: UseQueryResult<IAccount> = useQuery({
     queryKey: [apiFunctions.getAccountDetails.key, sessionId],
