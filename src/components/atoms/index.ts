@@ -1,4 +1,4 @@
-export * from "./input";
+export * from "./input/input";
 export * from "./button/button";
-export * from "./divider";
-export * from "./loadingSpinner";
+export * from "./divider/divider";
+export * from "./loadingSpinner/loadingSpinner";
