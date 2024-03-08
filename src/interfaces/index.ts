@@ -38,7 +38,7 @@ export interface IMovie {
   account_states: IAccountStates;
   credits: any;
   reviews: any;
-  recommendations: any;
+  recommendations: IMovie[];
   keywords: {
     keywords: IKeyword[];
   };
@@ -65,10 +65,10 @@ export interface IPerson {
   gender: number;
   id: number;
   name: string;
-  known_fo_department: string;
+  known_for_department: string;
   original_name: string;
-  popularity: string;
-  profile_path: string;
+  popularity: number;
+  profile_path: string | null;
 }
 
 export interface ICast extends IPerson {
@@ -88,7 +88,7 @@ export interface ICrew extends IPerson {
 
 export interface IReview {
   author: string;
-  authorDetails: IAuthorDetails;
+  author_details: IAuthorDetails;
   content: string;
   created_at: string;
   id: string;
