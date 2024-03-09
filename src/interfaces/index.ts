@@ -19,14 +19,14 @@ export interface IMovie {
   backdrop_path: string;
   budget: number;
   genres: IGenre[];
-  homepage: boolean;
+  homepage: string;
   id: number;
-  imdb_id: number;
+  imdb_id: string;
   original_language: string;
   original_title: string;
   overview: string;
   popularity: number;
-  poster_path: string;
+  poster_path: string | null;
   release_date: string;
   revenue: number;
   runtime: number;
@@ -35,10 +35,12 @@ export interface IMovie {
   title: string;
   vote_average: number;
   vote_count: number;
-  account_states: IAccountStates;
+  account_states?: IAccountStates;
   credits: any;
   reviews: any;
-  recommendations: IMovie[];
+  recommendations: {
+    results: any[];
+  };
   keywords: {
     keywords: IKeyword[];
   };
