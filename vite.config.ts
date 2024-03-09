@@ -9,10 +9,11 @@ import * as path from "path";
 export default defineConfig({
   plugins: [react()],
   test: {
+    reporters: "verbose",
     globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/test/setup.ts',
-    css: true
+    environment: "jsdom",
+    setupFiles: "./src/test/setup.ts",
+    css: true,
   },
   resolve: {
     alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
