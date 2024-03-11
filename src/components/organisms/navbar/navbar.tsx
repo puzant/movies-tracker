@@ -37,7 +37,7 @@ export const Navbar = () => {
   });
 
   const handleEnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && searchValue !== "") {
+    if (e.key === "Enter" && /[a-zA-Z0-9]/.test(searchValue)) {
       setSearchValue("");
       setToggleSearchBar(!toggleSearchBar);
       navigate(`/search-results?query=${searchValue}`);
