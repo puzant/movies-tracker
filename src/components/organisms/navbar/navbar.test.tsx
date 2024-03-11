@@ -61,6 +61,23 @@ describe("Navbar Component", () => {
     expect(loginLink).toHaveAttribute("href", "/login");
   });
 
+  test("it opens language selection menu when language button is clicked", () => {
+    render(<Navbar />);
+
+    const languageButton = screen.getByText("EN-US");
+    fireEvent.click(languageButton);
+    expect(screen.getByText("Select a language")).toBeInTheDocument();
+  });
+
+  test("it changes to the selected language", () => {
+    render(<Navbar />);
+
+    const languageButton = screen.getByText("EN-US");
+    fireEvent.click(languageButton);
+    fireEvent.click(screen.getByText("French"));
+    expect(screen.getByText("FR"));
+  });
+
   test("it should not redirect to search results page if there's no serach query", () => {
     render(<Navbar />);
 
