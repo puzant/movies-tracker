@@ -1,22 +1,34 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { DateTime } from "luxon";
-import { IMovie } from "@/interfaces";
-import { TFunction } from "i18next";
 
-export const MovieList = ({
-  movies,
-  t,
-}: {
-  movies: IMovie[];
-  t: TFunction;
-}) => {
+interface IMovieList {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
+export const MovieList = ({ movies }: { movies: IMovieList[] }) => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <div className="flex flex-col gap-4 mt-4">
         {!movies?.length ? (
           <p className="text-xl">{t("no_movies")}</p>
         ) : (
-          movies.map((movie: IMovie) => (
+          movies.map((movie: IMovieList) => (
             <Link
               to={`/movie/${movie.id}`}
               className="flex gap-2 border-2 rounded-md shadow-lg"
