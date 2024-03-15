@@ -63,5 +63,6 @@
   "personalize": "Personnaliser",
   "choose_accent_notice": "La couleur que vous sélectionnez sera votre couleur dans toute l'application, vous pourrez toujours la modifier plus tard",
   "select_your_color": "Sélectionnez votre couleur",
-  "preferences": "préférences"
+  "preferences": "préférences",
+  "tmdb_notice": "Ce produit utilise l'API TMDb mais n'est ni approuvé ni certifié par TMDb."
 }
