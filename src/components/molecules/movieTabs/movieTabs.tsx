@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Tab } from "@headlessui/react";
-import { MovieList } from "@/components/organisms";
+import { MoviesList } from "@/components/organisms";
 
 interface MovieTabsProps {
   favoriteMovies: any;
@@ -29,13 +29,13 @@ export const MovieTabs = ({
 
       <Tab.Panels className="px-4 md:px-8">
         <Tab.Panel>
-          <MovieList t={t} movies={favoriteMovies} />
+          <MoviesList movies={favoriteMovies} />
         </Tab.Panel>
         <Tab.Panel>
-          <MovieList t={t} movies={moviesInWatchlist} />
+          <MoviesList movies={moviesInWatchlist} />
         </Tab.Panel>
         <Tab.Panel>
-          <MovieList t={t} movies={ratedMovies} />
+          <MoviesList movies={ratedMovies} />
         </Tab.Panel>
       </Tab.Panels>
     </Tab.Group>

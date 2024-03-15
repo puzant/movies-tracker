@@ -6,13 +6,25 @@ import moviePlacegolder from "@/assets/poster-placeholder.svg";
 export const Movie = ({ movie }: { movie: IMovie }) => {
   const getMoviePoster = () => {
     if (movie.poster_path)
-      return `https://image.tmdb.org/t/p/w342/${movie.poster_path}`;
-    return moviePlacegolder;
+      return (
+        <img
+          src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
+          alt={movie.title}
+          className="bg-[#dbdbdb] rounded-t-xl"
+        />
+      );
+    return (
+      <img
+        src={moviePlacegolder}
+        alt="Movie Poster Placeholder"
+        className="bg-[#dbdbdb] rounded-t-xl"
+      />
+    );
   };
 
   return (
     <div className="h-full border rounded-xl flex flex-col shadow-md cursor-pointer">
-      <img src={getMoviePoster()} className="bg-[#dbdbdb] rounded-t-xl" />
+      {getMoviePoster()}
 
       <div className="p-3 flex flex-col">
         <span className="font-bold">{movie.title}</span>
