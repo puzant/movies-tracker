@@ -68,10 +68,7 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
     <div className="mt-8">
       <div className="border shadow-md rounded-md w-[90%] md:w-[50%] p-5 flex flex-col md:flex-row gap-4 items-center justify-between m-auto my-6 md:my-0">
         <img className="w-[110px] h-[52px]" src={tmdbLogo} alt="tmdb logo" />
-        <div className="text-center">
-          This product uses the TMDb API but is not endorsed or certified by
-          TMDb.
-        </div>
+        <div className="text-center">{t("tmdb_notice")}</div>
       </div>
 
       <div className="px-4 sm:px-8 flex justify-between items-center">
