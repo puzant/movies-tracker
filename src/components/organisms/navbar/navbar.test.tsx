@@ -43,6 +43,13 @@ const render = (ui: any, options?: any) => {
   );
 };
 
+vi.mock("@/store/useUserStore", () => ({
+  default: vi.fn(() => ({
+    isAuthenticated: true,
+    username: "puzant",
+  })),
+}));
+
 describe("Navbar Component", () => {
   test("it renders Navbar", () => {
     const { container } = render(<Navbar />);
@@ -54,11 +61,19 @@ describe("Navbar Component", () => {
 
     const moviesLink = screen.getByRole("link", { name: /movies/i });
     const upcomingLink = screen.getByRole("link", { name: /upcoming/i });
-    const loginLink = screen.getByRole("link", { name: /login/i });
 
     expect(moviesLink).toHaveAttribute("href", "/");
     expect(upcomingLink).toHaveAttribute("href", "/upcoming");
-    expect(loginLink).toHaveAttribute("href", "/login");
+  });
+
+  test("it should show logout button if user is authenticated", () => {
+    render(<Navbar />);
+    expect(screen.getByText("Logout")).toBeInTheDocument();
+  });
+
+  test("it should show user avatar if authenticated", () => {
+    render(<Navbar />);
+    expect(screen.getByText("P")).toBeInTheDocument();
   });
 
   test("it should not redirect to search results page if there's no serach query", () => {
@@ -73,7 +88,7 @@ describe("Navbar Component", () => {
     expect(window.location.pathname).not.toBe("/search-results");
   });
 
-  test("opens search bar on search icon click and redirects to search results on Enter", () => {
+  test("it opens search bar on search icon click and redirects to search results on Enter", () => {
     render(<Navbar />);
 
     const serachIcon = screen.getByTestId("SearchIcon");
