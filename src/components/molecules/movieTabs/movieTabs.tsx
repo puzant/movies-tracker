@@ -29,13 +29,13 @@ export const MovieTabs = ({
 
       <Tab.Panels className="px-4 md:px-8">
         <Tab.Panel>
-          <MovieList t={t} movies={favoriteMovies} />
+          <MovieList movies={favoriteMovies} />
         </Tab.Panel>
         <Tab.Panel>
-          <MovieList t={t} movies={moviesInWatchlist} />
+          <MovieList movies={moviesInWatchlist} />
         </Tab.Panel>
         <Tab.Panel>
-          <MovieList t={t} movies={ratedMovies} />
+          <MovieList movies={ratedMovies} />
         </Tab.Panel>
       </Tab.Panels>
     </Tab.Group>
