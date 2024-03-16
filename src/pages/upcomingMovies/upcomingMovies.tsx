@@ -3,10 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
 import { IApiFunction, IMovie } from "@/interfaces";
-import { LoadingSpinner } from "@/components/atoms";
+import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
-
-import ErrorIcon from "@mui/icons-material/Error";
 
 export const UpcomingMovies = ({
   apiFunctions,
@@ -35,10 +33,7 @@ export const UpcomingMovies = ({
       </div>
 
       {error ? (
-        <div className="mt-10 flex flex-col items-center justify-center w-full text-3xl">
-          <ErrorIcon sx={{ fontSize: 50, color: "#ff0000" }} />
-          <span>{t("error_text")}</span>
-        </div>
+        <ErrorMessage />
       ) : (
         <div className="w-full sm:w-[80%] px-4 sm:px-8 py-4 m-auto">
           {status === "pending" ? (

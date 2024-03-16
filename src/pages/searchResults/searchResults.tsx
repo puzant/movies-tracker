@@ -2,10 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
 import { IMovie, IApiFunction } from "@/interfaces";
-import { LoadingSpinner } from "@/components/atoms";
+import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
-
-import ErrorIcon from "@mui/icons-material/Error";
 
 export const SearchResults = ({
   apiFunctions,
@@ -31,10 +29,7 @@ export const SearchResults = ({
   return (
     <div className="px-4 sm:px-8 py-4">
       {error ? (
-        <div className="mt-10 flex flex-col items-center justify-center w-full text-3xl">
-          <ErrorIcon sx={{ fontSize: 50, color: "#ff0000" }} />
-          <span>There was an error</span>
-        </div>
+        <ErrorMessage />
       ) : (
         <div className="w-full md:w-4/5 m-auto">
           {status === "pending" ? (

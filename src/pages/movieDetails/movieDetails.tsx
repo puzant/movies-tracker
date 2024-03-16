@@ -16,7 +16,7 @@ import {
 import useMovieStore from "@/store/useMovieStore";
 import useUserStore from "@/store/useUserStore";
 
-import { Divider, LoadingSpinner } from "@/components/atoms";
+import { Divider, LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import {
   Actor,
   Review,
@@ -40,12 +40,15 @@ export const MovieDetails = ({
     []
   );
 
-  const { data: movieDetails, isLoading }: UseQueryResult<any, boolean> =
-    useQuery({
-      queryKey: [apiFunctions.getMovie.key, movieId, i18n.language],
-      queryFn: () =>
-        apiFunctions.getMovie.func(movieId, sessionId, i18n.language),
-    });
+  const {
+    data: movieDetails,
+    isLoading,
+    error,
+  }: UseQueryResult<any, boolean> = useQuery({
+    queryKey: [apiFunctions.getMovie.key, movieId, i18n.language],
+    queryFn: () =>
+      apiFunctions.getMovie.func(movieId, sessionId, i18n.language),
+  });
 
   React.useEffect(() => {
     const movieStatus = movieDetails?.data?.account_states;
@@ -103,7 +106,9 @@ export const MovieDetails = ({
 
   return (
     <>
-      {isLoading ? (
+      {error ? (
+        <ErrorMessage />
+      ) : isLoading ? (
         <div className="flex items-center justify-center mt-12">
           <LoadingSpinner />
         </div>

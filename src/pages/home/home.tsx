@@ -8,11 +8,10 @@ import useFiltersStore from "@/store/useFiltersStore";
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
 import { IApiFunction, IMovie, IAccount } from "@/interfaces";
 
-import { Button, LoadingSpinner } from "@/components/atoms";
+import { Button, LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 import { Filters, FiltersDialog } from "@/components/organisms";
 
-import ErrorIcon from "@mui/icons-material/Error";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import tmdbLogo from "@/assets/tmdbLogo.svg";
 
@@ -84,10 +83,7 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
         </div>
 
         {error ? (
-          <div className="flex flex-col items-center w-4/5 text-3xl">
-            <ErrorIcon sx={{ fontSize: 50, color: "#ff0000" }} />
-            <span>{t("error_text")}</span>
-          </div>
+          <ErrorMessage />
         ) : (
           <div className="w-full md:w-[70%] lg:w-[80%]">
             {status === "pending" ? (
