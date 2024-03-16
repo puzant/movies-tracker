@@ -94,7 +94,7 @@ export const Navbar = () => {
 
                   <div className="flex flex-col gap-2 p-">
                     {languages.map((l) => (
-                      <Menu.Item>
+                      <Menu.Item key={l.name}>
                         {({ active }) => (
                           <div
                             onClick={() => i18n.changeLanguage(l.iso_639_1)}

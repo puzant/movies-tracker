@@ -92,6 +92,7 @@ export const Drawer = ({
           <div className="flex flex-col gap-4">
             {languages.map((l) => (
               <div
+                key={l.name}
                 onClick={() => i18n.changeLanguage(l.iso_639_1)}
                 className="flex items-center gap-1 border rounded-md shadow-md p-4"
               >
