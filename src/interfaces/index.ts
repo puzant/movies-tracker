@@ -36,10 +36,13 @@ export interface IMovie {
   vote_average: number;
   vote_count: number;
   account_states?: IAccountStates;
-  credits: any;
-  reviews: any;
+  credits: ICast[];
+  reviews: ICrew[];
   recommendations: {
-    results: any[];
+    page: number;
+    results: IMovie[];
+    total_pages: number;
+    total_results: number;
   };
   keywords: {
     keywords: IKeyword[];
