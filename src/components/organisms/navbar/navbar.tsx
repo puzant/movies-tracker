@@ -147,7 +147,7 @@ export const Navbar = () => {
       {toggleSearchBar && (
         <div className="relative">
           <input
-            className="py-2 px-12 border-2 rounded-sm placeholder:italic text-[20px] focus:outline-none w-full"
+            className="py-2 px-12 border-2 rounded-sm placeholder:italic text-[15px] md:text-[20px] focus:outline-none w-full"
             value={searchValue}
             onKeyDown={handleEnterKeyPress}
             onChange={(e) => setSearchValue(e.target.value)}
