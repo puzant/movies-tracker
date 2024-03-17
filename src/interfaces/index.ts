@@ -110,44 +110,44 @@ export interface IRecommededMovie {
 export interface IMovie {
   adult: boolean;
   backdrop_path: string;
-  belongs_to_collection: IBelongsToCollection;
-  budget: number;
-  genres: IGenre[];
-  homepage: string;
+  belongs_to_collection?: IBelongsToCollection;
+  budget?: number;
+  genres?: IGenre[];
+  homepage?: string;
   id: number;
   account_states?: IAccountStates;
-  imdb_id: string;
+  imdb_id?: string;
   original_language: string;
   original_title: string;
   overview: string;
   popularity: number;
   poster_path: string | null;
-  production_companies: IProductionCompanies[];
-  production_countries: IProductionCountries[];
+  production_companies?: IProductionCompanies[];
+  production_countries?: IProductionCountries[];
   release_date: string;
-  revenue: number;
-  runtime: number;
-  spoken_languages: ISpokenLanguages[];
-  status: string;
-  tagline: string;
+  revenue?: number;
+  runtime?: number;
+  spoken_languages?: ISpokenLanguages[];
+  status?: string;
+  tagline?: string;
   title: string;
   video: boolean;
   vote_average: number;
   vote_count: number;
-  credits: {
+  credits?: {
     cast: ICast[];
     crew: ICrew[];
   };
-  keywords: {
+  keywords?: {
     keywords: IKeyword[];
   };
-  reviews: {
+  reviews?: {
     page: number;
     results: IReview[];
     total_pages: number;
     total_results: number;
   };
-  recommendations: {
+  recommendations?: {
     page: number;
     results: IRecommededMovie[];
     total_pages: number;

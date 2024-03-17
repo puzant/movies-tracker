@@ -6,11 +6,7 @@ import { IApiFunction, IMovie } from "@/interfaces";
 import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 
-export const UpcomingMovies = ({
-  apiFunctions,
-}: {
-  apiFunctions: IApiFunction;
-}) => {
+export const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const { i18n, t } = useTranslation();
 
   const {
@@ -42,14 +38,13 @@ export const UpcomingMovies = ({
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
-              {upcomingMovies &&
-                upcomingMovies.pages.map((page: any) =>
-                  page.data.results.map((movie: IMovie) => (
-                    <Link key={movie.id} to={`/movie/${movie.id}`}>
-                      <Movie movie={movie} />
-                    </Link>
-                  ))
-                )}
+              {upcomingMovies.pages.map((page: any) =>
+                page.results.map((movie: IMovie) => (
+                  <Link key={movie.id} to={`/movie/${movie.id}`}>
+                    <Movie movie={movie} />
+                  </Link>
+                ))
+              )}
             </div>
           )}
 

@@ -5,11 +5,7 @@ import { IMovie, IApiFunction } from "@/interfaces";
 import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 
-export const SearchResults = ({
-  apiFunctions,
-}: {
-  apiFunctions: IApiFunction;
-}) => {
+export const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
 
@@ -22,8 +18,7 @@ export const SearchResults = ({
     status,
   } = useInfiniteMovieQuery(
     [apiFunctions.searchMovies.key, searchQuery],
-    ({ pageParam }: { pageParam: number }) =>
-      apiFunctions.searchMovies.func(searchQuery, pageParam)
+    ({ pageParam }: { pageParam: number }) => apiFunctions.searchMovies.func(searchQuery, pageParam)
   );
 
   return (
@@ -38,14 +33,12 @@ export const SearchResults = ({
             </div>
           ) : (
             <>
-              {searchResults.pages.every(
-                (p: any) => p.data.results.length === 0
-              ) ? (
+              {searchResults.pages.every((p: any) => p.results.length === 0) ? (
                 <div className="text-3xl text-center">No More Results</div>
               ) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
                   {searchResults.pages.map((page: any) =>
-                    page.data.results.map((movie: IMovie) => (
+                    page.results.map((movie: IMovie) => (
                       <Link key={movie.id} to={`/movie/${movie.id}`}>
                         <Movie movie={movie} />
                       </Link>

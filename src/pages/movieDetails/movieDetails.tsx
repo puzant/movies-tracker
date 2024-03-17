@@ -12,46 +12,34 @@ import {
   IGenre,
   IKeyword,
   IApiFunction,
+  IRecommededMovie,
 } from "@/interfaces";
 import useMovieStore from "@/store/useMovieStore";
 import useUserStore from "@/store/useUserStore";
 
 import { Divider, LoadingSpinner, ErrorMessage } from "@/components/atoms";
-import {
-  Actor,
-  Review,
-  Movie,
-  MovieRating,
-  MovieStatus,
-} from "@/components/molecules";
+import { Actor, Review, Movie, MovieRating, MovieStatus } from "@/components/molecules";
 import { MovieToolbar } from "@/components/organisms";
 
-export const MovieDetails = ({
-  apiFunctions,
-}: {
-  apiFunctions: IApiFunction;
-}) => {
+export const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const { i18n, t } = useTranslation();
   const { movieId } = useParams();
   const { setMovieStatus } = useMovieStore();
   const { sessionId, isAuthenticated } = useUserStore();
 
-  const [posterBackDropColors, setPosterBackDropColors] = React.useState<any>(
-    []
-  );
+  const [posterBackDropColors, setPosterBackDropColors] = React.useState<any>([]);
 
   const {
     data: movieDetails,
     isLoading,
     error,
-  }: UseQueryResult<any, boolean> = useQuery({
+  }: UseQueryResult<IMovie, boolean> = useQuery({
     queryKey: [apiFunctions.getMovie.key, movieId, i18n.language],
-    queryFn: () =>
-      apiFunctions.getMovie.func(movieId, sessionId, i18n.language),
+    queryFn: () => apiFunctions.getMovie.func(movieId, sessionId, i18n.language),
   });
 
   React.useEffect(() => {
-    const movieStatus = movieDetails?.data?.account_states;
+    const movieStatus = movieDetails?.account_states;
 
     if (isAuthenticated && movieStatus) {
       setMovieStatus(movieStatus);
@@ -75,7 +63,7 @@ export const MovieDetails = ({
     keywords,
     reviews,
     recommendations,
-  } = movieDetails?.data || {};
+  } = movieDetails || {};
 
   const options = {
     pixels: 64000,
@@ -89,7 +77,7 @@ export const MovieDetails = ({
   React.useEffect(() => {
     const fetchColor = async () => {
       try {
-        if (movieDetails?.data) {
+        if (movieDetails) {
           const posterPath = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${backdrop_path}`;
           const colors = await extractColors(posterPath, options);
           setPosterBackDropColors(colors);
@@ -125,30 +113,26 @@ export const MovieDetails = ({
           >
             <div className="flex flex-col sm:flex-row items-center m-auto gap-9 py-8 w-full md:w-[90%] lg:w-[85%]">
               <img
-                className="rounded-md"
-                src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${poster_path}`}
+                className="rounded-md w-[220px] h-full md:w-[300px] md:h-[450px]"
+                src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
               />
 
               <div className="text-center sm:text-left">
                 <div className="text-4xl text-white">{original_title}</div>
-                <div className="antialiased italic text-white mt-2 mb-2">
-                  {tagline}
-                </div>
+                <div className="antialiased italic text-white mt-2 mb-2">{tagline}</div>
 
-                <MovieRating vote={vote_average} />
+                <MovieRating vote={vote_average!} />
 
-                <div className="flex flex-col gap-2.5 mt-2 items-center sm:items-start">
-                  <div className="flex gap-2">
+                <div className="flex flex-col gap-2.5 mt-2 items-center sm:items-start p-1.5 md:p-0">
+                  <div className="flex flex-col md:flex-row gap-2">
                     <span className="text-white font-bold">{t("genres")}:</span>
                     <div className="antialiased text-white">
-                      {genres.map((genre: IGenre) => genre.name).join(", ")}
+                      {(genres ?? []).map((genre: IGenre) => genre.name).join(", ")}
                     </div>
                   </div>
 
                   <div className="flex gap-2">
-                    <div className="font-bold text-white">
-                      {t("release_date")}:
-                    </div>
+                    <div className="font-bold text-white">{t("release_date")}:</div>
                     <div className="antialiased text-white">{release_date}</div>
                   </div>
 
@@ -165,7 +149,7 @@ export const MovieDetails = ({
                   </div>
                 </div>
 
-                <MovieToolbar movieId={movieDetails?.data.id} />
+                <MovieToolbar movieId={movieDetails?.id!} />
               </div>
             </div>
           </div>
@@ -178,7 +162,7 @@ export const MovieDetails = ({
             <div className="flex flex-col w-full md:w-[70%] lg:w-[80%]">
               <div className="overflow-x-auto h-fit p-2">
                 <div className="min-w-max flex gap-3">
-                  {credits.cast.slice(0, 9).map((c: ICast) => (
+                  {credits?.cast.slice(0, 9).map((c: ICast) => (
                     <Actor key={c.id} actor={c} />
                   ))}
                 </div>
@@ -192,21 +176,18 @@ export const MovieDetails = ({
 
                 <div className="flex gap-2">
                   <span className="font-bold">{t("budget")}: </span>
-                  <span>${budget.toLocaleString()}</span>
+                  <span>${budget?.toLocaleString()}</span>
                 </div>
 
                 <div className="flex gap-2">
                   <span className="font-bold">{t("revenue")}: </span>
-                  <span>${revenue.toLocaleString()}</span>
+                  <span>${revenue?.toLocaleString()}</span>
                 </div>
 
                 <span className="font-bold">{t("keywords")}: </span>
                 <div className="flex gap-2 flex-wrap">
-                  {keywords.keywords.map((k: IKeyword) => (
-                    <span
-                      className="text-xs rounded-sm cursor-pointer bg-gray-200 p-2"
-                      key={k.id}
-                    >
+                  {keywords?.keywords.map((k: IKeyword) => (
+                    <span className="text-xs rounded-sm cursor-pointer bg-gray-200 p-2" key={k.id}>
                       {k.name}
                     </span>
                   ))}
@@ -217,7 +198,7 @@ export const MovieDetails = ({
                 className="text-md font-semibold hover:text-gray-500 cursor-pointer mt-8"
                 to={`/movie/${movieId}/cast`}
                 state={{
-                  movieDetails: movieDetails?.data,
+                  movieDetails: movieDetails,
                   colorExtract: { red, green, blue },
                 }}
               >
@@ -227,17 +208,17 @@ export const MovieDetails = ({
               <Divider />
 
               <div className="text-2xl mt-6 font-semibold mb-2">
-                {t("reviews")} ({reviews.results.length})
+                {t("reviews")} ({reviews?.results.length})
               </div>
 
-              {reviews.results.slice(0, 1).map((review: IReview) => (
+              {reviews?.results.slice(0, 1).map((review: IReview) => (
                 <Review review={review} />
               ))}
 
               <Link
                 to={`/movie/${movieId}/reviews`}
                 state={{
-                  movieDetails: movieDetails?.data,
+                  movieDetails: movieDetails,
                   colorExtract: { red, green, blue },
                 }}
                 className="text-md font-semibold hover:text-gray-500 cursor-pointer mt-8"
@@ -247,13 +228,11 @@ export const MovieDetails = ({
 
               <Divider />
 
-              <div className="text-2xl mt-5 font-semibold">
-                {t("recommendations")}
-              </div>
+              <div className="text-2xl mt-5 font-semibold">{t("recommendations")}</div>
 
-              {recommendations.results.length ? (
+              {recommendations?.results.length ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 mt-4">
-                  {recommendations.results.slice(0, 10).map((movie: IMovie) => (
+                  {recommendations.results.slice(0, 10).map((movie: IRecommededMovie) => (
                     <Link key={movie.id} to={`/movie/${movie.id}`}>
                       <Movie movie={movie} />
                     </Link>
@@ -264,7 +243,7 @@ export const MovieDetails = ({
               )}
             </div>
 
-            <MovieStatus movieDetails={movieDetails?.data} />
+            <MovieStatus movieDetails={movieDetails!} />
           </div>
         </div>
       )}

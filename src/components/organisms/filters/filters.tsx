@@ -13,30 +13,17 @@ import { Divider, LoadingSpinner } from "@/components/atoms";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-interface IGenersData {
-  data: { genres: IGenre[] };
-}
-
 export const Filters = () => {
   const { i18n, t } = useTranslation();
   const { accentColor } = useUserStore();
 
-  const {
-    sortBy,
-    releaseDate,
-    selectedGenres,
-    setSort,
-    setStartDate,
-    setEndDate,
-    setGenres,
-  } = useFiltersStore();
+  const { sortBy, releaseDate, selectedGenres, setSort, setStartDate, setEndDate, setGenres } =
+    useFiltersStore();
 
-  const { data, isFetching }: UseQueryResult<IGenersData> = useQuery({
+  const { data: genres, isFetching }: UseQueryResult<IGenre[]> = useQuery({
     queryKey: ["genres", i18n.language],
     queryFn: () => getGenres(i18n.language),
   });
-
-  const { genres } = data?.data || {};
 
   return (
     <div className="flex flex-col gap-4">
@@ -67,9 +54,7 @@ export const Filters = () => {
                     value={option}
                     className="relative cursor-default p-1.5 ui-not-active:bg-white ui-active:bg-[#e4e7eb]"
                   >
-                    <span className="cursor-pointer">
-                      {t(`sorting_options.${option.key}`)}
-                    </span>
+                    <span className="cursor-pointer">{t(`sorting_options.${option.key}`)}</span>
                   </Listbox.Option>
                 ))}
               </Listbox.Options>
@@ -124,14 +109,10 @@ export const Filters = () => {
               <div
                 onClick={() => setGenres(genre)}
                 style={{
-                  background: selectedGenres.includes(genre)
-                    ? `${accentColor}`
-                    : "transparent",
+                  background: selectedGenres.includes(genre) ? `${accentColor}` : "transparent",
                 }}
                 className={`${
-                  selectedGenres.includes(genre)
-                    ? ` border border-transparent text-white`
-                    : ""
+                  selectedGenres.includes(genre) ? ` border border-transparent text-white` : ""
                 } rounded-2xl text-xs border border-gray-400 p-2.5 cursor-pointer ease-in duration-300`}
                 key={genre.id}
               >
