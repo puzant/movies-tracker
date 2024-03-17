@@ -1,5 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render as rtlRender, fireEvent } from "@testing-library/react";
+import {
+  render as rtlRender,
+  fireEvent,
+  getByTestId,
+} from "@testing-library/react";
 import { MovieToolbar } from "./movieToolbar";
 
 const queryClient = new QueryClient();
@@ -27,10 +31,13 @@ describe("MovieToolbar Component", () => {
   });
 
   test("it should show rating compoent, when clicked on add rating label", () => {
-    const { getByLabelText } = render(<MovieToolbar movieId={123} />);
+    const { getByLabelText, getByTestId } = render(
+      <MovieToolbar movieId={123} />
+    );
 
     const ratingComponent = getByLabelText("rate_movie");
-    expect(ratingComponent).toBeInTheDocument();
+    fireEvent.click(ratingComponent);
+    expect(getByTestId("rating-movie-component")).toBeInTheDocument();
   });
 });
 

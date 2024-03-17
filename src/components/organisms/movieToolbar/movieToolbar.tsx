@@ -200,6 +200,7 @@ export const MovieToolbar = ({ movieId }: { movieId: number }) => {
       {showRating && (
         <div className="bg-white px-4 flex items-center rounded-md">
           <Rating
+            data-testid="rating-movie-component"
             precision={0.5}
             name="movie-rating"
             value={rating}
