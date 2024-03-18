@@ -4,6 +4,7 @@ export interface IApiFunction {
     key: string;
   };
 }
+
 export interface IMovies {
   movies: IMovie[];
 }
@@ -107,6 +108,23 @@ export interface IRecommededMovie {
   vote_count: number;
 }
 
+export interface IMovieList {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
 export interface IMovie {
   adult: boolean;
   backdrop_path: string;
@@ -162,6 +180,15 @@ export interface IAuthorDetails {
   username: string;
 }
 
+export interface IPopularMoviesParams {
+  sortBy: ISortingOption;
+  selectedGenres: IGenre[];
+  startDate: string;
+  endDate: string;
+  selectedLanguage: string;
+  page: number;
+}
+
 export interface IPostLoginBody {
   username: string;
   password: string;
@@ -199,18 +226,23 @@ export interface IDeleteRatingPayload {
 }
 
 export interface IAccount {
-  data: {
-    id: number;
-    include_adult: boolean;
-    iso_639_1: string;
-    iso_3166_1: string;
-    name: string;
-    username: string;
-    tmdb: {
-      avatar_path: string | null;
-    };
-    gravatar: {
-      hash: string;
-    };
+  id: number;
+  include_adult: boolean;
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  username: string;
+  tmdb: {
+    avatar_path: string | null;
   };
+  gravatar: {
+    hash: string;
+  };
+}
+
+export interface IPage {
+  page: number;
+  results: IMovie[];
+  total_pages: number;
+  total_results: number;
 }
