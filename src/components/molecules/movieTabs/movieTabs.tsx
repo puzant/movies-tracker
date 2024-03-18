@@ -8,11 +8,7 @@ interface MovieTabsProps {
   ratedMovies: any;
 }
 
-export const MovieTabs = ({
-  favoriteMovies,
-  moviesInWatchlist,
-  ratedMovies,
-}: MovieTabsProps) => {
+export const MovieTabs = ({ favoriteMovies, moviesInWatchlist, ratedMovies }: MovieTabsProps) => {
   const { t } = useTranslation();
 
   return (

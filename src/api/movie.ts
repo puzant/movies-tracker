@@ -2,22 +2,13 @@ import axios from "./axiosInstance";
 import { DateTime } from "luxon";
 import {
   IGenre,
-  ISortingOption,
+  IPopularMoviesParams,
   IFavoriteMoviePayload,
   IWatchListPayload,
   IRatingPayload,
   IDeleteRatingPayload,
   IMovie,
 } from "@/interfaces";
-
-interface IPopularMoviesParams {
-  sortBy: ISortingOption;
-  selectedGenres: IGenre[];
-  startDate: string;
-  endDate: string;
-  selectedLanguage: string;
-  page: number;
-}
 
 export const getMovies = async ({
   sortBy,
@@ -49,7 +40,7 @@ export const getUpcomingMovies = async (
   return response.data;
 };
 
-export const searchMovies = async (query: string, page = 1): Promise<IMovie[]> => {
+export const searchMovies = async (query: string, page: number = 1): Promise<IMovie[]> => {
   const response = await axios.get("/search/movie", {
     params: {
       query: query,

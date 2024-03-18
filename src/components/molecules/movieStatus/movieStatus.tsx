@@ -19,23 +19,20 @@ export const MovieStatus = ({ movieDetails }: { movieDetails: IMovie }) => {
 
       <div className="flex gap-1 ">
         <span className="font-bold">{t("budget")}: </span>
-        <span>${movieDetails.budget.toLocaleString()}</span>
+        <span>${movieDetails.budget?.toLocaleString()}</span>
       </div>
 
       <div className="flex gap-1 ">
         <span className="font-bold">{t("revenue")}: </span>
-        <span>${movieDetails.revenue.toLocaleString()}</span>
+        <span>${movieDetails.revenue?.toLocaleString()}</span>
       </div>
 
       <div className="mt-2 block  bg-gray-300 w-full h-[1px]"></div>
 
       <span className="font-bold">{t("keywords")}: </span>
       <div className="flex gap-2 flex-wrap">
-        {movieDetails.keywords.keywords.map((k: IKeyword) => (
-          <span
-            className="text-xs rounded-sm cursor-pointer bg-gray-200 p-2"
-            key={k.id}
-          >
+        {movieDetails.keywords?.keywords.map((k: IKeyword) => (
+          <span className="text-xs rounded-sm cursor-pointer bg-gray-200 p-2" key={k.id}>
             {k.name}
           </span>
         ))}
