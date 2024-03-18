@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useQueries } from "@tanstack/react-query";
 
-import { IApiFunction } from "@/interfaces";
+import { IApiFunction, IMovieList } from "@/interfaces";
 import useUserStore from "@/store/useUserStore";
 import { LoadingSpinner } from "@/components/atoms";
 import { PreferencesDialog } from "@/components/organisms";
@@ -17,51 +17,23 @@ export const Profile = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const results: any[] = useQueries({
     queries: [
       {
-        queryKey: [
-          apiFunctions.getFavoriteMovies.key,
-          accountId,
-          sessionId,
-          i18n.language,
-        ],
-        queryFn: () =>
-          apiFunctions.getFavoriteMovies.func(
-            accountId,
-            sessionId,
-            i18n.language
-          ),
+        queryKey: [apiFunctions.getFavoriteMovies.key, accountId, sessionId, i18n.language],
+        queryFn: () => apiFunctions.getFavoriteMovies.func(accountId, sessionId, i18n.language),
       },
       {
-        queryKey: [
-          apiFunctions.getMoviesInWatchlist.key,
-          accountId,
-          sessionId,
-          i18n.language,
-        ],
-        queryFn: () =>
-          apiFunctions.getMoviesInWatchlist.func(
-            accountId,
-            sessionId,
-            i18n.language
-          ),
+        queryKey: [apiFunctions.getMoviesInWatchlist.key, accountId, sessionId, i18n.language],
+        queryFn: () => apiFunctions.getMoviesInWatchlist.func(accountId, sessionId, i18n.language),
       },
       {
-        queryKey: [
-          apiFunctions.getRatedMovies.key,
-          accountId,
-          sessionId,
-          i18n.language,
-        ],
-        queryFn: () =>
-          apiFunctions.getRatedMovies.func(accountId, sessionId, i18n.language),
+        queryKey: [apiFunctions.getRatedMovies.key, accountId, sessionId, i18n.language],
+        queryFn: () => apiFunctions.getRatedMovies.func(accountId, sessionId, i18n.language),
       },
     ],
   });
 
   const anyLoading = results.some((result) => result.status === "pending");
 
-  const [favoriteMovies, moviesInWatchlist, ratedMovies] = results.map(
-    (query) => query.data
-  );
+  const [favoriteMovies, moviesInWatchlist, ratedMovies] = results.map((query) => query.data);
 
   return (
     <>
@@ -92,16 +64,13 @@ export const Profile = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
           </div>
         ) : (
           <MovieTabs
-            favoriteMovies={favoriteMovies?.data.results}
-            moviesInWatchlist={moviesInWatchlist?.data.results}
-            ratedMovies={ratedMovies?.data.results}
+            favoriteMovies={favoriteMovies?.results}
+            moviesInWatchlist={moviesInWatchlist?.results}
+            ratedMovies={ratedMovies?.results}
           />
         )}
 
-        <PreferencesDialog
-          openDialog={openDialog}
-          onClose={() => setOpenDialog(false)}
-        />
+        <PreferencesDialog openDialog={openDialog} onClose={() => setOpenDialog(false)} />
       </div>
     </>
   );

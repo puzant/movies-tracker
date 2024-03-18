@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
-import { IMovie, IApiFunction } from "@/interfaces";
+import { IMovie, IApiFunction, IPage } from "@/interfaces";
 import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 
@@ -33,11 +33,11 @@ export const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) 
             </div>
           ) : (
             <>
-              {searchResults.pages.every((p: any) => p.results.length === 0) ? (
+              {searchResults.pages.every((p: IPage) => p.results.length === 0) ? (
                 <div className="text-3xl text-center">No More Results</div>
               ) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
-                  {searchResults.pages.map((page: any) =>
+                  {searchResults.pages.map((page: IPage) =>
                     page.results.map((movie: IMovie) => (
                       <Link key={movie.id} to={`/movie/${movie.id}`}>
                         <Movie movie={movie} />

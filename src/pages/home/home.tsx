@@ -6,7 +6,7 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import useUserStore from "@/store/useUserStore";
 import useFiltersStore from "@/store/useFiltersStore";
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
-import { IApiFunction, IMovie, IAccount } from "@/interfaces";
+import { IApiFunction, IMovie, IAccount, IPage } from "@/interfaces";
 
 import { Button, LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
@@ -56,10 +56,10 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   );
 
   React.useEffect(() => {
-    if (accountData?.data)
+    if (accountData)
       useUserStore.setState({
-        accountId: accountData.data.id,
-        username: accountData?.data.username,
+        accountId: accountData.id,
+        username: accountData?.username,
       });
   }, [accountData]);
 
@@ -96,11 +96,11 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
               </div>
             ) : (
               <>
-                {moviesData.pages.every((p: any) => p.results.length === 0) ? (
+                {moviesData?.pages.every((p: IPage) => p.results.length === 0) ? (
                   <div className="text-3xl text-center">{t("no_results")}</div>
                 ) : (
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
-                    {moviesData.pages.map((page: any) =>
+                    {moviesData?.pages.map((page: IPage) =>
                       page.results.map((movie: IMovie) => (
                         <Link key={movie.id} to={`/movie/${movie.id}`}>
                           <Movie movie={movie} />

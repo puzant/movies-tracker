@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
-import { IApiFunction, IMovie } from "@/interfaces";
+import { IApiFunction, IMovie, IPage } from "@/interfaces";
 import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 
@@ -38,7 +38,7 @@ export const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction })
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
-              {upcomingMovies.pages.map((page: any) =>
+              {upcomingMovies.pages.map((page: IPage) =>
                 page.results.map((movie: IMovie) => (
                   <Link key={movie.id} to={`/movie/${movie.id}`}>
                     <Movie movie={movie} />
