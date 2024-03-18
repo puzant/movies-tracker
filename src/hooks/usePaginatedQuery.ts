@@ -1,16 +1,11 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-interface IPage {
-  page: number;
-  total_pages: number;
-}
-
 const useInfiniteMovieQuery = (queryKey: any, queryFn: any) => {
   return useInfiniteQuery({
     queryKey,
     queryFn,
     initialPageParam: 1,
-    getNextPageParam: (lastPage: IPage) => {
+    getNextPageParam: (lastPage: any) => {
       if (lastPage.page < lastPage.total_pages) {
         return lastPage.page + 1;
       }
