@@ -5,6 +5,8 @@ import { IMovie, IApiFunction, IPage } from "@/interfaces";
 import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 
+import emptyResults from "@/assets/empty-results.svg";
+
 export const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
@@ -34,7 +36,9 @@ export const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) 
           ) : (
             <>
               {searchResults.pages.every((p: IPage) => p.results.length === 0) ? (
-                <div className="text-3xl text-center">No More Results</div>
+                <div className="flex flex-col items-center">
+                  <img className="w-[300px] " src={emptyResults} />
+                </div>
               ) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
                   {searchResults.pages.map((page: IPage) =>

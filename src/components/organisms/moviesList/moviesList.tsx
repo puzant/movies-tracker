@@ -8,14 +8,14 @@ export const MoviesList = ({ movies }: { movies: IMovieList[] }) => {
 
   return (
     <div>
-      <div className="flex flex-col gap-4 mt-4">
+      <div className="flex flex-col gap-4 my-4">
         {!movies?.length ? (
           <p className="text-xl">{t("no_movies")}</p>
         ) : (
           movies.map((movie: IMovieList) => (
             <Link to={`/movie/${movie.id}`} className="flex gap-2 border-2 rounded-md shadow-lg">
               <img
-                className="rounded-l-md"
+                className="rounded-l-md w-fit h-[200px]"
                 src={`https://image.tmdb.org/t/p/w154/${movie.poster_path}`}
               />
 
