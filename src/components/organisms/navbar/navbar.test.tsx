@@ -11,8 +11,6 @@ import en from "@/locale/en.json";
 import fr from "@/locale/fr.json";
 import ar from "@/locale/ar.json";
 
-const queryClient = new QueryClient();
-
 i18n
   .use(initReactI18next)
   .use(LanguageDetector)
@@ -35,6 +33,8 @@ i18n
   });
 
 const render = (ui: any, options?: any) => {
+  const queryClient = new QueryClient();
+
   return rtlRender(
     <QueryClientProvider client={queryClient}>
       <Router>{ui}</Router>
@@ -56,7 +56,7 @@ describe("Navbar Component", () => {
     expect(container).toBeInTheDocument();
   });
 
-  test("it renders Navigation Link correctly", () => {
+  test("it renders Navigation Links correctly", () => {
     render(<Navbar />);
 
     const moviesLink = screen.getByRole("link", { name: /movies/i });
@@ -88,7 +88,7 @@ describe("Navbar Component", () => {
     expect(window.location.pathname).not.toBe("/search-results");
   });
 
-  test("it opens search bar on search icon click and redirects to search results on Enter", () => {
+  test("it opens search bar on search icon click and redirects to search results on click Enter", () => {
     render(<Navbar />);
 
     const serachIcon = screen.getByTestId("SearchIcon");

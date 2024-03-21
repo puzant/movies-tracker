@@ -1,17 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
-import { IMovie, IApiFunction } from "@/interfaces";
-import { LoadingSpinner } from "@/components/atoms";
+import { IMovie, IApiFunction, IPage } from "@/interfaces";
+import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 
-import ErrorIcon from "@mui/icons-material/Error";
+import emptyResults from "@/assets/empty-results.svg";
 
-export const SearchResults = ({
-  apiFunctions,
-}: {
-  apiFunctions: IApiFunction;
-}) => {
+export const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
 
@@ -24,17 +20,13 @@ export const SearchResults = ({
     status,
   } = useInfiniteMovieQuery(
     [apiFunctions.searchMovies.key, searchQuery],
-    ({ pageParam }: { pageParam: number }) =>
-      apiFunctions.searchMovies.func(searchQuery, pageParam)
+    ({ pageParam }: { pageParam: number }) => apiFunctions.searchMovies.func(searchQuery, pageParam)
   );
 
   return (
     <div className="px-4 sm:px-8 py-4">
       {error ? (
-        <div className="mt-10 flex flex-col items-center justify-center w-full text-3xl">
-          <ErrorIcon sx={{ fontSize: 50, color: "#ff0000" }} />
-          <span>There was an error</span>
-        </div>
+        <ErrorMessage />
       ) : (
         <div className="w-full md:w-4/5 m-auto">
           {status === "pending" ? (
@@ -43,14 +35,14 @@ export const SearchResults = ({
             </div>
           ) : (
             <>
-              {searchResults.pages.every(
-                (p: any) => p.data.results.length === 0
-              ) ? (
-                <div className="text-3xl text-center">No More Results</div>
+              {searchResults.pages.every((p: IPage) => p.results.length === 0) ? (
+                <div className="flex flex-col items-center">
+                  <img className="w-[300px] " src={emptyResults} />
+                </div>
               ) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
-                  {searchResults.pages.map((page: any) =>
-                    page.data.results.map((movie: IMovie) => (
+                  {searchResults.pages.map((page: IPage) =>
+                    page.results.map((movie: IMovie) => (
                       <Link key={movie.id} to={`/movie/${movie.id}`}>
                         <Movie movie={movie} />
                       </Link>

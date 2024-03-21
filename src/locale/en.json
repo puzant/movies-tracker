@@ -63,5 +63,6 @@
   "personalize": "Personalize",
   "choose_accent_notice": "The color you select will be your color throughout the app, you can always change it later",
   "select_your_color": "Select your color",
-  "preferences": "Preferences"
+  "preferences": "Preferences",
+  "tmdb_notice": "This product uses the TMDb API but is not endorsed or certified by TMDb."
 }

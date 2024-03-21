@@ -4,6 +4,7 @@ export interface IApiFunction {
     key: string;
   };
 }
+
 export interface IMovies {
   movies: IMovie[];
 }
@@ -12,38 +13,6 @@ interface IAccountStates {
   favorite: boolean;
   rated: boolean;
   watchlist: boolean;
-}
-
-export interface IMovie {
-  adult: boolean;
-  backdrop_path: string;
-  budget: number;
-  genres: IGenre[];
-  homepage: string;
-  id: number;
-  imdb_id: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string | null;
-  release_date: string;
-  revenue: number;
-  runtime: number;
-  status: string;
-  tagline: string;
-  title: string;
-  vote_average: number;
-  vote_count: number;
-  account_states?: IAccountStates;
-  credits: any;
-  reviews: any;
-  recommendations: {
-    results: any[];
-  };
-  keywords: {
-    keywords: IKeyword[];
-  };
 }
 
 export interface IKeyword {
@@ -77,15 +46,38 @@ export interface ICast extends IPerson {
   cast_id: number;
   character: string;
   credit_id: string;
-  gender: number;
   order: number;
 }
 
 export interface ICrew extends IPerson {
-  cast_id: number;
   department: string;
   credit_id: string;
-  job: number;
+  job: string;
+}
+
+export interface ISpokenLanguages {
+  english_name: string;
+  iso_639_1: string;
+  name: string;
+}
+
+export interface IBelongsToCollection {
+  id: number;
+  name: string;
+  poster_path: string;
+  backdrop_path: string;
+}
+
+export interface IProductionCompanies {
+  id: number;
+  logo_path: string | null;
+  name: string;
+  origin_country: string;
+}
+
+export interface IProductionCountries {
+  iso_3166_1: string;
+  name: string;
 }
 
 export interface IReview {
@@ -98,11 +90,103 @@ export interface IReview {
   url: string;
 }
 
+export interface IRecommededMovie {
+  adult: boolean;
+  backdrop_path: string;
+  id: number;
+  title: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  media_type: string;
+  genre_ids: number[];
+  popularity: number;
+  release_date: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
+export interface IMovieList {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
+export interface IMovie {
+  adult: boolean;
+  backdrop_path: string;
+  belongs_to_collection?: IBelongsToCollection;
+  budget?: number;
+  genres?: IGenre[];
+  homepage?: string;
+  id: number;
+  account_states?: IAccountStates;
+  imdb_id?: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  production_companies?: IProductionCompanies[];
+  production_countries?: IProductionCountries[];
+  release_date: string;
+  revenue?: number;
+  runtime?: number;
+  spoken_languages?: ISpokenLanguages[];
+  status?: string;
+  tagline?: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  credits?: {
+    cast: ICast[];
+    crew: ICrew[];
+  };
+  keywords?: {
+    keywords: IKeyword[];
+  };
+  reviews?: {
+    page: number;
+    results: IReview[];
+    total_pages: number;
+    total_results: number;
+  };
+  recommendations?: {
+    page: number;
+    results: IRecommededMovie[];
+    total_pages: number;
+    total_results: number;
+  };
+}
+
 export interface IAuthorDetails {
   avatar_path: string | null;
   name: string;
   rating: number;
   username: string;
+}
+
+export interface IPopularMoviesParams {
+  sortBy: ISortingOption;
+  selectedGenres: IGenre[];
+  startDate: string;
+  endDate: string;
+  selectedLanguage: string;
+  page: number;
 }
 
 export interface IPostLoginBody {
@@ -142,18 +226,23 @@ export interface IDeleteRatingPayload {
 }
 
 export interface IAccount {
-  data: {
-    id: number;
-    include_adult: boolean;
-    iso_639_1: string;
-    iso_3166_1: string;
-    name: string;
-    username: string;
-    tmdb: {
-      avatar_path: string | null;
-    };
-    gravatar: {
-      hash: string;
-    };
+  id: number;
+  include_adult: boolean;
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  username: string;
+  tmdb: {
+    avatar_path: string | null;
   };
+  gravatar: {
+    hash: string;
+  };
+}
+
+export interface IPage {
+  page: number;
+  results: IMovie[];
+  total_pages: number;
+  total_results: number;
 }

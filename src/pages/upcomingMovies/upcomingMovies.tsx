@@ -2,17 +2,11 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
-import { IApiFunction, IMovie } from "@/interfaces";
-import { LoadingSpinner } from "@/components/atoms";
+import { IApiFunction, IMovie, IPage } from "@/interfaces";
+import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 
-import ErrorIcon from "@mui/icons-material/Error";
-
-export const UpcomingMovies = ({
-  apiFunctions,
-}: {
-  apiFunctions: IApiFunction;
-}) => {
+export const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const { i18n, t } = useTranslation();
 
   const {
@@ -35,10 +29,7 @@ export const UpcomingMovies = ({
       </div>
 
       {error ? (
-        <div className="mt-10 flex flex-col items-center justify-center w-full text-3xl">
-          <ErrorIcon sx={{ fontSize: 50, color: "#ff0000" }} />
-          <span>{t("error_text")}</span>
-        </div>
+        <ErrorMessage />
       ) : (
         <div className="w-full sm:w-[80%] px-4 sm:px-8 py-4 m-auto">
           {status === "pending" ? (
@@ -47,14 +38,13 @@ export const UpcomingMovies = ({
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
-              {upcomingMovies &&
-                upcomingMovies.pages.map((page: any) =>
-                  page.data.results.map((movie: IMovie) => (
-                    <Link key={movie.id} to={`/movie/${movie.id}`}>
-                      <Movie movie={movie} />
-                    </Link>
-                  ))
-                )}
+              {upcomingMovies.pages.map((page: IPage) =>
+                page.results.map((movie: IMovie) => (
+                  <Link key={movie.id} to={`/movie/${movie.id}`}>
+                    <Movie movie={movie} />
+                  </Link>
+                ))
+              )}
             </div>
           )}
 

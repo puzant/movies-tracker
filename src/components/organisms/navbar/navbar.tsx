@@ -94,7 +94,7 @@ export const Navbar = () => {
 
                   <div className="flex flex-col gap-2 p-">
                     {languages.map((l) => (
-                      <Menu.Item>
+                      <Menu.Item key={l.name}>
                         {({ active }) => (
                           <div
                             onClick={() => i18n.changeLanguage(l.iso_639_1)}
@@ -147,7 +147,7 @@ export const Navbar = () => {
       {toggleSearchBar && (
         <div className="relative">
           <input
-            className="py-2 px-12 border-2 rounded-sm placeholder:italic text-[20px] focus:outline-none w-full"
+            className="py-2 px-12 border-2 rounded-sm placeholder:italic text-[15px] md:text-[20px] focus:outline-none w-full"
             value={searchValue}
             onKeyDown={handleEnterKeyPress}
             onChange={(e) => setSearchValue(e.target.value)}

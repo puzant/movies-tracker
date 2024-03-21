@@ -10,10 +10,12 @@ export const Review = ({ review }: { review: IReview }) => {
         <div className="flex items-center justify-center text-white text-xl rounded-full bg-indigo-500 w-[32px] h-[32px]">
           {review.author.slice(0, 1)}
         </div>
-        <span className="font-bold text-xl">A review by {review.author}</span>
+        <span className="font-bold text-sm md:text-xl">
+          A review by {review.author}
+        </span>
       </div>
 
-      <div className="mt-2">
+      <div className="mt-2 text-sm md:text-md">
         {isExpanded ? (
           <span>{review.content}</span>
         ) : (
