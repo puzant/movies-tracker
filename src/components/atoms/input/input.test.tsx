@@ -1,5 +1,5 @@
 import { vi } from "vitest";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Input } from "./input";
 
 vi.mock("formik", () => ({
@@ -9,7 +9,7 @@ vi.mock("formik", () => ({
 }));
 
 describe("Input Component", () => {
-  test("should handle field changes", () => {
+  test("should render input", () => {
     const { getByRole } = render(<Input name="testField" type="text" />);
     const inputElement = getByRole("textbox", { name: /testField/i });
 
@@ -22,5 +22,13 @@ describe("Input Component", () => {
       "rounded-md",
       "focus:outline-none"
     );
+  });
+
+  test("it updates field value on change", () => {
+    const { getByRole } = render(<Input name="testField" type="text" />);
+    const inputElement: any = getByRole("textbox", { name: /testField/i });
+
+    fireEvent.change(inputElement, { target: { value: "John Doe" } });
+    expect(inputElement.value).toBe("John Doe");
   });
 });

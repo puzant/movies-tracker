@@ -3,9 +3,7 @@ import { MovieTabs } from "./movieTabs";
 
 describe("Movie Tabs Component", () => {
   test("it renders tabs correctly", () => {
-    render(
-      <MovieTabs favoriteMovies={[]} moviesInWatchlist={[]} ratedMovies={[]} />
-    );
+    render(<MovieTabs favoriteMovies={[]} moviesInWatchlist={[]} ratedMovies={[]} />);
 
     expect(screen.getByText("favorites")).toBeInTheDocument();
     expect(screen.getByText("watchlist")).toBeInTheDocument();
