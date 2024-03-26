@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties } from 'react';
+import { ReactNode, CSSProperties } from "react";
 
 interface ButtonProps {
   style?: CSSProperties;
@@ -8,9 +8,15 @@ interface ButtonProps {
 }
 
 export const Button = (props: ButtonProps) => {
+  const handleOnClick = () => {
+    if (!props.disabled && props.onClick) {
+      props.onClick();
+    }
+  };
+
   return (
     <button
-      onClick={props.onClick}
+      onClick={handleOnClick}
       style={props.style}
       disabled={props.disabled}
       type="submit"
