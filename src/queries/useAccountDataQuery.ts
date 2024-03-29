@@ -1,8 +1,8 @@
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { IApiFunction, IMovie, IAccount } from "@/interfaces";
+import { useQuery } from "@tanstack/react-query";
+import { IApiFunction } from "@/interfaces";
 
-const useAccountDataQuery = (apiFunctions: any, sessionId: string): UseQueryResult<IAccount> => {
-  return useQuery<IAccount>({
+const useAccountDataQuery = (apiFunctions: IApiFunction, sessionId: string) => {
+  return useQuery({
     queryKey: [apiFunctions.getAccountDetails.key, sessionId],
     queryFn: () => apiFunctions.getAccountDetails.func(sessionId),
   });
