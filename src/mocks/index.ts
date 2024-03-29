@@ -1,3 +1,21 @@
+export const mockListMovie = {
+  adult: false,
+  backdrop_path: "/qbsMwtq6pXlf823z8u3qKPCeoM1.jpg",
+  genre_ids: [80, 53, 28, 18],
+  id: 671039,
+  original_language: "fr",
+  original_title: "Bronx",
+  overview:
+    "Caught in the crosshairs of police corruption and Marseille’s warring gangs, a loyal cop must protect his squad by taking matters into his own hands.",
+  popularity: 21.092,
+  poster_path: "/9HT9982bzgN5on1sLRmc1GMn6ZC.jpg",
+  release_date: "2020-10-30",
+  title: "Rogue City",
+  video: false,
+  vote_average: 5.876,
+  vote_count: 563,
+};
+
 export const mockMovie = {
   adult: false,
   backdrop_path: "/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg",

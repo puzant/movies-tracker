@@ -1,12 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
-
-import useUserStore from "@/store/useUserStore";
-import useFiltersStore from "@/store/useFiltersStore";
-import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
-import { IApiFunction, IMovie, IAccount, IPage } from "@/interfaces";
+import useHome from "@/hooks/useHome";
+import { IApiFunction, IMovie, IPage } from "@/interfaces";
 
 import { Button, LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
@@ -16,52 +10,18 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import tmdbLogo from "@/assets/tmdbLogo.svg";
 
 export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
-  const { i18n, t } = useTranslation();
-  const { sortBy, releaseDate, selectedGenres } = useFiltersStore();
-  const { isAuthenticated, sessionId, accentColor } = useUserStore();
-
-  const [openDialog, setOpenDialog] = React.useState<boolean>(false);
-
-  const { data: accountData }: UseQueryResult<IAccount> = useQuery({
-    queryKey: [apiFunctions.getAccountDetails.key, sessionId],
-    queryFn: () => apiFunctions.getAccountDetails.func(sessionId),
-    enabled: isAuthenticated,
-  });
-
   const {
-    data: moviesData,
+    t,
+    accentColor,
+    openDialog,
+    setOpenDialog,
+    moviesData,
     error,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useInfiniteMovieQuery(
-    [
-      apiFunctions.getMovies.key,
-      sortBy,
-      selectedGenres,
-      releaseDate.start,
-      releaseDate.end,
-      i18n.language,
-    ],
-    ({ pageParam }: { pageParam: number }) =>
-      apiFunctions.getMovies.func({
-        sortBy: sortBy,
-        selectedGenres: selectedGenres,
-        startDate: releaseDate.start,
-        endDate: releaseDate.end,
-        selectedLanguage: i18n.language,
-        page: pageParam,
-      })
-  );
-
-  React.useEffect(() => {
-    if (accountData)
-      useUserStore.setState({
-        accountId: accountData.id,
-        username: accountData?.username,
-      });
-  }, [accountData]);
+  } = useHome(apiFunctions);
 
   return (
     <div className="mt-8">

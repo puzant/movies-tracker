@@ -1,14 +1,11 @@
-import React, { Fragment } from "react";
-import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import { Fragment } from "react";
+import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import ReactCountryFlag from "react-country-flag";
 
-import { deleteSession } from "@/api";
 import { languages } from "@/utils/constants";
-import useUserStore from "@/store/useUserStore";
-import useMovieStore from "@/store/useMovieStore";
+import useNavbar from "@/hooks/useNavbar";
+
 import { Drawer } from "@/components/organisms";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -17,32 +14,22 @@ import CloseIcon from "@mui/icons-material/Close";
 import tmdbLogo from "@/assets/tmdb-logo.svg";
 
 export const Navbar = () => {
-  const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
-  const { resetMovieStatus } = useMovieStore();
-  const { resetState, isAuthenticated, sessionId, username, accentColor } =
-    useUserStore();
-
-  const [searchValue, setSearchValue] = React.useState<string>("");
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState<boolean>(false);
-  const [toggleSearchBar, setToggleSearchBar] = React.useState<boolean>(false);
-
-  const { mutateAsync: deleteSessionMutation } = useMutation({
-    mutationFn: (payload: string) => deleteSession(payload),
-    onSuccess: () => {
-      resetState();
-      resetMovieStatus();
-      localStorage.clear();
-    },
-  });
-
-  const handleEnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && /[a-zA-Z0-9]/.test(searchValue)) {
-      setSearchValue("");
-      setToggleSearchBar(!toggleSearchBar);
-      navigate(`/search-results?query=${searchValue}`);
-    }
-  };
+  const {
+    t,
+    i18n,
+    deleteSessionMutation,
+    isAuthenticated,
+    sessionId,
+    username,
+    accentColor,
+    searchValue,
+    setSearchValue,
+    isDrawerOpen,
+    setIsDrawerOpen,
+    toggleSearchBar,
+    setToggleSearchBar,
+    handleEnterKeyPress,
+  } = useNavbar();
 
   return (
     <>
@@ -88,15 +75,14 @@ export const Navbar = () => {
                 leaveTo="transform opacity-0 scale-95"
               >
                 <Menu.Items className="absolute mt-2 p-2 bg-white w-44 text-black rounded-md shadow-xl">
-                  <div className="font-semibold p-2">
-                    {t("select_language")}
-                  </div>
+                  <div className="font-semibold p-2">{t("select_language")}</div>
 
                   <div className="flex flex-col gap-2 p-">
                     {languages.map((l) => (
                       <Menu.Item key={l.name}>
                         {({ active }) => (
                           <div
+                            data-testid={`test-${l.iso_639_1}`}
                             onClick={() => i18n.changeLanguage(l.iso_639_1)}
                             className={`flex gap-2 items-center cursor-pointer rounded-md py-1 px-2 ${
                               active ? "bg-[#172554] text-white" : "text-black"

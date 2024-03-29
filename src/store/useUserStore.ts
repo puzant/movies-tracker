@@ -20,8 +20,7 @@ const useUserStore = create(
       isAuthenticated: false,
       username: "",
       setAccentColor: (color: string) => set({ accentColor: color }),
-      resetState: () =>
-        set({ sessionId: "", accountId: null, isAuthenticated: false }),
+      resetState: () => set({ sessionId: "", accountId: null, isAuthenticated: false }),
     }),
     {
       name: "auth-storage",

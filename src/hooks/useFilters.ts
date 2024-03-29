@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import useGenresQuery from "@/queries/useGenreQuery";
+import useGenresQuery from "@/queries/useGenresQuery";
 import useFiltersStore from "@/store/useFiltersStore";
 import useUserStore from "@/store/useUserStore";
 

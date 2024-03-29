@@ -16,11 +16,11 @@ describe("MovieToolbar Component", () => {
     expect(getByLabelText("rate_movie")).toBeInTheDocument();
   });
 
-  // test("it should show rating compoent, when clicked on add rating label", () => {
-  //   const { getByLabelText, getByTestId } = render(<MovieToolbar movieId={123} />);
+  test("it should show rating compoent, when clicked on add rating label", () => {
+    const { getByLabelText, getByTestId } = render(<MovieToolbar movieId={123} />);
 
-  //   const ratingComponent = getByLabelText("rate_movie");
-  //   fireEvent.click(ratingComponent);
-  //   expect(getByTestId("rating-movie-component")).toBeInTheDocument();
-  // });
+    const ratingComponent = getByLabelText("rate_movie");
+    fireEvent.click(ratingComponent);
+    expect(getByTestId("rating-movie-component")).toBeInTheDocument();
+  });
 });

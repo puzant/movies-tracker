@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
+import useInfiniteMovieQuery from "@/queries/useInfiniteMovieQuery";
 import { IMovie, IApiFunction, IPage } from "@/interfaces";
 import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";

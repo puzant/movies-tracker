@@ -1,50 +1,17 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { extractColors } from "extract-colors";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import useMovieDetails from "@/hooks/useMovieDetails";
 
 import { getMovieLanguage } from "@/utils";
-import {
-  IReview,
-  IMovie,
-  ICast,
-  IGenre,
-  IKeyword,
-  IApiFunction,
-  IRecommededMovie,
-} from "@/interfaces";
-import useMovieStore from "@/store/useMovieStore";
-import useUserStore from "@/store/useUserStore";
+import { IReview, ICast, IGenre, IKeyword, IApiFunction, IRecommededMovie } from "@/interfaces";
 
 import { Divider, LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Actor, Review, Movie, MovieRating, MovieStatus } from "@/components/molecules";
 import { MovieToolbar } from "@/components/organisms";
 
 export const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
-  const { i18n, t } = useTranslation();
-  const { movieId } = useParams();
-  const { setMovieStatus } = useMovieStore();
-  const { sessionId, isAuthenticated } = useUserStore();
-
-  const [posterBackDropColors, setPosterBackDropColors] = React.useState<any>([]);
-
-  const {
-    data: movieDetails,
-    isLoading,
-    error,
-  }: UseQueryResult<IMovie, boolean> = useQuery({
-    queryKey: [apiFunctions.getMovie.key, movieId, i18n.language],
-    queryFn: () => apiFunctions.getMovie.func(movieId, sessionId, i18n.language),
-  });
-
-  React.useEffect(() => {
-    const movieStatus = movieDetails?.account_states;
-
-    if (isAuthenticated && movieStatus) {
-      setMovieStatus(movieStatus);
-    }
-  }, [isAuthenticated, movieDetails]);
+  const { t, movieId, posterBackDropColors, movieDetails, isLoading, error } =
+    useMovieDetails(apiFunctions);
 
   const {
     backdrop_path,
@@ -64,31 +31,6 @@ export const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) =
     reviews,
     recommendations,
   } = movieDetails || {};
-
-  const options = {
-    pixels: 64000,
-    distance: 0.22,
-    crossOrigin: "Anonymous",
-    saturationDistance: 0.2,
-    lightnessDistance: 0.2,
-    hueDistance: 0.083333333,
-  } as {};
-
-  React.useEffect(() => {
-    const fetchColor = async () => {
-      try {
-        if (movieDetails) {
-          const posterPath = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${backdrop_path}`;
-          const colors = await extractColors(posterPath, options);
-          setPosterBackDropColors(colors);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchColor();
-  }, [movieDetails]);
 
   const { red, blue, green } = posterBackDropColors[0] || {};
 

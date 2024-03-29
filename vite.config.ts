@@ -12,7 +12,7 @@ export default defineConfig({
     reporters: "verbose",
     globals: true,
     environment: "jsdom",
-    setupFiles: "./src/test/setup.ts",
+    setupFiles: ["./src/setup-vitest.ts"],
     css: true,
   },
   resolve: {

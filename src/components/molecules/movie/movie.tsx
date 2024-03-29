@@ -13,6 +13,7 @@ export const Movie = ({ movie }: { movie: IMovie }) => {
           className="bg-[#dbdbdb] rounded-t-xl"
         />
       );
+
     return (
       <img
         src={moviePlacegolder}

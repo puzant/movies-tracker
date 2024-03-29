@@ -1,29 +1,28 @@
 import { Fragment } from "react";
-import { useTranslation } from "react-i18next";
 import { Listbox, Transition } from "@headlessui/react";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-import { getGenres } from "@/api";
+import useFilters from "@/hooks/useFilters";
 import { IGenre, ISortingOption } from "@/interfaces";
 import { sortingOptions } from "@/utils/constants";
-import useFiltersStore from "@/store/useFiltersStore";
-import useUserStore from "@/store/useUserStore";
 import { Divider, LoadingSpinner } from "@/components/atoms";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 export const Filters = () => {
-  const { i18n, t } = useTranslation();
-  const { accentColor } = useUserStore();
-
-  const { sortBy, releaseDate, selectedGenres, setSort, setStartDate, setEndDate, setGenres } =
-    useFiltersStore();
-
-  const { data: genres, isFetching }: UseQueryResult<IGenre[]> = useQuery({
-    queryKey: ["genres", i18n.language],
-    queryFn: () => getGenres(i18n.language),
-  });
+  const {
+    genres,
+    isFetching,
+    t,
+    accentColor,
+    sortBy,
+    releaseDate,
+    selectedGenres,
+    setSort,
+    setStartDate,
+    setEndDate,
+    setGenres,
+  } = useFilters();
 
   return (
     <div className="flex flex-col gap-4">
@@ -112,7 +111,7 @@ export const Filters = () => {
                   background: selectedGenres.includes(genre) ? `${accentColor}` : "transparent",
                 }}
                 className={`${
-                  selectedGenres.includes(genre) ? ` border border-transparent text-white` : ""
+                  selectedGenres.includes(genre) && "border border-transparent text-white"
                 } rounded-2xl text-xs border border-gray-400 p-2.5 cursor-pointer ease-in duration-300`}
                 key={genre.id}
               >

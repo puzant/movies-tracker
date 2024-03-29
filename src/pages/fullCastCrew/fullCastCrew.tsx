@@ -13,17 +13,14 @@ export const FullCastCrew = () => {
   const { red, green, blue } = colorExtract || {};
   const formattedReleaseDate = DateTime.fromISO(movieDetails.release_date);
 
-  const groupedCrew = movieDetails.credits.crew.reduce(
-    (acc: any, member: any) => {
-      const { job } = member;
-      if (!acc[job]) {
-        acc[job] = [];
-      }
-      acc[job].push(member);
-      return acc;
-    },
-    {}
-  );
+  const groupedCrew = movieDetails.credits.crew.reduce((acc: any, member: any) => {
+    const { job } = member;
+    if (!acc[job]) {
+      acc[job] = [];
+    }
+    acc[job].push(member);
+    return acc;
+  }, {});
 
   return (
     <div className="pb-4">
@@ -93,6 +90,7 @@ export const FullCastCrew = () => {
                 <p className="font-semibold">{job}</p>
 
                 <div className="h-[1px] bg-gray-200 my-2"></div>
+
                 <div className="flex flex-col gap-4">
                   {groupedCrew[job].map((member: ICrew) => (
                     <div className="flex items-center gap-2">

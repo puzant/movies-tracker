@@ -1,13 +1,13 @@
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { IApiFunction, IMovie } from "@/interfaces";
+import { useQuery } from "@tanstack/react-query";
+import { IApiFunction } from "@/interfaces";
 
 const useMovieDetailsQuery = (
-  apiFunctions: any,
+  apiFunctions: IApiFunction,
   movieId: string | undefined,
   i18n: any,
   sessionId: string
-): UseQueryResult<IMovie> => {
-  return useQuery<IMovie>({
+) => {
+  return useQuery({
     queryKey: [apiFunctions.getMovie.key, movieId, i18n.language],
     queryFn: () => apiFunctions.getMovie.func(movieId, sessionId, i18n.language),
   });

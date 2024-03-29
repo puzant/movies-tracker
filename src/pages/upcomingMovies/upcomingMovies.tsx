@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import useInfiniteMovieQuery from "@/hooks/usePaginatedQuery";
+import useInfiniteMovieQuery from "@/queries/useInfiniteMovieQuery";
 import { IApiFunction, IMovie, IPage } from "@/interfaces";
+
 import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 
