@@ -1,10 +1,9 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import { fireEvent, render as rtlRender, screen, act } from "@testing-library/react";
+import { fireEvent, render as rtlRender, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 import { Navbar } from "./navbar";
-import useUserStore from "@/store/useUserStore";
 
 const render = (ui: any, options?: any) => {
   const queryClient = new QueryClient();
@@ -18,14 +17,31 @@ const render = (ui: any, options?: any) => {
 };
 
 vi.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-    i18n: {
-      language: "en",
-      changeLanguage: vi.fn()
-    },
-  }),
+  useTranslation: vi.fn(),
 }));
+
+vi.mock("@/store/useUserStore", () => ({
+  default: vi.fn(() => ({
+    isAuthenticated: true,
+    username: "puzant",
+  })),
+}));
+
+const tSpy = vi.fn((str) => str);
+const changeLanguageSpy = vi.fn((lng: string) => new Promise(() => {}));
+const useTranslationSpy = useTranslation as any;
+
+beforeEach(() => {
+  vi.clearAllMocks();
+
+  useTranslationSpy.mockReturnValue({
+    t: tSpy,
+    i18n: {
+      changeLanguage: changeLanguageSpy,
+      language: "en",
+    },
+  });
+});
 
 describe("Navbar Component", () => {
   describe("Rendering", () => {
@@ -39,30 +55,25 @@ describe("Navbar Component", () => {
 
       const moviesLink = screen.getByRole("link", { name: /movies/i });
       const upcomingLink = screen.getByRole("link", { name: /upcoming/i });
-      const loginLink = screen.getByRole("link", { name: /login/i });
 
       expect(moviesLink).toHaveAttribute("href", "/");
       expect(upcomingLink).toHaveAttribute("href", "/upcoming");
-      expect(loginLink).toHaveAttribute("href", "/login");
     });
   });
 
-  // describe("User Authentication", () => {
-  //   vi.mock("@/store/useUserStore", () => ({
-  //     default: vi.fn()
-  //   }));
+  describe("User Authentication", () => {
+    test("it should render user avatar correctly", () => {
+      render(<Navbar />);
+      const profileLink = screen.getByRole("link", { name: "P" });
 
-  //   screen.debug()
-  //   test("it should show logout button if user is authenticated", () => {
-  //     render(<Navbar />);
-  //     expect(screen.getByText("logout")).toBeInTheDocument();
-  //   });
+      expect(profileLink).toBeInTheDocument();
+    });
 
-  //   test("it should show user avatar if authenticated", () => {
-  //     render(<Navbar />);
-  //     expect(screen.getByText("P")).toBeInTheDocument();
-  //   });
-  // });
+    test("it should show logout button if user is authenticated", () => {
+      render(<Navbar />);
+      expect(screen.getByText("logout")).toBeInTheDocument();
+    });
+  });
 
   describe("Search Functionality", () => {
     test("it should not redirect to search results page if there's no serach query", () => {
@@ -100,23 +111,18 @@ describe("Navbar Component", () => {
       expect(screen.getByText("select_language")).toBeInTheDocument();
     });
 
-    test("it calls changeLanguage with correct parameter ", () => {
+    test("it calls change Language with correct parameter", () => {
       const { i18n } = useTranslation();
-
       render(<Navbar />);
 
       const languageButton = screen.getByText("EN");
       fireEvent.click(languageButton);
 
-        const frenchLangButton = screen.getByTestId("test-fr");
-        expect(frenchLangButton).toBeInTheDocument()
+      const frenchLangButton = screen.getByTestId("test-fr");
+      expect(frenchLangButton).toBeInTheDocument();
 
-      screen.debug()
-
-      // const frenchLangButton = screen.getByTestId("test-fr");
-      // fireEvent.click(frenchLangButton)
-      // expect(i18n.changeLanguage).toHaveBeenCalledOnce()
-
+      fireEvent.click(frenchLangButton);
+      expect(i18n.changeLanguage).toHaveBeenCalledWith("fr");
     });
   });
 });
