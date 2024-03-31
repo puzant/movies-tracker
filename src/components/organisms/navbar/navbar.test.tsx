@@ -73,6 +73,18 @@ describe("Navbar Component", () => {
       render(<Navbar />);
       expect(screen.getByText("logout")).toBeInTheDocument();
     });
+
+    test("it should call logout function correctly", () => {
+      render(<Navbar />);
+      const useDeleteSessionMutation = vi.fn();
+
+      screen.debug();
+      const logoutButton = screen.getByText("logout");
+      expect(logoutButton).toBeInTheDocument();
+
+      fireEvent.click(logoutButton);
+      expect(useDeleteSessionMutation).toHaveBeenCalled();
+    });
   });
 
   describe("Search Functionality", () => {

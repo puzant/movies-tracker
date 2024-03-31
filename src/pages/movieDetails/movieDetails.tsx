@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 
-import useMovieDetails from "@/hooks/useMovieDetails";
-
 import { getMovieLanguage } from "@/utils";
 import { IReview, ICast, IGenre, IKeyword, IApiFunction, IRecommededMovie } from "@/interfaces";
+import useMovieDetails from "@/hooks/useMovieDetails";
 
 import { Divider, LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Actor, Review, Movie, MovieRating, MovieStatus } from "@/components/molecules";
