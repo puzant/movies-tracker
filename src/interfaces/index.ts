@@ -1,6 +1,6 @@
 export interface IApiFunction {
   [key: string]: {
-    func: (...params: any[]) => void;
+    func: (...params: any[]) => Promise<any>;
     key: string;
   };
 }
