@@ -1,5 +1,5 @@
 import { vi } from "vitest";
-import { render as rtlRender, fireEvent, renderHook, act } from "@testing-library/react";
+import { render as rtlRender, fireEvent } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
@@ -7,6 +7,9 @@ import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 import { Filters } from "./filters";
 import useFilters from "@/hooks/useFilters";
 import { sortingOptions } from "@/utils/constants";
+
+const mockSetGenres = vi.fn();
+const mockSortBy = vi.fn();
 
 vi.mock("@/hooks/useFilters", () => ({
   default: vi.fn(() => ({
@@ -23,7 +26,8 @@ vi.mock("@/hooks/useFilters", () => ({
       { id: 2, name: "Drama" },
     ],
     t: (key: string) => key,
-    setGenres: vi.fn(),
+    setSort: mockSortBy,
+    setGenres: mockSetGenres,
   })),
 }));
 
@@ -45,26 +49,60 @@ afterEach(() => {
 });
 
 describe("Filters Component", () => {
-  test("it should render filters component", () => {
-    const { getByText } = render(<Filters />);
-    expect(getByText("sort_by")).toBeInTheDocument();
+  describe("Rendering", () => {
+    it("renders sorting component", () => {
+      const { getByText } = render(<Filters />);
+
+      expect(getByText("sort_by")).toBeInTheDocument();
+      expect(getByText("filters")).toBeInTheDocument();
+      expect(getByText("genres")).toBeInTheDocument();
+    });
+
+    it("renders sorting by menu correctly", () => {
+      const { getByText } = render(<Filters />);
+      expect(getByText("sorting_options.popularity.desc")).toBeInTheDocument();
+    });
+
+    it("renders date picker component correctly", () => {
+      const { getAllByLabelText } = render(<Filters />);
+      const buttonElements = getAllByLabelText("Choose date");
+
+      expect(buttonElements.length).toEqual(2);
+    });
+
+    it("render a list of genres", () => {
+      const { getByText } = render(<Filters />);
+
+      expect(getByText("Action")).toBeInTheDocument();
+      expect(getByText("Drama")).toBeInTheDocument();
+    });
   });
 
-  // test("it should show loading spineer when isFetching is true", () => {
-  //   const { getByText } = render(<Filters />);
-  //   expect(getByText("Loading...")).toBeInTheDocument();
-  // });
+  describe("Sorting functionlity", () => {
+    it("open sorting menu and selects sort by", () => {
+      const { setSort } = useFilters();
+      const { getByText } = render(<Filters />);
+      const sortingMenuButton = getByText("sorting_options.popularity.desc");
 
-  test("should display a list of genres", () => {
-    const { getByText } = render(<Filters />);
-    expect(getByText("Action")).toBeInTheDocument();
-    expect(getByText("Drama")).toBeInTheDocument();
+      fireEvent.click(sortingMenuButton);
+      const sortingOptionAsc = getByText("sorting_options.popularity.asc");
+      fireEvent.click(sortingOptionAsc);
+      expect(setSort).toHaveBeenCalledWith({
+        id: 2,
+        key: "popularity.asc",
+        name: "Popularity Ascending",
+      });
+    });
   });
 
-  test("should call the setGenre method with correct paramter", () => {
-    const { getByText } = render(<Filters />);
+  describe("Genres selection functionality", () => {
+    it("calls setGenres function when genre is clicked", () => {
+      const { setGenres } = useFilters();
+      const { getByText } = render(<Filters />);
 
-    fireEvent.click(getByText("Action"));
-    expect(useFilters().setGenres).toHaveBeenCalledWith({ id: 1, name: "Action" });
+      const actionGenreButton = getByText("Action");
+      fireEvent.click(actionGenreButton);
+      expect(setGenres).toHaveBeenCalledWith({ id: 1, name: "Action" });
+    });
   });
 });
