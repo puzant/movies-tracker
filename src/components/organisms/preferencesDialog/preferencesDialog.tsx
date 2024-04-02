@@ -1,16 +1,10 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
 import { isMobile } from "@/utils";
 import { languages } from "@/utils/constants";
 import ReactCountryFlag from "react-country-flag";
-import useUserStore from "@/store/useUserStore";
 
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
+import usePreferencesDialog from "@/hooks/usePreferencesDialog";
+
+import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
 
@@ -21,29 +15,23 @@ export const PreferencesDialog = ({
   onClose: () => void;
   openDialog: boolean;
 }) => {
-  const { i18n, t } = useTranslation();
-  const { accentColor, setAccentColor } = useUserStore();
-
-  const [selectedColor, setSelectedColor] = React.useState<string>(accentColor);
-  const [selectedLanguage, setSelectedLanguage] = React.useState<string>(
-    i18n.language
-  );
-
-  const handleUpdatePreferences = () => {
-    setAccentColor(selectedColor);
-    i18n.changeLanguage(selectedLanguage);
-    onClose();
-  };
+  const {
+    accentColors,
+    t,
+    accentColor,
+    selectedColor,
+    setSelectedColor,
+    selectedLanguage,
+    setSelectedLanguage,
+    handleUpdatePreferences,
+  } = usePreferencesDialog(onClose);
 
   return (
     <Dialog fullScreen={isMobile()} onClose={onClose} open={openDialog}>
       <DialogTitle>
         <div className="flex justify-between items-center">
           <span className="text-2xl font-semibold">{t("preferences")}</span>
-          <CloseIcon
-            onClick={onClose}
-            sx={{ color: "#5A5A5A", cursor: "pointer" }}
-          />
+          <CloseIcon onClick={onClose} sx={{ color: "#5A5A5A", cursor: "pointer" }} />
         </div>
       </DialogTitle>
 
@@ -72,29 +60,20 @@ export const PreferencesDialog = ({
 
         <section className="mt-8">
           <div className="font-bold text-xl">{t("personalize")}</div>
-
           <div className="mt-1">{t("choose_accent_notice")}</div>
-
           <div className="text-lg mt-5">{t("select_your_color")}</div>
+
           <div className="flex gap-4 mt-2">
-            {[
-              "#0177d2",
-              "#01b4e4",
-              "#01d277",
-              "#d27701",
-              "#d40242",
-              "#805be7",
-            ].map((color) => (
+            {accentColors.map((color, index) => (
               <div
+                data-testid={`accent-color-${index}`}
                 style={{
                   background: color,
                 }}
                 className="cursor-pointer w-[50px] h-[50px] rounded-full flex justify-center items-center"
                 onClick={() => setSelectedColor(color)}
               >
-                {color === selectedColor && (
-                  <CheckIcon sx={{ color: "#fff" }} fontSize="large" />
-                )}
+                {color === selectedColor && <CheckIcon sx={{ color: "#fff" }} fontSize="large" />}
               </div>
             ))}
           </div>
