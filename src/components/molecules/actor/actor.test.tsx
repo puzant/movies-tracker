@@ -3,13 +3,13 @@ import { Actor } from "./actor";
 import { mockActor } from "@/mocks";
 
 describe("Actor Component", () => {
-  test("it renders with correct props", () => {
+  it("renders with correct props", () => {
     const { getByText } = render(<Actor actor={mockActor} />);
     expect(getByText(mockActor.name)).toBeInTheDocument();
     expect(getByText(mockActor.character)).toBeInTheDocument();
   });
 
-  test("renders with correct image URL when profile path is not null", () => {
+  it("renders with correct image URL when profile path is not null", () => {
     const { getByRole } = render(<Actor actor={mockActor} />);
     const imgElement = getByRole("img");
     expect(imgElement).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe("Actor Component", () => {
     );
   });
 
-  test("renders with fallback image URL when profile path is null", () => {
+  it("renders with fallback image URL when profile path is null", () => {
     const actorWithoutImage = { ...mockActor, profile_path: null };
     const { getByRole } = render(<Actor actor={actorWithoutImage} />);
     const imgElement = getByRole("img");

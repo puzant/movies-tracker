@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { MovieRating } from "./movieRating";
 
 describe("Movie Rating Component", () => {
-  test("renders the rating component with correct value", () => {
+  it("renders the rating component with correct value", () => {
     const vote_average = 8.455;
     render(<MovieRating vote={vote_average} />);
     const ratingElement = screen.getByRole("img", { name: /4 Stars/i });

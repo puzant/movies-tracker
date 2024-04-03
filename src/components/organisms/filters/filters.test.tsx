@@ -1,4 +1,3 @@
-import { vi } from "vitest";
 import { render as rtlRender, fireEvent } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";

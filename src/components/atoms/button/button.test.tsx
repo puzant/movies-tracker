@@ -31,6 +31,12 @@ describe("Button Component", () => {
       fireEvent.click(screen.getByRole("button"));
       expect(mockOnClick).not.toHaveBeenCalled();
     });
+
+    it("does not call onClick when onClick function is not passed", () => {
+      render(<Button>Click</Button>);
+      fireEvent.click(screen.getByRole("button"));
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
   });
 
   describe("Button State", () => {

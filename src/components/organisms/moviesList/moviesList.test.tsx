@@ -7,17 +7,17 @@ vi.mock("react-router-dom", () => ({
 }));
 
 describe("Movie List Component", () => {
-  test("it renders 'No Movies' message when movies array is empty", () => {
+  it("renders 'No Movies' message when movies array is empty", () => {
     render(<MoviesList movies={[]} />);
     expect(screen.getByText("no_movies")).toBeInTheDocument();
   });
 
-  test("it renders a list of movies", () => {
+  it("renders a list of movies", () => {
     const { getByText } = render(<MoviesList movies={[mockListMovie]} />);
     expect(getByText(mockListMovie.original_title)).toBeInTheDocument();
   });
 
-  test("it renders the correct movie poster", () => {
+  it("renders the correct movie poster", () => {
     const { getByRole } = render(<MoviesList movies={[mockListMovie]} />);
     const imgElement = getByRole("img");
 

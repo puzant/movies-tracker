@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { MovieTabs } from "./movieTabs";
 
 describe("Movie Tabs Component", () => {
-  test("it renders tabs correctly", () => {
+  it("renders tabs correctly", () => {
     render(<MovieTabs favoriteMovies={[]} moviesInWatchlist={[]} ratedMovies={[]} />);
 
     expect(screen.getByText("favorites")).toBeInTheDocument();

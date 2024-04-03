@@ -45,12 +45,12 @@ beforeEach(() => {
 
 describe("Navbar Component", () => {
   describe("Rendering", () => {
-    test("it renders Navbar", () => {
+    it("renders Navbar", () => {
       const { container } = render(<Navbar />);
       expect(container).toBeInTheDocument();
     });
 
-    test("it renders Navigation Links correctly", () => {
+    it("renders Navigation Links correctly", () => {
       render(<Navbar />);
 
       const moviesLink = screen.getByRole("link", { name: /movies/i });
@@ -62,21 +62,21 @@ describe("Navbar Component", () => {
   });
 
   describe("User Authentication", () => {
-    test("it should render user avatar correctly", () => {
+    it("should render user avatar correctly", () => {
       render(<Navbar />);
       const profileLink = screen.getByRole("link", { name: "P" });
 
       expect(profileLink).toBeInTheDocument();
     });
 
-    test("it should show logout button if user is authenticated", () => {
+    it("should show logout button if user is authenticated", () => {
       render(<Navbar />);
       expect(screen.getByText("logout")).toBeInTheDocument();
     });
   });
 
   describe("Search Functionality", () => {
-    test("it should not redirect to search results page if there's no serach query", () => {
+    it("should not redirect to search results page if there's no serach query", () => {
       render(<Navbar />);
 
       const serachIcon = screen.getByTestId("SearchIcon");
@@ -88,7 +88,7 @@ describe("Navbar Component", () => {
       expect(window.location.pathname).not.toBe("/search-results");
     });
 
-    test("it opens search bar on search icon click and redirects to search results on click Enter", () => {
+    it("opens search bar on search icon click and redirects to search results on click Enter", () => {
       render(<Navbar />);
 
       const serachIcon = screen.getByTestId("SearchIcon");
@@ -103,7 +103,7 @@ describe("Navbar Component", () => {
   });
 
   describe("Language Selection", () => {
-    test("it opens language selection menu when language button is clicked", () => {
+    it("opens language selection menu when language button is clicked", () => {
       render(<Navbar />);
 
       const languageButton = screen.getByText("EN");
@@ -111,7 +111,7 @@ describe("Navbar Component", () => {
       expect(screen.getByText("select_language")).toBeInTheDocument();
     });
 
-    test("it calls change Language with correct parameter", () => {
+    it("calls change Language with correct parameter", () => {
       const { i18n } = useTranslation();
       render(<Navbar />);
 
