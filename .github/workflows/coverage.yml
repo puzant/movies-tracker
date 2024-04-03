@@ -1,0 +1,31 @@
+name: Movies tracker CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Run unit tests
+        run: npm run test
+
+      - name: Check if unit tests passed
+        run: |
+          if [ $? -eq 0 ]; then
+            echo "All unit tests passed. Generating coverage report..."
+            npm run coverage 
+          else
+            echo "Unit tests failed. Skipping coverage report generation."
+          fi
