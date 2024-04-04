@@ -32,3 +32,10 @@ jobs:
           else
             echo "Unit tests failed. Skipping coverage report generation."
           fi
+
+      - name: Deploy coverage report to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: coverage-report
+          FOLDER: coverage
