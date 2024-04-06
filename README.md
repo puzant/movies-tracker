@@ -15,6 +15,8 @@
 
 **Live demo**: [Movie tracker app](https://react-app-movies-tracker.netlify.app/)
 
+**Testing**: [Code coverage report](https://puzant.github.io/movies-tracker/)
+
 Welcome to the React Movie Tracker App! This application allows users to track and manage their favorite movies, explore movie details, search for movies, and much more.
 
 > This front-end React application was developed purely for fun. You can explore the newest movies and obtaining additional details about them. If you have a [TMDb account](https://www.themoviedb.org/), you have the option to log in to the app, enabling you to rate movies, include them in your favorites list, and access your profile overview.
