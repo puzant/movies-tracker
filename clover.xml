@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1712417556953" clover="3.2.0">
+  <project timestamp="1712417556953" name="All files">
+    <metrics statements="466" coveredstatements="145" conditionals="182" coveredconditionals="40" methods="191" coveredmethods="49" elements="839" coveredelements="234" complexity="0" loc="466" ncloc="466" packages="37" files="63" classes="63"/>
+    <package name="src">
+      <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="App.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/App.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+      </file>
+      <file name="main.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/main.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.HOC">
+      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="withApiFunctions.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/HOC/withApiFunctions.tsx">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.api">
+      <metrics statements="49" coveredstatements="23" conditionals="12" coveredconditionals="0" methods="20" coveredmethods="2"/>
+      <file name="account.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/account.ts">
+        <metrics statements="12" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+      </file>
+      <file name="authentication.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/authentication.ts">
+        <metrics statements="7" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+      </file>
+      <file name="axiosInstance.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/axiosInstance.ts">
+        <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+      <file name="movie.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/movie.ts">
+        <metrics statements="24" coveredstatements="10" conditionals="12" coveredconditionals="0" methods="10" coveredmethods="1"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="35" count="4" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="43" count="4" type="cond" truecount="0" falsecount="1"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="53" count="4" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="67" count="4" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="72" count="4" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="80" count="4" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="93" count="4" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="99" count="4" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.apiManager">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/apiManager/index.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.appRoutes">
+      <metrics statements="11" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="index.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/appRoutes/index.tsx">
+        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+      </file>
+      <file name="privateRoute.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/appRoutes/privateRoute.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+    </package>
+    <package name="src.components.atoms.button">
+      <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+      <file name="button.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/atoms/button/button.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="12" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="17" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.atoms.divider">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="divider.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/atoms/divider/divider.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="25" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.atoms.errorMessage">
+      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="errorMessage.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/atoms/errorMessage/errorMessage.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.atoms.input">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="input.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/atoms/input/input.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.atoms.loadingSpinner">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="loadingSpinner.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/atoms/loadingSpinner/loadingSpinner.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.molecules.actor">
+      <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="actor.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/molecules/actor/actor.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.molecules.movie">
+      <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <file name="movie.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/molecules/movie/movie.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.molecules.movieRating">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="movieRating.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/molecules/movieRating/movieRating.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.molecules.movieStatus">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="movieStatus.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/molecules/movieStatus/movieStatus.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.molecules.movieTabs">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="movieTabs.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/molecules/movieTabs/movieTabs.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.molecules.review">
+      <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+      <file name="review.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/molecules/review/review.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.organisms.drawer">
+      <metrics statements="14" coveredstatements="8" conditionals="6" coveredconditionals="5" methods="7" coveredmethods="3"/>
+      <file name="drawer.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/drawer/drawer.tsx">
+        <metrics statements="14" coveredstatements="8" conditionals="6" coveredconditionals="5" methods="7" coveredmethods="3"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="35" count="12" type="stmt"/>
+        <line num="37" count="12" type="stmt"/>
+        <line num="38" count="12" type="stmt"/>
+        <line num="40" count="12" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="12" type="stmt"/>
+        <line num="76" count="36" type="stmt"/>
+        <line num="94" count="36" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.organisms.filters">
+      <metrics statements="8" coveredstatements="6" conditionals="6" coveredconditionals="4" methods="6" coveredmethods="4"/>
+      <file name="filters.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/filters/filters.tsx">
+        <metrics statements="8" coveredstatements="6" conditionals="6" coveredconditionals="4" methods="6" coveredmethods="4"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="25" count="8" type="stmt"/>
+        <line num="27" count="8" type="stmt"/>
+        <line num="51" count="48" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="108" count="12" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.organisms.filtersDialog">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="filtersDialog.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/filtersDialog/filtersDialog.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.organisms.movieToolbar">
+      <metrics statements="4" coveredstatements="3" conditionals="12" coveredconditionals="6" methods="2" coveredmethods="1"/>
+      <file name="movieToolbar.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/movieToolbar/movieToolbar.tsx">
+        <metrics statements="4" coveredstatements="3" conditionals="12" coveredconditionals="6" methods="2" coveredmethods="1"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.organisms.moviesList">
+      <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <file name="moviesList.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/moviesList/moviesList.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.organisms.navbar">
+      <metrics statements="12" coveredstatements="8" conditionals="6" coveredconditionals="4" methods="10" coveredmethods="6"/>
+      <file name="navbar.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/navbar/navbar.tsx">
+        <metrics statements="12" coveredstatements="8" conditionals="6" coveredconditionals="4" methods="10" coveredmethods="6"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="32" count="13" type="stmt"/>
+        <line num="34" count="12" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="82" count="36" type="stmt"/>
+        <line num="84" count="15" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="105" count="2" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="139" count="1" type="stmt"/>
+        <line num="147" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.organisms.preferencesDialog">
+      <metrics statements="7" coveredstatements="5" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="3"/>
+      <file name="preferencesDialog.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/preferencesDialog/preferencesDialog.tsx">
+        <metrics statements="7" coveredstatements="5" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="3"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
+        <line num="44" count="12" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="68" count="8" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.hooks">
+      <metrics statements="146" coveredstatements="22" conditionals="38" coveredconditionals="4" methods="31" coveredmethods="3"/>
+      <file name="useFilters.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useFilters.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+      </file>
+      <file name="useHome.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useHome.ts">
+        <metrics statements="13" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+      </file>
+      <file name="useLogin.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useLogin.ts">
+        <metrics statements="17" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+      </file>
+      <file name="useMovieDetails.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useMovieDetails.ts">
+        <metrics statements="31" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+      </file>
+      <file name="useMovieToolbar.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useMovieToolbar.ts">
+        <metrics statements="33" coveredstatements="1" conditionals="22" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="71" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="84" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+      </file>
+      <file name="useNavbar.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useNavbar.ts">
+        <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="13" type="stmt"/>
+        <line num="10" count="12" type="stmt"/>
+        <line num="11" count="12" type="stmt"/>
+        <line num="13" count="12" type="stmt"/>
+        <line num="14" count="12" type="stmt"/>
+        <line num="15" count="12" type="stmt"/>
+        <line num="17" count="12" type="stmt"/>
+        <line num="19" count="12" type="stmt"/>
+        <line num="20" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="27" count="12" type="stmt"/>
+      </file>
+      <file name="usePreferences.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/usePreferences.ts">
+        <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+      </file>
+      <file name="usePreferencesDialog.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/usePreferencesDialog.ts">
+        <metrics statements="11" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+      </file>
+      <file name="useProfile.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useProfile.ts">
+        <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.mocks">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mocks/index.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="172" count="5" type="stmt"/>
+        <line num="187" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.mutations">
+      <metrics statements="41" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="19" coveredmethods="1"/>
+      <file name="useCreateSessionMutation.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mutations/useCreateSessionMutation.ts">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="useDeleteMovieRatingMutation.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mutations/useDeleteMovieRatingMutation.ts">
+        <metrics statements="6" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+      <file name="useDeleteSessionMutation.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mutations/useDeleteSessionMutation.ts">
+        <metrics statements="9" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="12" type="stmt"/>
+        <line num="9" count="12" type="stmt"/>
+        <line num="11" count="12" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="20" count="12" type="stmt"/>
+      </file>
+      <file name="useFavoriteMovieMutation.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mutations/useFavoriteMovieMutation.ts">
+        <metrics statements="6" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+      <file name="useLoginMutation.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mutations/useLoginMutation.ts">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+      <file name="useMovieWatchListMutation.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mutations/useMovieWatchListMutation.ts">
+        <metrics statements="6" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+      <file name="useRateMovieMutation.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mutations/useRateMovieMutation.ts">
+        <metrics statements="6" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages.fullCastCrew">
+      <metrics statements="16" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="fullCastCrew.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/pages/fullCastCrew/fullCastCrew.tsx">
+        <metrics statements="16" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages.home">
+      <metrics statements="9" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <file name="home.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/pages/home/home.tsx">
+        <metrics statements="9" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="59" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages.login">
+      <metrics statements="7" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="login.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/pages/login/login.tsx">
+        <metrics statements="7" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages.movieDetails">
+      <metrics statements="10" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <file name="movieDetails.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/pages/movieDetails/movieDetails.tsx">
+        <metrics statements="10" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="71" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="131" count="0" type="stmt"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="177" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages.profile">
+      <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="profile.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/pages/profile/profile.tsx">
+        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages.reviews">
+      <metrics statements="8" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="reviews.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/pages/reviews/reviews.tsx">
+        <metrics statements="8" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages.searchResults">
+      <metrics statements="10" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <file name="searchResults.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/pages/searchResults/searchResults.tsx">
+        <metrics statements="10" coveredstatements="0" conditionals="14" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages.upcomingMovies">
+      <metrics statements="8" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="upcomingMovies.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/pages/upcomingMovies/upcomingMovies.tsx">
+        <metrics statements="8" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.queries">
+      <metrics statements="17" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="2"/>
+      <file name="useAccountDataQuery.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/queries/useAccountDataQuery.ts">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+      <file name="useGenresQuery.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/queries/useGenresQuery.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+      </file>
+      <file name="useInfiniteMovieQuery.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/queries/useInfiniteMovieQuery.ts">
+        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+      <file name="useMovieDetailsQuery.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/queries/useMovieDetailsQuery.ts">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+      <file name="useRequestTokenQuery.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/queries/useRequestTokenQuery.ts">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.store">
+      <metrics statements="19" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="16" coveredmethods="4"/>
+      <file name="useFiltersStore.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/store/useFiltersStore.ts">
+        <metrics statements="11" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="9" coveredmethods="1"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+      </file>
+      <file name="useMovieStore.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/store/useMovieStore.ts">
+        <metrics statements="3" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+      </file>
+      <file name="useUserStore.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/store/useUserStore.ts">
+        <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.utils">
+      <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+      <file name="constants.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/utils/constants.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/utils/index.ts">
+        <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
