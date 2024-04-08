@@ -63,14 +63,14 @@ export const PreferencesDialog = ({
           <div className="mt-1">{t("choose_accent_notice")}</div>
           <div className="text-lg mt-5">{t("select_your_color")}</div>
 
-          <div className="flex gap-4 mt-2">
+          <div className="grid grid-cols-6 mt-2 gap-6">
             {accentColors.map((color, index) => (
               <div
                 data-testid={`accent-color-${index}`}
                 style={{
                   background: color,
                 }}
-                className="cursor-pointer w-[50px] h-[50px] rounded-full flex justify-center items-center"
+                className="w-11 h-11 flex items-center justify-center rounded-full"
                 onClick={() => setSelectedColor(color)}
               >
                 {color === selectedColor && <CheckIcon sx={{ color: "#fff" }} fontSize="large" />}

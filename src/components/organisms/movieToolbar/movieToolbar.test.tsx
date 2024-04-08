@@ -10,8 +10,8 @@ const render = (ui: any, options?: any) => {
 
 const mockHandleSetMovieToFavorite = vi.fn();
 const mockHandleSetMovieToWatchList = vi.fn();
-const mockHandleMovieRating = vi.fn();
 const mockOnRateMovie = vi.fn();
+const mockHandleMovieRating = vi.fn();
 
 vi.mock("@/hooks/useMovieToolbar", () => ({
   default: vi.fn(() => ({
@@ -19,6 +19,7 @@ vi.mock("@/hooks/useMovieToolbar", () => ({
     watchListTooltip: "add_movie_to_watch_list",
     rateMovieTooltip: "rate_movie",
     isAuthenticated: true,
+    showRating: true,
     t: (key: string) => key,
     handleSetMovieToFavorite: mockHandleSetMovieToFavorite,
     handleSetMovieToWatchList: mockHandleSetMovieToWatchList,

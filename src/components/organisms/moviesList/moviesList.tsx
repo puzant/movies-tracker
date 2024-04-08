@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { DateTime } from "luxon";
 import { IMovieList } from "@/interfaces";
+import emptyResults from "@/assets/empty-results.svg";
 
 export const MoviesList = ({ movies }: { movies: IMovieList[] }) => {
   const { t } = useTranslation();
@@ -10,7 +11,10 @@ export const MoviesList = ({ movies }: { movies: IMovieList[] }) => {
     <div>
       <div className="flex flex-col gap-4 my-4">
         {!movies?.length ? (
-          <p className="text-xl">{t("no_movies")}</p>
+          <div className="flex items-center flex-col gap-4">
+            <img className="w-[300px] " src={emptyResults} />
+            <p className="text-xl">{t("no_movies")}</p>
+          </div>
         ) : (
           movies.map((movie: IMovieList) => (
             <Link to={`/movie/${movie.id}`} className="flex gap-2 border-2 rounded-md shadow-lg">
