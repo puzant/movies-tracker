@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1712426925130" clover="3.2.0">
-  <project timestamp="1712426925130" name="All files">
-    <metrics statements="466" coveredstatements="145" conditionals="182" coveredconditionals="40" methods="191" coveredmethods="49" elements="839" coveredelements="234" complexity="0" loc="466" ncloc="466" packages="37" files="63" classes="63"/>
+<coverage generated="1712602661116" clover="3.2.0">
+  <project timestamp="1712602661116" name="All files">
+    <metrics statements="466" coveredstatements="146" conditionals="182" coveredconditionals="41" methods="191" coveredmethods="50" elements="839" coveredelements="237" complexity="0" loc="466" ncloc="466" packages="37" files="63" classes="63"/>
     <package name="src">
       <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="App.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/App.tsx">
@@ -137,11 +137,11 @@
       </file>
     </package>
     <package name="src.components.atoms.errorMessage">
-      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="errorMessage.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/atoms/errorMessage/errorMessage.tsx">
-        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="3" count="5" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.atoms.input">
@@ -264,9 +264,9 @@
       </file>
     </package>
     <package name="src.components.organisms.movieToolbar">
-      <metrics statements="4" coveredstatements="3" conditionals="12" coveredconditionals="6" methods="2" coveredmethods="1"/>
+      <metrics statements="4" coveredstatements="3" conditionals="12" coveredconditionals="7" methods="2" coveredmethods="1"/>
       <file name="movieToolbar.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/movieToolbar/movieToolbar.tsx">
-        <metrics statements="4" coveredstatements="3" conditionals="12" coveredconditionals="6" methods="2" coveredmethods="1"/>
+        <metrics statements="4" coveredstatements="3" conditionals="12" coveredconditionals="7" methods="2" coveredmethods="1"/>
         <line num="9" count="5" type="stmt"/>
         <line num="26" count="4" type="stmt"/>
         <line num="28" count="4" type="stmt"/>
@@ -277,10 +277,10 @@
       <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
       <file name="moviesList.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/moviesList/moviesList.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="6" count="5" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="9" count="4" type="stmt"/>
-        <line num="16" count="2" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
       </file>
     </package>
     <package name="src.components.organisms.navbar">
