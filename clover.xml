@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1712749115071" clover="3.2.0">
-  <project timestamp="1712749115071" name="All files">
-    <metrics statements="466" coveredstatements="148" conditionals="182" coveredconditionals="41" methods="191" coveredmethods="52" elements="839" coveredelements="241" complexity="0" loc="466" ncloc="466" packages="37" files="63" classes="63"/>
+<coverage generated="1712782985020" clover="3.2.0">
+  <project timestamp="1712782985020" name="All files">
+    <metrics statements="465" coveredstatements="152" conditionals="182" coveredconditionals="42" methods="190" coveredmethods="54" elements="837" coveredelements="248" complexity="0" loc="465" ncloc="465" packages="37" files="64" classes="64"/>
     <package name="src">
       <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="App.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/App.tsx">
@@ -220,23 +220,16 @@
       </file>
     </package>
     <package name="src.components.organisms.drawer">
-      <metrics statements="14" coveredstatements="8" conditionals="6" coveredconditionals="5" methods="7" coveredmethods="3"/>
+      <metrics statements="7" coveredstatements="6" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="4"/>
       <file name="drawer.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/drawer/drawer.tsx">
-        <metrics statements="14" coveredstatements="8" conditionals="6" coveredconditionals="5" methods="7" coveredmethods="3"/>
-        <line num="28" count="4" type="stmt"/>
-        <line num="35" count="12" type="stmt"/>
-        <line num="37" count="12" type="stmt"/>
-        <line num="38" count="12" type="stmt"/>
-        <line num="40" count="12" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="49" count="12" type="stmt"/>
-        <line num="76" count="36" type="stmt"/>
-        <line num="94" count="36" type="stmt"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="117" count="0" type="stmt"/>
+        <metrics statements="7" coveredstatements="6" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="4"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="31" count="17" type="stmt"/>
+        <line num="33" count="17" type="stmt"/>
+        <line num="55" count="51" type="stmt"/>
+        <line num="73" count="51" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.components.organisms.filters">
@@ -315,7 +308,16 @@
       </file>
     </package>
     <package name="src.hooks">
-      <metrics statements="146" coveredstatements="22" conditionals="38" coveredconditionals="4" methods="31" coveredmethods="3"/>
+      <metrics statements="152" coveredstatements="28" conditionals="38" coveredconditionals="4" methods="32" coveredmethods="4"/>
+      <file name="useDrawer.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useDrawer.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="12" type="stmt"/>
+        <line num="8" count="12" type="stmt"/>
+        <line num="9" count="12" type="stmt"/>
+        <line num="10" count="12" type="stmt"/>
+        <line num="12" count="12" type="stmt"/>
+      </file>
       <file name="useFilters.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useFilters.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="4" type="stmt"/>
@@ -521,14 +523,14 @@
       <file name="useDeleteSessionMutation.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mutations/useDeleteSessionMutation.ts">
         <metrics statements="9" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
         <line num="7" count="4" type="stmt"/>
-        <line num="8" count="12" type="stmt"/>
-        <line num="9" count="12" type="stmt"/>
-        <line num="11" count="12" type="stmt"/>
+        <line num="8" count="24" type="stmt"/>
+        <line num="9" count="24" type="stmt"/>
+        <line num="11" count="24" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="20" count="12" type="stmt"/>
+        <line num="20" count="24" type="stmt"/>
       </file>
       <file name="useFavoriteMovieMutation.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mutations/useFavoriteMovieMutation.ts">
         <metrics statements="6" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
@@ -756,8 +758,8 @@
       <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="constants.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/utils/constants.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
       </file>
       <file name="index.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/utils/index.ts">
         <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
