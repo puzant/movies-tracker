@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { useMutation } from "@tanstack/react-query";
 import ReactCountryFlag from "react-country-flag";
 
-import { deleteSession } from "@/api";
-import useUserStore from "@/store/useUserStore";
-import useMovieStore from "@/store/useMovieStore";
 import { languages } from "@/utils/constants";
+import useDrawer from "@/hooks/useDrawer";
 
 import {
   Drawer as MuiDrawer,
@@ -32,27 +28,10 @@ export const Drawer = ({
   isDrawerOpen: boolean;
   onDrawerToggle: () => void;
 }) => {
-  const { i18n, t } = useTranslation();
-
-  const { resetMovieStatus } = useMovieStore();
-  const { resetState, isAuthenticated, sessionId } = useUserStore();
-
-  const { mutateAsync: deleteSessionMutation } = useMutation({
-    mutationFn: (payload: string) => deleteSession(payload),
-    onSuccess: () => {
-      resetState();
-      resetMovieStatus();
-      localStorage.clear();
-    },
-  });
+  const { i18n, t, isAuthenticated, sessionId, deleteSessionMutation } = useDrawer();
 
   return (
-    <MuiDrawer
-      variant="temporary"
-      anchor="left"
-      open={isDrawerOpen}
-      onClose={onDrawerToggle}
-    >
+    <MuiDrawer variant="temporary" anchor="left" open={isDrawerOpen} onClose={onDrawerToggle}>
       <img className="p-4" width="154" height="20" src={tmdbLogo} />
 
       <Box
@@ -113,10 +92,7 @@ export const Drawer = ({
 
         {isAuthenticated && (
           <List>
-            <ListItem
-              onClick={() => deleteSessionMutation(sessionId)}
-              disablePadding
-            >
+            <ListItem onClick={() => deleteSessionMutation(sessionId)} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <LogoutIcon />

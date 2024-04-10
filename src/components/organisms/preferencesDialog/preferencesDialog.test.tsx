@@ -45,7 +45,6 @@ describe("Preferences Dialog", () => {
       const openDialog = true;
       render(<PreferencesDialog openDialog onClose={mockOnClose} />);
       expect(openDialog).toBeTruthy();
-      expect(typeof mockOnClose).toBe("function");
     });
 
     it("verifies onClose prop is type function", () => {
