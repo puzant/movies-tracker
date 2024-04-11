@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import { deleteMovieRating } from "@/api";
 import { IDeleteRatingPayload } from "@/interfaces";
 
@@ -7,7 +8,8 @@ const useDeleteMovieRatingMutation = () => {
 
   const { mutate: deleteRatingMutation, ...mutationState } = useMutation({
     mutationFn: (payload: IDeleteRatingPayload) => deleteMovieRating(payload),
-    onSuccess: () => {
+    onSuccess: (msg) => {
+      toast(msg.status_message);
       queryClient.invalidateQueries({ queryKey: ["movieDetails"] });
     },
   });
