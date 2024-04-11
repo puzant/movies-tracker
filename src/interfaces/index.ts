@@ -246,3 +246,9 @@ export interface IPage {
   total_pages: number;
   total_results: number;
 }
+
+export interface IMovieResponse {
+  success: boolean;
+  status_code: number;
+  status_message: string;
+}
