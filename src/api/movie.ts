@@ -8,9 +8,10 @@ import {
   IRatingPayload,
   IDeleteRatingPayload,
   IMovie,
+  IMovieResponse,
 } from "@/interfaces";
 
-export const getMovies = async ({
+export const getMovies = ({
   sortBy,
   selectedGenres,
   startDate,
@@ -18,7 +19,7 @@ export const getMovies = async ({
   selectedLanguage,
   page,
 }: IPopularMoviesParams): Promise<IMovie[]> => {
-  const response = await axios.get(`discover/movie?language=${selectedLanguage}`, {
+  return axios.get(`discover/movie?language=${selectedLanguage}`, {
     params: {
       page: page,
       sort_by: typeof sortBy === "object" && "key" in sortBy ? sortBy.key : sortBy,
@@ -29,15 +30,13 @@ export const getMovies = async ({
       "primary_release_date.lte": endDate ? DateTime.fromISO(endDate).toFormat("yyyy-MM-dd") : null,
     },
   });
-  return response.data;
 };
 
-export const getUpcomingMovies = async (
+export const getUpcomingMovies = (
   selectedLanguage: string,
   page: number = 1
 ): Promise<IMovie[]> => {
-  const response = await axios.get(`/movie/upcoming?language=${selectedLanguage}&page=${page}`);
-  return response.data;
+  return axios.get(`/movie/upcoming?language=${selectedLanguage}&page=${page}`);
 };
 
 export const searchMovies = async (query: string, page: number = 1): Promise<IMovie[]> => {
@@ -50,26 +49,29 @@ export const searchMovies = async (query: string, page: number = 1): Promise<IMo
   return response.data;
 };
 
-export const getMovie = async (
+export const getMovie = (
   movieId: string | undefined,
   sessionId: string,
   selectedLanguage: string
 ): Promise<IMovie> => {
-  const response = await axios.get(`movie/${movieId}?language=${selectedLanguage}`, {
+  return axios.get(`movie/${movieId}?language=${selectedLanguage}`, {
     params: {
       session_id: sessionId,
       append_to_response: "credits,keywords,reviews,recommendations,account_states",
     },
   });
-  return response.data;
 };
 
-export const getGenres = async (selectedLanguage: string): Promise<IGenre[]> => {
-  const response = await axios.get(`/genre/movie/list?language=${selectedLanguage}`);
-  return response.data.genres;
+export const getGenres = (selectedLanguage: string): Promise<any> => {
+  return axios.get(`/genre/movie/list?language=${selectedLanguage}`);
 };
 
-export const setFavoriteMovie = ({ accountId, sessionId, id, favorite }: IFavoriteMoviePayload) => {
+export const setFavoriteMovie = ({
+  accountId,
+  sessionId,
+  id,
+  favorite,
+}: IFavoriteMoviePayload): Promise<IMovieResponse> => {
   return axios.post(`/account/${accountId}/favorite?session_id=${sessionId}`, {
     media_type: "movie",
     media_id: id,
@@ -82,7 +84,7 @@ export const setMovieInWatchList = ({
   sessionId,
   id,
   isInWatchlist,
-}: IWatchListPayload) => {
+}: IWatchListPayload): Promise<IMovieResponse> => {
   return axios.post(`/account/${accountId}/watchlist?session_id=${sessionId}`, {
     media_type: "movie",
     media_id: id,
@@ -90,12 +92,15 @@ export const setMovieInWatchList = ({
   });
 };
 
-export const rateMovie = ({ id, rating, sessionId }: IRatingPayload) => {
+export const rateMovie = ({ id, rating, sessionId }: IRatingPayload): Promise<IMovieResponse> => {
   return axios.post(`/movie/${id}/rating?session_id=${sessionId}`, {
     value: rating,
   });
 };
 
-export const deleteMovieRating = ({ id, sessionId }: IDeleteRatingPayload) => {
+export const deleteMovieRating = ({
+  id,
+  sessionId,
+}: IDeleteRatingPayload): Promise<IMovieResponse> => {
   return axios.delete(`/movie/${id}/rating?session_id=${sessionId}`);
 };
