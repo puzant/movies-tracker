@@ -98,13 +98,14 @@ export const Filters = () => {
         <Divider />
 
         <span>{t("genres")}</span>
+
         <div className="flex flex-wrap gap-3 mt-2">
           {isFetching ? (
             <div className="m-auto">
               <LoadingSpinner />
             </div>
           ) : (
-            genres?.map((genre: IGenre) => (
+            genres?.genres.map((genre: IGenre) => (
               <div
                 onClick={() => setGenres(genre)}
                 style={{
