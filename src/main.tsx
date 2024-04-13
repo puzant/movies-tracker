@@ -20,8 +20,17 @@ Sentry.init({
   replaysOnErrorSampleRate: 1.0,
 });
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const deferRender = async () => {
+  const {worker} = await import('./mocks/browser.ts')
+  return worker.start()
+}
+
+deferRender().then(() => {
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );  
+})
+
+
