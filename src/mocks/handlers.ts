@@ -1,7 +1,12 @@
-import { http, HttpResponse } from 'msw'
+import { http, HttpResponse } from "msw";
+
+const genres = [
+  { id: 1, name: "Action" },
+  { id: 2, name: "Drama" },
+];
 
 export const handlers = [
-	http.get('https://api.themoviedb.org/3/discover/movie?language=en&page=1&sort_by=popularity.desc&api_key=63d59f2df02d27e6739533218ba6c9d9', (resolver) => {
-		return HttpResponse.json([])
-	})
-]
+  http.get("https://api.themoviedb.org/3/genre/movie/list", () => {
+    return HttpResponse.json({ genres });
+  }),
+];
