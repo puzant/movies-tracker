@@ -70,7 +70,7 @@ export const PreferencesDialog = ({
                 style={{
                   background: color,
                 }}
-                className="w-11 h-11 flex items-center justify-center rounded-full"
+                className="w-11 h-11 flex items-center justify-center rounded-full cursor-pointer"
                 onClick={() => setSelectedColor(color)}
               >
                 {color === selectedColor && <CheckIcon sx={{ color: "#fff" }} fontSize="large" />}

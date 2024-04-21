@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import useUserStore from "@/store/useUserStore";
 
 const usePreferencesDialog = (onClose: () => void) => {
@@ -14,6 +15,7 @@ const usePreferencesDialog = (onClose: () => void) => {
     setAccentColor(selectedColor);
     i18n.changeLanguage(selectedLanguage);
     onClose();
+    toast("Prefernces saved!");
   };
 
   return {

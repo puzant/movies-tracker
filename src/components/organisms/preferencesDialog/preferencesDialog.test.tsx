@@ -83,7 +83,6 @@ describe("Preferences Dialog", () => {
       const { getByText } = render(<PreferencesDialog openDialog onClose={mockOnClose} />);
       const languageButton = getByText("French");
 
-      screen.debug();
       fireEvent.click(languageButton);
       expect(setSelectedLanguage).toHaveBeenCalledWith("fr");
     });

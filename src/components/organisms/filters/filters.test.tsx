@@ -1,4 +1,4 @@
-import { render as rtlRender, fireEvent } from "@testing-library/react";
+import { render as rtlRender, fireEvent, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
@@ -20,10 +20,12 @@ vi.mock("@/hooks/useFilters", () => ({
       end: null,
     },
     selectedGenres: [],
-    genres: [
-      { id: 1, name: "Action" },
-      { id: 2, name: "Drama" },
-    ],
+    genres: {
+      genres: [
+        { id: 1, name: "Action" },
+        { id: 2, name: "Drama" },
+      ],
+    },
     t: (key: string) => key,
     setSort: mockSortBy,
     setGenres: mockSetGenres,
@@ -55,6 +57,7 @@ describe("Filters Component", () => {
       expect(getByText("sort_by")).toBeInTheDocument();
       expect(getByText("filters")).toBeInTheDocument();
       expect(getByText("genres")).toBeInTheDocument();
+      screen.debug();
     });
 
     it("renders sorting by menu correctly", () => {
