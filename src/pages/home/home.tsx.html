@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>3/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">21.42% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/14</span>
+                <span class='fraction'>3/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">14.28% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>1/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>3/9</span>
             </div>
         
             
@@ -171,7 +171,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,9 +183,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -268,7 +268,7 @@ import { Filters, FiltersDialog } from "@/components/organisms";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import tmdbLogo from "@/assets/tmdbLogo.svg";
 &nbsp;
-export const Home = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> apiFunctions }: { apiFunctions: IApiFunction }) =&gt; {</span>
+export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) =&gt; {
   const {
     t,
     accentColor,
@@ -280,9 +280,9 @@ export const Home = <span class="cstat-no" title="statement not covered" ><span 
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = <span class="cstat-no" title="statement not covered" >useHome(apiFunctions);</span>
+  } = useHome(apiFunctions);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;div className="mt-8"&gt;
       &lt;div className="border shadow-md rounded-md w-[90%] md:w-[50%] p-2 md:p-5 flex flex-col md:flex-row gap-4 items-center justify-between m-auto my-6 md:my-0"&gt;
         &lt;img
@@ -306,7 +306,7 @@ export const Home = <span class="cstat-no" title="statement not covered" ><span 
         &lt;/div&gt;
 &nbsp;
         {error ? (
-          &lt;ErrorMessage /&gt;
+<span class="branch-0 cbranch-no" title="branch not covered" >          &lt;ErrorMessage /&gt;</span>
         ) : (
           &lt;div className="w-full md:w-[70%] lg:w-[80%]"&gt;
             {status === "pending" ? (
@@ -314,7 +314,7 @@ export const Home = <span class="cstat-no" title="statement not covered" ><span 
                 &lt;LoadingSpinner /&gt;
               &lt;/div&gt;
             ) : (
-              &lt;&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >              &lt;&gt;</span>
                 {moviesData?.pages.every(<span class="fstat-no" title="function not covered" >(p</span>: IPage) =&gt; <span class="cstat-no" title="statement not covered" >p.results.length === 0)</span> ? (
                   &lt;div className="text-3xl text-center"&gt;{t("no_results")}&lt;/div&gt;
                 ) : (
@@ -333,7 +333,7 @@ export const Home = <span class="cstat-no" title="statement not covered" ><span 
 &nbsp;
             &lt;div className="flex justify-center"&gt;
               {status === "success" &amp;&amp; (
-                &lt;Button
+<span class="branch-1 cbranch-no" title="branch not covered" >                &lt;Button</span>
                   style={{ background: accentColor }}
                   onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >f</span>etchNextPage()}</span>
                   disabled={!hasNextPage || isFetchingNextPage}
@@ -361,7 +361,7 @@ export const Home = <span class="cstat-no" title="statement not covered" ><span 
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-10T21:03:04.980Z
+                at 2024-04-21T08:39:45.140Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
