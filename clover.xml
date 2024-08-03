@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1713688785178" clover="3.2.0">
-  <project timestamp="1713688785179" name="All files">
+<coverage generated="1722673284260" clover="3.2.0">
+  <project timestamp="1722673284260" name="All files">
     <metrics statements="554" coveredstatements="177" conditionals="222" coveredconditionals="46" methods="210" coveredmethods="63" elements="986" coveredelements="286" complexity="0" loc="554" ncloc="554" packages="38" files="67" classes="67"/>
     <package name="public">
       <metrics statements="83" coveredstatements="0" conditionals="40" coveredconditionals="0" methods="16" coveredmethods="0"/>
@@ -119,24 +119,24 @@
       <metrics statements="44" coveredstatements="25" conditionals="12" coveredconditionals="0" methods="22" coveredmethods="3"/>
       <file name="account.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/account.ts">
         <metrics statements="8" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="8" count="5" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="18" count="5" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="28" count="5" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="37" count="5" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="54" count="5" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
       </file>
       <file name="authentication.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/authentication.ts">
         <metrics statements="7" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="12" count="5" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="15" count="5" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="5" type="stmt"/>
       </file>
       <file name="axiosInstance.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/axiosInstance.ts">
         <metrics statements="9" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
@@ -152,26 +152,26 @@
       </file>
       <file name="movie.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/movie.ts">
         <metrics statements="20" coveredstatements="10" conditionals="12" coveredconditionals="0" methods="10" coveredmethods="1"/>
-        <line num="14" count="5" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="35" count="5" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="42" count="5" type="cond" truecount="0" falsecount="1"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="52" count="5" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="65" count="5" type="stmt"/>
-        <line num="66" count="3" type="stmt"/>
-        <line num="69" count="5" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="82" count="5" type="stmt"/>
-        <line num="88" count="0" type="stmt"/>
-        <line num="95" count="5" type="stmt"/>
-        <line num="96" count="0" type="stmt"/>
-        <line num="101" count="5" type="stmt"/>
-        <line num="105" count="0" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="48" count="5" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="62" count="5" type="cond" truecount="0" falsecount="1"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="80" count="5" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="99" count="5" type="stmt"/>
+        <line num="100" count="3" type="stmt"/>
+        <line num="109" count="5" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="128" count="5" type="stmt"/>
+        <line num="134" count="0" type="stmt"/>
+        <line num="147" count="5" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="159" count="5" type="stmt"/>
+        <line num="163" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.apiManager">
