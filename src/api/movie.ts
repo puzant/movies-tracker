@@ -11,6 +11,12 @@ import {
   IMovieResponse,
 } from "@/interfaces";
 
+/**
+ * Fetches a list of movies based on various filters.
+ *
+ * @param {IPopularMoviesParams} params - The parameters for fetching popular movies.
+ * @returns {Promise<IMovie[]>} A promise that resolves to a list of movies.
+ */
 export const getMovies = ({
   sortBy,
   selectedGenres,
@@ -32,6 +38,13 @@ export const getMovies = ({
   });
 };
 
+/**
+ * Fetches a list of upcoming movies.
+ *
+ * @param {string} selectedLanguage - The language for the movie data.
+ * @param {number} [page=1] - The page number for pagination.
+ * @returns {Promise<IMovie[]>} A promise that resolves to a list of upcoming movies.
+ */
 export const getUpcomingMovies = (
   selectedLanguage: string,
   page: number = 1
@@ -39,6 +52,13 @@ export const getUpcomingMovies = (
   return axios.get(`/movie/upcoming?language=${selectedLanguage}&page=${page}`);
 };
 
+/**
+ * Searches for movies based on a query string.
+ *
+ * @param {string} query - The search query.
+ * @param {number} [page=1] - The page number for pagination.
+ * @returns {Promise<IMovie[]>} A promise that resolves to a list of movies matching the query.
+ */
 export const searchMovies = async (query: string, page: number = 1): Promise<IMovie[]> => {
   const response = await axios.get("/search/movie", {
     params: {
@@ -49,6 +69,14 @@ export const searchMovies = async (query: string, page: number = 1): Promise<IMo
   return response.data;
 };
 
+/**
+ * Fetches details for a specific movie.
+ *
+ * @param {string | undefined} movieId - The ID of the movie.
+ * @param {string} sessionId - The session ID for the user.
+ * @param {string} selectedLanguage - The language for the movie data.
+ * @returns {Promise<IMovie>} A promise that resolves to the movie details.
+ */
 export const getMovie = (
   movieId: string | undefined,
   sessionId: string,
@@ -62,10 +90,22 @@ export const getMovie = (
   });
 };
 
+/**
+ * Fetches a list of movie genres.
+ *
+ * @param {string} selectedLanguage - The language for the genre data.
+ * @returns {Promise<any>} A promise that resolves to the list of genres.
+ */
 export const getGenres = (selectedLanguage: string): Promise<any> => {
   return axios.get(`/genre/movie/list?language=${selectedLanguage}`);
 };
 
+/**
+ * Marks a movie as favorite for the user.
+ *
+ * @param {IFavoriteMoviePayload} payload - The payload containing account ID, session ID, movie ID, and favorite status.
+ * @returns {Promise<IMovieResponse>} A promise that resolves to the response of the favorite action.
+ */
 export const setFavoriteMovie = ({
   accountId,
   sessionId,
@@ -79,6 +119,12 @@ export const setFavoriteMovie = ({
   });
 };
 
+/**
+ * Adds or removes a movie from the user's watchlist.
+ *
+ * @param {IWatchListPayload} payload - The payload containing account ID, session ID, movie ID, and watchlist status.
+ * @returns {Promise<IMovieResponse>} A promise that resolves to the response of the watchlist action.
+ */
 export const setMovieInWatchList = ({
   accountId,
   sessionId,
@@ -92,12 +138,24 @@ export const setMovieInWatchList = ({
   });
 };
 
+/**
+ * Rates a movie for the user.
+ *
+ * @param {IRatingPayload} payload - The payload containing movie ID, rating, and session ID.
+ * @returns {Promise<IMovieResponse>} A promise that resolves to the response of the rating action.
+ */
 export const rateMovie = ({ id, rating, sessionId }: IRatingPayload): Promise<IMovieResponse> => {
   return axios.post(`/movie/${id}/rating?session_id=${sessionId}`, {
     value: rating,
   });
 };
 
+/**
+ * Deletes the user's rating for a movie.
+ *
+ * @param {IDeleteRatingPayload} payload - The payload containing movie ID and session ID.
+ * @returns {Promise<IMovieResponse>} A promise that resolves to the response of the delete rating action.
+ */
 export const deleteMovieRating = ({
   id,
   sessionId,
