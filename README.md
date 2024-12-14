@@ -23,16 +23,9 @@ Welcome to the React Movie Tracker App! This application allows users to track a
 
 
 ## Preview
-### Desktop view
-
 ![app-screenshot](./public/app-screenshot.png)
 
-### Mobile view
-
-![mobile-screenshot](./public/mobile-screenshot.png)
-
 ## Features 🚀
-
 ### 1. Overview Page
 
 - Filters and sorting options for movie lists.
