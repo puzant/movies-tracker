@@ -1,4 +1,5 @@
 import { ReactNode, CSSProperties } from "react";
+import styles from "./styles.module.sass";
 
 interface ButtonProps {
   style?: CSSProperties;
@@ -20,7 +21,7 @@ export const Button = (props: ButtonProps) => {
       style={props.style}
       disabled={props.disabled}
       type="submit"
-      className="rounded-md px-4 py-2 mt-4 bg-blue-500 text-white w-fit"
+      className={styles.button}
     >
       {props.children}
     </button>
