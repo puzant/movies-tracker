@@ -6,7 +6,7 @@ import { Input, Button } from "@/components/atoms";
 import { CircularProgress } from "@mui/material";
 
 export const Login = () => {
-  const { loginLoading, error, loginSchema, t, handleLogin } = useLogin();
+  const { loginLoading, error, loginSchema, t, handleLogin, accentColor } = useLogin();
 
   return (
     <div className="px-12 mt-10 w-full md:w-[90%] lg:w-[70%] m-auto">
@@ -46,7 +46,7 @@ export const Login = () => {
               </div>
             </div>
 
-            <Button>
+            <Button style={{ background: accentColor }}>
               {loginLoading ? <CircularProgress size={20} sx={{ color: "#fff" }} /> : t("login")}
             </Button>
 

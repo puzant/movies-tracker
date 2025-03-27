@@ -23,6 +23,7 @@ const useLogin = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const { accentColor } = useUserStore();
   const { data: requestToken } = useRequestTokenQuery();
 
   const { mutateAsync: loginMutation, isPending: loginLoading, error } = useLoginMutation();
@@ -33,17 +34,19 @@ const useLogin = () => {
       const loginResponse = await loginMutation({
         username: payload.username,
         password: payload.password,
-        requestToken: requestToken?.data.request_token,
+        requestToken: requestToken?.request_token,
       });
 
-      if (!loginResponse.data.success) return;
+      console.log(loginResponse);
+
+      if (!loginResponse.success) return;
 
       const createSessionResponse = await createSessionMutation({
-        requestToken: loginResponse.data.request_token,
+        requestToken: loginResponse.request_token,
       });
 
       useUserStore.setState({
-        sessionId: createSessionResponse.data.session_id,
+        sessionId: createSessionResponse.session_id,
       });
 
       useUserStore.setState({ isAuthenticated: true });
@@ -61,6 +64,7 @@ const useLogin = () => {
     t,
     navigate,
     handleLogin,
+    accentColor,
   };
 };
 
