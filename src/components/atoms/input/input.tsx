@@ -1,5 +1,4 @@
 import { Field } from "formik";
-import styles from "./styles.module.sass";
 
 interface InputProps {
   name: string;
@@ -7,5 +6,11 @@ interface InputProps {
 }
 
 export const Input = ({ name, type }: InputProps) => {
-  return <Field name={name} className={styles.input} type={type} />;
+  return (
+    <Field
+      name={name}
+      className="border border-gray-400 w-full p-2 rounded-md focus:outline-none"
+      type={type}
+    />
+  );
 };
