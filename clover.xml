@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1734168659162" clover="3.2.0">
-  <project timestamp="1734168659162" name="All files">
-    <metrics statements="554" coveredstatements="177" conditionals="222" coveredconditionals="46" methods="210" coveredmethods="63" elements="986" coveredelements="286" complexity="0" loc="554" ncloc="554" packages="38" files="67" classes="67"/>
+<coverage generated="1743188392820" clover="3.2.0">
+  <project timestamp="1743188392820" name="All files">
+    <metrics statements="556" coveredstatements="177" conditionals="222" coveredconditionals="46" methods="210" coveredmethods="63" elements="988" coveredelements="286" complexity="0" loc="556" ncloc="556" packages="38" files="67" classes="67"/>
     <package name="public">
       <metrics statements="83" coveredstatements="0" conditionals="40" coveredconditionals="0" methods="16" coveredmethods="0"/>
       <file name="mockServiceWorker.js" path="/home/runner/work/movies-tracker/movies-tracker/public/mockServiceWorker.js">
@@ -216,8 +216,8 @@
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="divider.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/atoms/divider/divider.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="7" type="stmt"/>
-        <line num="2" count="28" type="stmt"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="27" type="stmt"/>
       </file>
     </package>
     <package name="src.components.atoms.errorMessage">
@@ -392,7 +392,7 @@
       </file>
     </package>
     <package name="src.hooks">
-      <metrics statements="153" coveredstatements="39" conditionals="38" coveredconditionals="5" methods="32" coveredmethods="7"/>
+      <metrics statements="155" coveredstatements="39" conditionals="38" coveredconditionals="5" methods="32" coveredmethods="7"/>
       <file name="useDrawer.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useDrawer.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="5" type="stmt"/>
@@ -428,24 +428,26 @@
         <line num="58" count="1" type="stmt"/>
       </file>
       <file name="useLogin.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useLogin.ts">
-        <metrics statements="17" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="19" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="17" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
-        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
         <line num="52" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
       </file>
       <file name="useMovieDetails.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useMovieDetails.ts">
         <metrics statements="31" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
@@ -581,8 +583,8 @@
       <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="handlers.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mocks/handlers.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="3" count="19" type="stmt"/>
-        <line num="8" count="19" type="stmt"/>
+        <line num="3" count="18" type="stmt"/>
+        <line num="8" count="18" type="stmt"/>
         <line num="10" count="3" type="stmt"/>
       </file>
       <file name="index.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mocks/index.ts">
@@ -594,8 +596,8 @@
       </file>
       <file name="node.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/mocks/node.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="19" type="stmt"/>
-        <line num="6" count="19" type="stmt"/>
+        <line num="4" count="18" type="stmt"/>
+        <line num="6" count="18" type="stmt"/>
         <line num="7" count="3" type="stmt"/>
       </file>
     </package>

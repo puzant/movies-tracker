@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/20</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
@@ -130,7 +130,11 @@
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,29 +160,21 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -186,6 +182,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -222,6 +230,7 @@ const useLogin = <span class="cstat-no" title="statement not covered" ><span cla
   const { t } = <span class="cstat-no" title="statement not covered" >useTranslation();</span>
   const navigate = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
 &nbsp;
+  const { accentColor } = <span class="cstat-no" title="statement not covered" >useUserStore();</span>
   const { data: requestToken } = <span class="cstat-no" title="statement not covered" >useRequestTokenQuery();</span>
 &nbsp;
   const { mutateAsync: loginMutation, isPending: loginLoading, error } = <span class="cstat-no" title="statement not covered" >useLoginMutation();</span>
@@ -232,17 +241,19 @@ const useLogin = <span class="cstat-no" title="statement not covered" ><span cla
       const loginResponse = <span class="cstat-no" title="statement not covered" >await loginMutation({</span>
         username: payload.username,
         password: payload.password,
-        requestToken: requestToken?.data.request_token,
+        requestToken: requestToken?.request_token,
       });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      if (!loginResponse.data.success) <span class="cstat-no" title="statement not covered" >return;</span></span>
+<span class="cstat-no" title="statement not covered" >      console.log(loginResponse);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (!loginResponse.success) <span class="cstat-no" title="statement not covered" >return;</span></span>
 &nbsp;
       const createSessionResponse = <span class="cstat-no" title="statement not covered" >await createSessionMutation({</span>
-        requestToken: loginResponse.data.request_token,
+        requestToken: loginResponse.request_token,
       });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      useUserStore.setState({</span>
-        sessionId: createSessionResponse.data.session_id,
+        sessionId: createSessionResponse.session_id,
       });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      useUserStore.setState({ isAuthenticated: true });</span>
@@ -260,6 +271,7 @@ const useLogin = <span class="cstat-no" title="statement not covered" ><span cla
     t,
     navigate,
     handleLogin,
+    accentColor,
   };
 };
 &nbsp;
@@ -271,7 +283,7 @@ export default useLogin;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-14T09:30:59.121Z
+                at 2025-03-28T18:59:52.784Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
