@@ -8,7 +8,7 @@ axiosInstance.interceptors.request.use(
   (config) => {
     config.params = {
       ...config.params,
-      api_key: "63d59f2df02d27e6739533218ba6c9d9",
+      api_key: import.meta.env.VITE_TMDB_ACCESS_TOKEN,
     };
     return config;
   },
