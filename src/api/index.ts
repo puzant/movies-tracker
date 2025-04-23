@@ -1,3 +1,3 @@
-export * from './movie'
-export * from './authentication'
-export * from './account'
+export * from "./movie";
+export * from "./authentication";
+export * from "./account";
