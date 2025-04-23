@@ -1,3 +1,4 @@
+import React from "react";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { BrowserRouter } from "react-router-dom";
@@ -11,6 +12,8 @@ import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 
 import AppRoutes from "@/appRoutes";
 import { Navbar } from "@/components/organisms";
+import ErrorBoundry from "./errorBoundry";
+import UseScrollToTop from "./hooks/useScrollToTop";
 
 import en from "@/locale/en.json";
 import fr from "@/locale/fr.json";
@@ -40,13 +43,30 @@ function App() {
       debug: false,
     });
 
+  React.useEffect(() => {
+    const handleDir = () => {
+      const direction = i18n.dir(i18n.language);
+      document.documentElement.dir = direction;
+    };
+
+    handleDir();
+    i18n.on("languageChanged", handleDir);
+
+    return () => {
+      i18n.off("languageChanged", handleDir);
+    };
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <LocalizationProvider dateAdapter={AdapterLuxon} adapterLocale="de">
         <BrowserRouter>
+          <UseScrollToTop />
           <Navbar />
           <ToastContainer hideProgressBar={false} theme="dark" />
-          <AppRoutes />
+          <ErrorBoundry>
+            <AppRoutes />
+          </ErrorBoundry>
         </BrowserRouter>
       </LocalizationProvider>
     </QueryClientProvider>
