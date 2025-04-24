@@ -51,7 +51,7 @@ const useHome = (apiFunctions: IApiFunction) => {
     if (accountData)
       useUserStore.setState({
         accountId: accountData.id,
-        username: accountData?.username,
+        username: accountData.username,
       });
   }, [accountData]);
 
