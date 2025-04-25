@@ -70,6 +70,10 @@ export const searchMovies = (query: string, page: number = 1): Promise<IMovie[]>
   });
 };
 
+/**
+ *
+ * @returns {Promise<IMovie>}
+ */
 export const getLatestMovie = (): Promise<IMovie> => {
   return axios.get("/movie/latest");
 };
