@@ -10,7 +10,7 @@ interface LoginFormValues {
   password: string;
 }
 
-export const Login = () => {
+const Login = () => {
   const { loginLoading, error, loginSchema, t, handleLogin, accentColor } = useLogin();
 
   return (
@@ -66,3 +66,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;

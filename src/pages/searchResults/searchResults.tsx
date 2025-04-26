@@ -7,7 +7,7 @@ import { Movie } from "@/components/molecules";
 
 import emptyResults from "@/assets/empty-results.svg";
 
-export const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
+const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
 
@@ -18,9 +18,8 @@ export const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) 
     hasNextPage,
     isFetchingNextPage,
     status,
-  } = useInfiniteMovieQuery(
-    [apiFunctions.searchMovies.key, searchQuery],
-    ({ pageParam }: { pageParam: number }) => apiFunctions.searchMovies.func(searchQuery, pageParam)
+  } = useInfiniteMovieQuery([apiFunctions.searchMovies.key, searchQuery], ({ pageParam }: { pageParam: number }) =>
+    apiFunctions.searchMovies.func(searchQuery, pageParam)
   );
 
   return (
@@ -60,11 +59,7 @@ export const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) 
                 onClick={() => fetchNextPage()}
                 disabled={!hasNextPage || isFetchingNextPage}
               >
-                {isFetchingNextPage
-                  ? "Loading more..."
-                  : hasNextPage
-                  ? "Load More"
-                  : "Nothing more to load"}
+                {isFetchingNextPage ? "Loading more..." : hasNextPage ? "Load More" : "Nothing more to load"}
               </button>
             )}
           </div>
@@ -73,3 +68,5 @@ export const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) 
     </div>
   );
 };
+
+export default SearchResults;

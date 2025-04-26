@@ -7,7 +7,7 @@ import { Review } from "@/components/molecules";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-export const Reviews = () => {
+const Reviews = () => {
   const { t } = useTranslation();
   const { state } = useLocation();
   const { movieDetails, colorExtract } = state || {};
@@ -50,3 +50,5 @@ export const Reviews = () => {
     </div>
   );
 };
+
+export default Reviews;

@@ -8,9 +8,8 @@ import { Divider, LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Actor, Review, Movie, MovieRating, MovieStatus } from "@/components/molecules";
 import { MovieToolbar } from "@/components/organisms";
 
-export const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
-  const { t, movieId, posterBackDropColors, movieDetails, isLoading, error } =
-    useMovieDetails(apiFunctions);
+const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
+  const { t, movieId, posterBackDropColors, movieDetails, isLoading, error } = useMovieDetails(apiFunctions);
 
   const {
     backdrop_path,
@@ -90,20 +89,18 @@ export const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) =
                   </div>
                 </div>
 
-                <MovieToolbar movieId={movieDetails?.id!} />
+                <MovieToolbar movieId={movieDetails.id ?? 0} />
               </div>
             </div>
           </div>
 
-          <div className="text-2xl px-4 md:px-10 md:px-20 lg:px-20 mt-8 font-semibold">
-            {t("top_cast")}
-          </div>
+          <div className="text-2xl px-4 md:px-10 md:px-20 lg:px-20 mt-8 font-semibold">{t("top_cast")}</div>
 
           <div className="mt-2 flex justify-between gap-8 px-4 md:px-10 lg:px-20">
             <div className="flex flex-col w-full md:w-[70%] lg:w-[80%]">
               <div className="overflow-x-auto h-fit p-2">
                 <div className="min-w-max flex gap-3">
-                  {credits?.cast.slice(0, 9).map((c: ICast) => (
+                  {credits.cast.slice(0, 9).map((c: ICast) => (
                     <Actor key={c.id} actor={c} />
                   ))}
                 </div>
@@ -117,7 +114,7 @@ export const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) =
 
                 <div className="flex gap-2">
                   <span className="font-bold">{t("budget")}: </span>
-                  <span>${budget?.toLocaleString()}</span>
+                  <span>${budget.toLocaleString()}</span>
                 </div>
 
                 <div className="flex gap-2">
@@ -127,7 +124,7 @@ export const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) =
 
                 <span className="font-bold">{t("keywords")}: </span>
                 <div className="flex gap-2 flex-wrap">
-                  {keywords?.keywords.map((k: IKeyword) => (
+                  {keywords.keywords.map((k: IKeyword) => (
                     <span className="text-xs rounded-sm cursor-pointer bg-gray-200 p-2" key={k.id}>
                       {k.name}
                     </span>
@@ -149,7 +146,7 @@ export const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) =
               <Divider />
 
               <div className="text-2xl mt-6 font-semibold mb-2">
-                {t("reviews")} ({reviews?.results.length})
+                {t("reviews")} ({reviews.results.length})
               </div>
 
               {reviews?.results.slice(0, 1).map((review: IReview) => (
@@ -171,7 +168,7 @@ export const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) =
 
               <div className="text-2xl mt-5 font-semibold">{t("recommendations")}</div>
 
-              {recommendations?.results.length ? (
+              {recommendations.results.length ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 mt-4">
                   {recommendations.results.slice(0, 10).map((movie: IRecommededMovie) => (
                     <Link key={movie.id} to={`/movie/${movie.id}`}>
@@ -191,3 +188,5 @@ export const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) =
     </>
   );
 };
+
+export default MovieDetails;
