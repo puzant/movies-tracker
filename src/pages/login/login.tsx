@@ -5,6 +5,11 @@ import useLogin from "@/hooks/useLogin";
 import { Input, Button } from "@/components/atoms";
 import { CircularProgress } from "@mui/material";
 
+interface LoginFormValues {
+  username: string;
+  password: string;
+}
+
 export const Login = () => {
   const { loginLoading, error, loginSchema, t, handleLogin, accentColor } = useLogin();
 
@@ -16,7 +21,7 @@ export const Login = () => {
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={loginSchema}
-        onSubmit={(values: any) => {
+        onSubmit={(values: LoginFormValues) => {
           handleLogin(values);
         }}
       >

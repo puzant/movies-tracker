@@ -26,6 +26,9 @@ export interface ISortingOption {
   name: string;
 }
 
+export interface IGenreResponse {
+  genres: IGenre[];
+}
 export interface IGenre {
   id: number;
   name: string;
@@ -108,6 +111,12 @@ export interface IRecommededMovie {
   vote_count: number;
 }
 
+export interface IMoviesListResponse {
+  page: number;
+  results: IMovieList[];
+  total_pages: number;
+  total_results: number;
+}
 export interface IMovieList {
   adult: boolean;
   backdrop_path: string;

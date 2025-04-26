@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 
 const useCreateSessionMutation = () => {
   const { mutateAsync, ...mutationState } = useMutation({
-    mutationFn: (payload: any) => createSession(payload),
+    mutationFn: (payload: { requestToken: string }) => createSession(payload),
   });
 
   return {
