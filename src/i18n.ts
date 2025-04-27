@@ -10,7 +10,6 @@ i18n
   .use(initReactI18next)
   .use(LanguageDetector)
   .init({
-    lng: "en",
     fallbackLng: "en",
     detection: {
       order: ["localStorage", "navigator"],
@@ -27,9 +26,6 @@ i18n
       },
     },
     debug: false,
-    react: {
-      useSuspense: true,
-    },
   });
 
 export default i18n;
