@@ -5,17 +5,19 @@ import useUserStore from "@/store/useUserStore";
 
 const usePreferencesDialog = (onClose: () => void) => {
   const { i18n, t } = useTranslation();
-  const { accentColor, setAccentColor } = useUserStore();
-  const accentColors = ["#0177d2", "#01b4e4", "#01d277", "#d27701", "#d40242", "#805be7"];
+  const { accentColor, setAccentColor, fontStyle, setFontStyle } = useUserStore();
+  const accentColors: string[] = ["#0177d2", "#01b4e4", "#01d277", "#d27701", "#d40242", "#805be7"];
 
   const [selectedColor, setSelectedColor] = React.useState<string>(accentColor);
   const [selectedLanguage, setSelectedLanguage] = React.useState<string>(i18n.language);
+  const [selectedFontStyle, setSelectedFontStyle] = React.useState<string>(fontStyle);
 
   const handleUpdatePreferences = () => {
     setAccentColor(selectedColor);
+    setFontStyle(selectedFontStyle);
     i18n.changeLanguage(selectedLanguage);
     onClose();
-    toast("Prefernces saved!");
+    toast(t("preference_saved_message"));
   };
 
   return {
@@ -26,6 +28,8 @@ const usePreferencesDialog = (onClose: () => void) => {
     setSelectedColor,
     selectedLanguage,
     setSelectedLanguage,
+    selectedFontStyle,
+    setSelectedFontStyle,
     handleUpdatePreferences,
   };
 };
