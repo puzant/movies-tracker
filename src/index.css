@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-style: normal;
+}
+
+.font-normal {
+  font-style: normal;
+}
+
+.font-italic {
+  font-style: italic;
+}
+
 .profile-background {
   background: linear-gradient(#455a64, #546e7a 70%, #607d8b);
 }
