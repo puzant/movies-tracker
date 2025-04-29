@@ -1,17 +1,16 @@
+import { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import withApiFunctions from "@/HOC/withApiFunctions";
 import { PrivateRoutes } from "./privateRoute";
 
-import {
-  Home,
-  Login,
-  MovieDetails,
-  UpcomingMovies,
-  SearchResults,
-  FullCastCrew,
-  Profile,
-  Reviews,
-} from "@/pages";
+const Home = lazy(() => import("@/pages/home/home"));
+const Login = lazy(() => import("@/pages/login/login"));
+const MovieDetails = lazy(() => import("@/pages/movieDetails/movieDetails"));
+const UpcomingMovies = lazy(() => import("@/pages/upcomingMovies/upcomingMovies"));
+const SearchResults = lazy(() => import("@/pages/searchResults/searchResults"));
+const FullCastCrew = lazy(() => import("@/pages/fullCastCrew/fullCastCrew"));
+const Profile = lazy(() => import("@/pages/profile/profile"));
+const Reviews = lazy(() => import("@/pages/reviews/reviews"));
 
 const HomeWithApi = withApiFunctions(Home);
 const UpcomingMoviesWithApi = withApiFunctions(UpcomingMovies);
