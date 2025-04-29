@@ -28,7 +28,7 @@ const Login = () => {
         {() => (
           <Form>
             <div className="flex flex-col gap-4 mt-4">
-              <div>
+              <div className="flex flex-col gap-2">
                 <span>{t("username")}</span>
                 <Input name="username" />
 
@@ -39,7 +39,7 @@ const Login = () => {
                 />
               </div>
 
-              <div>
+              <div className="flex flex-col gap-2">
                 <span>{t("password")}</span>
                 <Input name="password" type="password" />
 
