@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import ReactCountryFlag from "react-country-flag";
@@ -50,10 +50,7 @@ export const Navbar = () => {
           {/* show in mobile view  */}
           <div className="flex md:hidden">
             <MenuIcon onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
-            <Drawer
-              isDrawerOpen={isDrawerOpen}
-              onDrawerToggle={() => setIsDrawerOpen(!isDrawerOpen)}
-            />
+            <Drawer isDrawerOpen={isDrawerOpen} onDrawerToggle={() => setIsDrawerOpen(!isDrawerOpen)} />
           </div>
         </div>
 
@@ -89,7 +86,7 @@ export const Navbar = () => {
                             }`}
                           >
                             <ReactCountryFlag countryCode={l.flag} />
-                            <span>{l.english_name}</span>
+                            <span>{t(l.english_name.toLowerCase())}</span>
                           </div>
                         )}
                       </Menu.Item>
@@ -119,10 +116,7 @@ export const Navbar = () => {
                 {username.slice(0, 1).toUpperCase()}
               </Link>
 
-              <span
-                className="hidden md:block cursor-pointer"
-                onClick={() => deleteSessionMutation(sessionId)}
-              >
+              <span className="hidden md:block cursor-pointer" onClick={() => deleteSessionMutation(sessionId)}>
                 {t("logout")}
               </span>
             </div>

@@ -27,7 +27,7 @@ export const MovieTabs = ({ favoriteMovies, moviesInWatchlist, ratedMovies }: Mo
       <Tab.List className="border-2 flex justify-center gap-8">
         {tabKeys.map((key) => (
           <Tab
-            className={`ui-selected:border-b-4 ui-selected:border-[#172554] text-md md:text-xl p-2 flex gap-3 items-center`}
+            className={`ui-selected:border-b-4 ui-selected:border-[#172554] text-md md:text-xl p-2 flex gap-3 items-center flex-col md:flex-row`}
           >
             {t(key.toLowerCase().replace(" ", "_"))}
             <div style={{ background: accentColor }} className="rounded-full px-2 text-white">

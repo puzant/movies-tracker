@@ -87,7 +87,7 @@ export const MovieToolbar = ({ movieId }: { movieId: number }) => {
             data-testid="rating-movie-component"
             precision={0.5}
             name="movie-rating"
-            value={rating}
+            value={typeof rating === "number" ? rating : null}
             onChange={(e, newValue) => handleMovieRating(newValue)}
           />
         </div>
