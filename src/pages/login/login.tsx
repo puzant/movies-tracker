@@ -5,7 +5,12 @@ import useLogin from "@/hooks/useLogin";
 import { Input, Button } from "@/components/atoms";
 import { CircularProgress } from "@mui/material";
 
-export const Login = () => {
+interface LoginFormValues {
+  username: string;
+  password: string;
+}
+
+const Login = () => {
   const { loginLoading, error, loginSchema, t, handleLogin, accentColor } = useLogin();
 
   return (
@@ -16,14 +21,14 @@ export const Login = () => {
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={loginSchema}
-        onSubmit={(values: any) => {
+        onSubmit={(values: LoginFormValues) => {
           handleLogin(values);
         }}
       >
         {() => (
           <Form>
             <div className="flex flex-col gap-4 mt-4">
-              <div>
+              <div className="flex flex-col gap-2">
                 <span>{t("username")}</span>
                 <Input name="username" />
 
@@ -34,7 +39,7 @@ export const Login = () => {
                 />
               </div>
 
-              <div>
+              <div className="flex flex-col gap-2">
                 <span>{t("password")}</span>
                 <Input name="password" type="password" />
 
@@ -61,3 +66,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;

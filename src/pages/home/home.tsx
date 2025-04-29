@@ -9,7 +9,7 @@ import { Filters, FiltersDialog } from "@/components/organisms";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import tmdbLogo from "@/assets/tmdbLogo.svg";
 
-export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
+const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const {
     t,
     accentColor,
@@ -26,11 +26,7 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   return (
     <div className="mt-8">
       <div className="border shadow-md rounded-md w-[90%] md:w-[50%] p-2 md:p-5 flex flex-col md:flex-row gap-4 items-center justify-between m-auto my-6 md:my-0">
-        <img
-          className="w-[80px] h-[40px] md:w-[110px] md:h-[52px]"
-          src={tmdbLogo}
-          alt="tmdb logo"
-        />
+        <img className="w-[80px] h-[40px] md:w-[110px] md:h-[52px]" src={tmdbLogo} alt="tmdb logo" />
         <div className="text-sm text-gray-500 text-center">{t("tmdb_notice")}</div>
       </div>
 
@@ -79,11 +75,7 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
                   onClick={() => fetchNextPage()}
                   disabled={!hasNextPage || isFetchingNextPage}
                 >
-                  {isFetchingNextPage
-                    ? t("loading_more")
-                    : hasNextPage
-                    ? t("load_more")
-                    : t("nothing_to_load")}
+                  {isFetchingNextPage ? t("loading_more") : hasNextPage ? t("load_more") : t("nothing_to_load")}
                 </Button>
               )}
             </div>
@@ -95,3 +87,5 @@ export const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
     </div>
   );
 };
+
+export default Home;

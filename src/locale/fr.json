@@ -64,5 +64,12 @@
   "choose_accent_notice": "La couleur que vous sélectionnez sera votre couleur dans toute l'application, vous pourrez toujours la modifier plus tard",
   "select_your_color": "Sélectionnez votre couleur",
   "preferences": "préférences",
-  "tmdb_notice": "Ce produit utilise l'API TMDb mais n'est ni approuvé ni certifié par TMDb."
+  "tmdb_notice": "Ce produit utilise l'API TMDb mais n'est ni approuvé ni certifié par TMDb.",
+  "font_style": "Style de police",
+  "normal": "Normal",
+  "italic": "Italique",
+  "preference_saved_message": "Préférences enregistrées",
+  "english": "Anglais",
+  "french": "Français",
+  "arabic": "Arabe"
 }

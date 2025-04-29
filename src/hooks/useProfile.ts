@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useQueries } from "@tanstack/react-query";
+import { useQueries, UseQueryResult } from "@tanstack/react-query";
 
-import { IApiFunction, IMovieList } from "@/interfaces";
+import { IApiFunction, IMoviesListResponse } from "@/interfaces";
 import useUserStore from "@/store/useUserStore";
 
 const useProfile = (apiFunctions: IApiFunction) => {
@@ -11,7 +11,7 @@ const useProfile = (apiFunctions: IApiFunction) => {
 
   const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 
-  const results: any[] = useQueries({
+  const results: UseQueryResult<IMoviesListResponse, Error>[] = useQueries({
     queries: [
       {
         queryKey: [apiFunctions.getFavoriteMovies.key, accountId, sessionId, i18n.language],
@@ -29,7 +29,10 @@ const useProfile = (apiFunctions: IApiFunction) => {
   });
 
   const anyLoading = results.some((result) => result.status === "pending");
-  const [favoriteMovies, moviesInWatchlist, ratedMovies] = results.map((query) => query.data);
+
+  const [favoriteMovies, moviesInWatchlist, ratedMovies] = results.map(
+    (query) => query.data?.results ?? []
+  );
 
   return {
     t,

@@ -1,11 +1,19 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { IMovie } from "@/interfaces";
+import { useInfiniteQuery, QueryKey } from "@tanstack/react-query";
 
-const useInfiniteMovieQuery = (queryKey: any, queryFn: any) => {
+type PaginatedMovieResponse = {
+  page: number;
+  results: IMovie[];
+  total_pages: number;
+  total_results: number;
+};
+
+const useInfiniteMovieQuery = (queryKey: QueryKey, queryFn: any) => {
   return useInfiniteQuery({
     queryKey,
     queryFn,
     initialPageParam: 1,
-    getNextPageParam: (lastPage: any) => {
+    getNextPageParam: (lastPage: PaginatedMovieResponse) => {
       if (lastPage.page < lastPage.total_pages) {
         return lastPage.page + 1;
       }

@@ -11,7 +11,6 @@ import useUserStore from "@/store/useUserStore";
 interface ILoginPayload {
   username: string;
   password: string;
-  requestToken: string;
 }
 
 const loginSchema = yup.object().shape({
@@ -34,10 +33,8 @@ const useLogin = () => {
       const loginResponse = await loginMutation({
         username: payload.username,
         password: payload.password,
-        requestToken: requestToken?.request_token,
+        requestToken: requestToken?.request_token ?? "",
       });
-
-      console.log(loginResponse);
 
       if (!loginResponse.success) return;
 

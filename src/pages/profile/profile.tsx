@@ -5,7 +5,7 @@ import { LoadingSpinner } from "@/components/atoms";
 import { PreferencesDialog } from "@/components/organisms";
 import { MovieTabs } from "@/components/molecules";
 
-export const Profile = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
+const Profile = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const {
     t,
     username,
@@ -31,10 +31,7 @@ export const Profile = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
             </div>
             <div>
               <div className="text-white text-xl font-bold">{username}</div>
-              <div
-                className="text-white underline cursor-pointer"
-                onClick={() => setOpenDialog(true)}
-              >
+              <div className="text-white underline cursor-pointer" onClick={() => setOpenDialog(true)}>
                 {t("edit_preferences")}
               </div>
             </div>
@@ -46,11 +43,7 @@ export const Profile = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
             <LoadingSpinner />
           </div>
         ) : (
-          <MovieTabs
-            favoriteMovies={favoriteMovies?.results}
-            moviesInWatchlist={moviesInWatchlist?.results}
-            ratedMovies={ratedMovies?.results}
-          />
+          <MovieTabs favoriteMovies={favoriteMovies} moviesInWatchlist={moviesInWatchlist} ratedMovies={ratedMovies} />
         )}
 
         <PreferencesDialog openDialog={openDialog} onClose={() => setOpenDialog(false)} />
@@ -58,3 +51,5 @@ export const Profile = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
     </>
   );
 };
+
+export default Profile;

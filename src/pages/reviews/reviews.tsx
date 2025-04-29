@@ -7,7 +7,7 @@ import { Review } from "@/components/molecules";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-export const Reviews = () => {
+const Reviews = () => {
   const { t } = useTranslation();
   const { state } = useLocation();
   const { movieDetails, colorExtract } = state || {};
@@ -25,19 +25,14 @@ export const Reviews = () => {
         className="px-4 md:px-14 py-4 w-full"
       >
         <div className="flex gap-4">
-          <img
-            className="rounded-md"
-            src={`https://image.tmdb.org/t/p/w58_and_h87_face/${movieDetails.poster_path}`}
-          />
+          <img className="rounded-md" src={`https://image.tmdb.org/t/p/w58_and_h87_face/${movieDetails.poster_path}`} />
 
           <div>
             <div className="flex  gap-2 items-center">
               <span className="text-white hover:text-gray-300 cursor-pointer text-xl md:text-4xl">
                 {movieDetails.original_title}
               </span>
-              <span className="text-white text-[20px] md:text-[30px] font-normal">
-                ({formattedReleaseDate.year})
-              </span>
+              <span className="text-white text-[20px] md:text-[30px] font-normal">({formattedReleaseDate.year})</span>
             </div>
             <span className="pt-1 text-gray-300 hover:text-gray-100 font-semibold">
               <ArrowBackIcon />
@@ -49,9 +44,11 @@ export const Reviews = () => {
 
       <div className="grid grid-cols-1 gap-6 m-auto w-full md:w-[80%] px-4 md:px-14 mt-8">
         {movieDetails.reviews.results.map((r: IReview) => (
-          <Review review={r} />
+          <Review key={r.id} review={r} />
         ))}
       </div>
     </div>
   );
 };
+
+export default Reviews;

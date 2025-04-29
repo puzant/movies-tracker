@@ -2,6 +2,7 @@ import axios from "./axiosInstance";
 import { DateTime } from "luxon";
 import {
   IGenre,
+  IGenreResponse,
   IPopularMoviesParams,
   IFavoriteMoviePayload,
   IWatchListPayload,
@@ -10,6 +11,12 @@ import {
   IMovie,
   IMovieResponse,
 } from "@/interfaces";
+
+interface IRateMovieResponse {
+  status_code: number;
+  status_message: string;
+  success: boolean;
+}
 
 /**
  * Fetches a list of movies based on various filters.
@@ -30,9 +37,7 @@ export const getMovies = ({
       page: page,
       sort_by: typeof sortBy === "object" && "key" in sortBy ? sortBy.key : sortBy,
       with_genres: selectedGenres?.map((obj: IGenre) => obj.id).join(",") || null,
-      "primary_release_date.gte": startDate
-        ? DateTime.fromISO(startDate).toFormat("yyyy-MM-dd")
-        : null,
+      "primary_release_date.gte": startDate ? DateTime.fromISO(startDate).toFormat("yyyy-MM-dd") : null,
       "primary_release_date.lte": endDate ? DateTime.fromISO(endDate).toFormat("yyyy-MM-dd") : null,
     },
   });
@@ -45,10 +50,7 @@ export const getMovies = ({
  * @param {number} [page=1] - The page number for pagination.
  * @returns {Promise<IMovie[]>} A promise that resolves to a list of upcoming movies.
  */
-export const getUpcomingMovies = (
-  selectedLanguage: string,
-  page: number = 1
-): Promise<IMovie[]> => {
+export const getUpcomingMovies = (selectedLanguage: string, page: number = 1): Promise<IMovie[]> => {
   return axios.get(`/movie/upcoming?language=${selectedLanguage}&page=${page}`);
 };
 
@@ -59,14 +61,21 @@ export const getUpcomingMovies = (
  * @param {number} [page=1] - The page number for pagination.
  * @returns {Promise<IMovie[]>} A promise that resolves to a list of movies matching the query.
  */
-export const searchMovies = async (query: string, page: number = 1): Promise<IMovie[]> => {
-  const response = await axios.get("/search/movie", {
+export const searchMovies = (query: string, page: number = 1): Promise<IMovie[]> => {
+  return axios.get("/search/movie", {
     params: {
       query: query,
       page: page,
     },
   });
-  return response.data;
+};
+
+/**
+ *
+ * @returns {Promise<IMovie>}
+ */
+export const getLatestMovie = (): Promise<IMovie> => {
+  return axios.get("/movie/latest");
 };
 
 /**
@@ -78,7 +87,7 @@ export const searchMovies = async (query: string, page: number = 1): Promise<IMo
  * @returns {Promise<IMovie>} A promise that resolves to the movie details.
  */
 export const getMovie = (
-  movieId: string | undefined,
+  movieId: string | number | undefined,
   sessionId: string,
   selectedLanguage: string
 ): Promise<IMovie> => {
@@ -96,7 +105,7 @@ export const getMovie = (
  * @param {string} selectedLanguage - The language for the genre data.
  * @returns {Promise<any>} A promise that resolves to the list of genres.
  */
-export const getGenres = (selectedLanguage: string): Promise<any> => {
+export const getGenres = (selectedLanguage: string): Promise<IGenreResponse> => {
   return axios.get(`/genre/movie/list?language=${selectedLanguage}`);
 };
 
@@ -144,7 +153,7 @@ export const setMovieInWatchList = ({
  * @param {IRatingPayload} payload - The payload containing movie ID, rating, and session ID.
  * @returns {Promise<IMovieResponse>} A promise that resolves to the response of the rating action.
  */
-export const rateMovie = ({ id, rating, sessionId }: IRatingPayload): Promise<IMovieResponse> => {
+export const rateMovie = ({ id, rating, sessionId }: IRatingPayload): Promise<IRateMovieResponse> => {
   return axios.post(`/movie/${id}/rating?session_id=${sessionId}`, {
     value: rating,
   });
@@ -156,9 +165,6 @@ export const rateMovie = ({ id, rating, sessionId }: IRatingPayload): Promise<IM
  * @param {IDeleteRatingPayload} payload - The payload containing movie ID and session ID.
  * @returns {Promise<IMovieResponse>} A promise that resolves to the response of the delete rating action.
  */
-export const deleteMovieRating = ({
-  id,
-  sessionId,
-}: IDeleteRatingPayload): Promise<IMovieResponse> => {
+export const deleteMovieRating = ({ id, sessionId }: IDeleteRatingPayload): Promise<IMovieResponse> => {
   return axios.delete(`/movie/${id}/rating?session_id=${sessionId}`);
 };

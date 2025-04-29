@@ -7,7 +7,9 @@ interface IUser {
   username: string;
   isAuthenticated: boolean;
   accentColor: string;
+  fontStyle: string;
   setAccentColor: (prarm: string) => void;
+  setFontStyle: (param: string) => void;
   resetState: () => void;
 }
 
@@ -19,7 +21,9 @@ const useUserStore = create(
       accountId: null,
       isAuthenticated: false,
       username: "",
+      fontStyle: "normal",
       setAccentColor: (color: string) => set({ accentColor: color }),
+      setFontStyle: (style: string) => set({ fontStyle: style }),
       resetState: () => set({ sessionId: "", accountId: null, isAuthenticated: false }),
     }),
     {

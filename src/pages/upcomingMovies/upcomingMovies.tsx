@@ -7,7 +7,7 @@ import { IApiFunction, IMovie, IPage } from "@/interfaces";
 import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 
-export const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
+const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const { i18n, t } = useTranslation();
 
   const {
@@ -19,8 +19,7 @@ export const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction })
     status,
   } = useInfiniteMovieQuery(
     [apiFunctions.getUpcomingMovies.key, i18n.language],
-    ({ pageParam }: { pageParam: number }) =>
-      apiFunctions.getUpcomingMovies.func(i18n.language, pageParam)
+    ({ pageParam }: { pageParam: number }) => apiFunctions.getUpcomingMovies.func(i18n.language, pageParam)
   );
 
   return (
@@ -56,11 +55,7 @@ export const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction })
                 onClick={() => fetchNextPage()}
                 disabled={!hasNextPage || isFetchingNextPage}
               >
-                {isFetchingNextPage
-                  ? t("loading_more")
-                  : hasNextPage
-                  ? t("load_more")
-                  : t("nothing_to_load")}
+                {isFetchingNextPage ? t("loading_more") : hasNextPage ? t("load_more") : t("nothing_to_load")}
               </button>
             )}
           </div>
@@ -69,3 +64,5 @@ export const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction })
     </div>
   );
 };
+
+export default UpcomingMovies;

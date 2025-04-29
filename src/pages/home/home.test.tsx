@@ -4,8 +4,7 @@ import { render as rtlRender, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-import { Home } from "./home";
-import useHome from "@/hooks/useHome";
+import Home from "./home";
 
 const mockApiFunc = vi.fn();
 

@@ -28,14 +28,7 @@ const useHome = (apiFunctions: IApiFunction) => {
     isFetchingNextPage,
     status,
   } = useInfiniteMovieQuery(
-    [
-      apiFunctions.getMovies.key,
-      sortBy,
-      selectedGenres,
-      releaseDate.start,
-      releaseDate.end,
-      i18n.language,
-    ],
+    [apiFunctions.getMovies.key, sortBy, selectedGenres, releaseDate.start, releaseDate.end, i18n.language],
     ({ pageParam }: { pageParam: number }) =>
       apiFunctions.getMovies.func({
         sortBy: sortBy,
@@ -51,7 +44,7 @@ const useHome = (apiFunctions: IApiFunction) => {
     if (accountData)
       useUserStore.setState({
         accountId: accountData.id,
-        username: accountData?.username,
+        username: accountData.username,
       });
   }, [accountData]);
 

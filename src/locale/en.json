@@ -22,8 +22,8 @@
   "status": "Status",
   "overview": "Overview",
   "top_cast": "Top Cast",
-  "username": "username",
-  "password": "password",
+  "username": "Username",
+  "password": "Password",
   "original_language": "Original Language",
   "budget": "Budget",
   "revenue": "Revenue",
@@ -64,5 +64,12 @@
   "choose_accent_notice": "The color you select will be your color throughout the app, you can always change it later",
   "select_your_color": "Select your color",
   "preferences": "Preferences",
-  "tmdb_notice": "This product uses the TMDb API but is not endorsed or certified by TMDb."
+  "tmdb_notice": "This product uses the TMDb API but is not endorsed or certified by TMDb.",
+  "font_style": "Font Style",
+  "normal": "Normal",
+  "italic": "Italic",
+  "preference_saved_message": "Prefernces saved!",
+  "english": "English",
+  "french": "French",
+  "arabic": "Arabic"
 }

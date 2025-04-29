@@ -14,6 +14,7 @@ import {
   Box,
   Divider,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import UpcomingIcon from "@mui/icons-material/Upcoming";
 import CheckIcon from "@mui/icons-material/Check";
 import LoginIcon from "@mui/icons-material/Login";
@@ -21,25 +22,22 @@ import MovieIcon from "@mui/icons-material/Movie";
 import LogoutIcon from "@mui/icons-material/Logout";
 import tmdbLogo from "@/assets/tmdb-logo.svg";
 
-export const Drawer = ({
-  isDrawerOpen,
-  onDrawerToggle,
-}: {
-  isDrawerOpen: boolean;
-  onDrawerToggle: () => void;
-}) => {
+export const Drawer = ({ isDrawerOpen, onDrawerToggle }: { isDrawerOpen: boolean; onDrawerToggle: () => void }) => {
   const { i18n, t, isAuthenticated, sessionId, deleteSessionMutation } = useDrawer();
 
   return (
-    <MuiDrawer variant="temporary" anchor="left" open={isDrawerOpen} onClose={onDrawerToggle}>
-      <img className="p-4" width="154" height="20" src={tmdbLogo} />
+    <MuiDrawer
+      variant="temporary"
+      anchor={i18n.language === "en" ? "left" : "right"}
+      open={isDrawerOpen}
+      onClose={onDrawerToggle}
+    >
+      <div className="flex justify-between items-center p-3">
+        <img className="" width="154" height="20" src={tmdbLogo} />
+        <CloseIcon onClick={onDrawerToggle} />
+      </div>
 
-      <Box
-        sx={{ width: 250 }}
-        role="presentation"
-        onClick={onDrawerToggle}
-        onKeyDown={onDrawerToggle}
-      >
+      <Box sx={{ width: 250 }} role="presentation" onClick={onDrawerToggle} onKeyDown={onDrawerToggle}>
         <List>
           {[
             { name: t("movies"), route: "/", icon: <MovieIcon /> },
@@ -49,7 +47,7 @@ export const Drawer = ({
               icon: <UpcomingIcon />,
             },
             !isAuthenticated
-              ? { name: "Login", route: "/login", icon: <LoginIcon /> }
+              ? { name: t("login"), route: "/login", icon: <LoginIcon /> }
               : { name: "", route: "", icon: null },
           ].map((nav) => (
             <Link key={nav.name} to={nav.route}>
@@ -82,7 +80,7 @@ export const Drawer = ({
                 )}
 
                 <ReactCountryFlag countryCode={l.flag} />
-                <span>{l.english_name}</span>
+                <span>{t(l.english_name.toLowerCase())}</span>
               </div>
             ))}
           </div>
