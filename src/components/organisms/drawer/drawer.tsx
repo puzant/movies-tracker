@@ -47,7 +47,7 @@ export const Drawer = ({ isDrawerOpen, onDrawerToggle }: { isDrawerOpen: boolean
               icon: <UpcomingIcon />,
             },
             !isAuthenticated
-              ? { name: "Login", route: "/login", icon: <LoginIcon /> }
+              ? { name: t("login"), route: "/login", icon: <LoginIcon /> }
               : { name: "", route: "", icon: null },
           ].map((nav) => (
             <Link key={nav.name} to={nav.route}>
@@ -80,7 +80,7 @@ export const Drawer = ({ isDrawerOpen, onDrawerToggle }: { isDrawerOpen: boolean
                 )}
 
                 <ReactCountryFlag countryCode={l.flag} />
-                <span>{l.english_name}</span>
+                <span>{t(l.english_name.toLowerCase())}</span>
               </div>
             ))}
           </div>
