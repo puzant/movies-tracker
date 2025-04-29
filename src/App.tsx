@@ -1,6 +1,6 @@
 import "@/i18n";
 import i18n from "i18next";
-import React, { Suspense } from "react";
+import { useEffect, useCallback, Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
@@ -19,25 +19,29 @@ function App() {
   const queryClient = new QueryClient();
   const { fontStyle } = useUserStore();
 
-  React.useEffect(() => {
+  const updateBodyFontStyle = useCallback(() => {
     if (fontStyle === "italic") {
       document.body.style.fontStyle = "italic";
     } else if (fontStyle === "normal") {
       document.body.style.fontStyle = "normal";
     }
+  }, [fontStyle]);
 
-    const handleDir = () => {
-      const direction = i18n.dir(i18n.language);
-      document.documentElement.dir = direction;
-    };
+  const handleDir = useCallback(() => {
+    const direction = i18n.dir(i18n.language);
+    document.documentElement.dir = direction;
+  }, []);
 
+  useEffect(() => {
+    updateBodyFontStyle();
     handleDir();
+
     i18n.on("languageChanged", handleDir);
 
     return () => {
       i18n.off("languageChanged", handleDir);
     };
-  }, [fontStyle]);
+  }, [updateBodyFontStyle, handleDir]);
 
   return (
     <Suspense fallback={<div>Loading page...</div>}>
