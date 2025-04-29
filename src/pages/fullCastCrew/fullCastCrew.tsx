@@ -8,9 +8,8 @@ import { ICast, ICrew } from "@/interfaces";
 const FullCastCrew = () => {
   const { t } = useTranslation();
   const { state } = useLocation();
-  const { movieDetails, colorExtract } = state || {};
+  const { movieDetails } = state || {};
 
-  const { red, green, blue } = colorExtract || {};
   const formattedReleaseDate = DateTime.fromISO(movieDetails.release_date);
 
   const groupedCrew = movieDetails.credits.crew.reduce((acc: any, member: any) => {
@@ -27,7 +26,6 @@ const FullCastCrew = () => {
       <div
         style={{
           boxShadow: `inset 0 0 0 100vw rgba(0,0,0, 70%)`,
-          backgroundColor: `rgba(${red}, ${green}, ${blue}, 80%)`,
         }}
         className="px-4 md:px-14 py-4 w-full"
       >

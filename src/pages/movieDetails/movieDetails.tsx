@@ -9,7 +9,7 @@ import { Actor, Review, Movie, MovieRating, MovieStatus } from "@/components/mol
 import { MovieToolbar } from "@/components/organisms";
 
 const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
-  const { t, movieId, posterBackDropColors, movieDetails, isLoading, error } = useMovieDetails(apiFunctions);
+  const { t, movieId, movieDetails, isLoading, error } = useMovieDetails(apiFunctions);
 
   const {
     backdrop_path,
@@ -29,8 +29,6 @@ const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
     reviews,
     recommendations,
   } = movieDetails || {};
-
-  const { red, blue, green } = posterBackDropColors[0] || {};
 
   return (
     <>
@@ -57,7 +55,7 @@ const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
                 src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
               />
 
-              <div className="text-center sm:text-left">
+              <div className="text-center sm:text-start">
                 <div className="text-4xl text-white">{original_title}</div>
                 <div className="antialiased italic text-white mt-2 mb-2">{tagline}</div>
 
@@ -81,7 +79,7 @@ const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
                     <div className="antialiased text-white">{status}</div>
                   </div>
 
-                  <div className="flex flex-col">
+                  <div>
                     <div className="font-bold text-white">{t("overview")}:</div>
                     <div className="antialiased leading-7 w-full sm:w-[90%] text-white mt-1 p-2.5 sm:p-0">
                       {overview}
@@ -137,7 +135,6 @@ const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
                 to={`/movie/${movieId}/cast`}
                 state={{
                   movieDetails: movieDetails,
-                  colorExtract: { red, green, blue },
                 }}
               >
                 {t("full_cast")}
@@ -157,7 +154,6 @@ const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
                 to={`/movie/${movieId}/reviews`}
                 state={{
                   movieDetails: movieDetails,
-                  colorExtract: { red, green, blue },
                 }}
                 className="text-md font-semibold hover:text-gray-500 cursor-pointer mt-8"
               >
