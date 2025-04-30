@@ -15,8 +15,8 @@ const Login = () => {
 
   return (
     <div className="px-12 mt-10 w-full md:w-[90%] lg:w-[70%] m-auto">
-      <div className="text-2xl">{t("login_to_account")}</div>
-      <div className="mt-1">{t("app_disclaimer")}</div>
+      <h1 className="text-2xl">{t("login_to_account")}</h1>
+      <p className="mt-1">{t("app_disclaimer")}</p>
 
       <Formik
         initialValues={{ username: "", password: "" }}
@@ -29,7 +29,7 @@ const Login = () => {
           <Form>
             <div className="flex flex-col gap-4 mt-4">
               <div className="flex flex-col gap-2">
-                <span>{t("username")}</span>
+                <p>{t("username")}</p>
                 <Input name="username" />
 
                 <ErrorMessage
@@ -40,7 +40,7 @@ const Login = () => {
               </div>
 
               <div className="flex flex-col gap-2">
-                <span>{t("password")}</span>
+                <p>{t("password")}</p>
                 <Input name="password" type="password" />
 
                 <ErrorMessage

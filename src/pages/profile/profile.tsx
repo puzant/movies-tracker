@@ -30,10 +30,10 @@ const Profile = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
               {username.slice(0, 1).toUpperCase()}
             </div>
             <div>
-              <div className="text-white text-xl font-bold">{username}</div>
-              <div className="text-white underline cursor-pointer" onClick={() => setOpenDialog(true)}>
+              <h1 className="text-white text-xl font-bold">{username}</h1>
+              <button className="text-white underline cursor-pointer" onClick={() => setOpenDialog(true)}>
                 {t("edit_preferences")}
-              </div>
+              </button>
             </div>
           </div>
         </div>

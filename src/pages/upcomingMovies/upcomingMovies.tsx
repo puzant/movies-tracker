@@ -24,9 +24,9 @@ const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
 
   return (
     <div className="mt-8">
-      <div className="px-4 sm:px-8">
-        <span className="text-2xl font-semibold">{t("upcoming_movies")}</span>
-      </div>
+      <header className="px-4 sm:px-8">
+        <h1 className="text-2xl font-semibold">{t("upcoming_movies")}</h1>
+      </header>
 
       {error ? (
         <ErrorMessage />
@@ -40,9 +40,11 @@ const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7">
               {upcomingMovies.pages.map((page: IPage) =>
                 page.results.map((movie: IMovie) => (
-                  <Link key={movie.id} to={`/movie/${movie.id}`}>
-                    <Movie movie={movie} />
-                  </Link>
+                  <article key={movie.id}>
+                    <Link to={`/movie/${movie.id}`}>
+                      <Movie movie={movie} />
+                    </Link>
+                  </article>
                 ))
               )}
             </div>

@@ -56,36 +56,34 @@ const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
               />
 
               <div className="text-center sm:text-start">
-                <div className="text-4xl text-white">{original_title}</div>
-                <div className="antialiased italic text-white mt-2 mb-2">{tagline}</div>
+                <h1 className="text-4xl text-white">{original_title}</h1>
+                <p className="antialiased italic text-white mt-2 mb-2">{tagline}</p>
 
                 <MovieRating vote={vote_average!} />
 
-                <div className="flex flex-col gap-2.5 mt-2 items-center sm:items-start p-1.5 md:p-0">
+                <dl className="flex flex-col gap-2.5 mt-2 items-center sm:items-start p-1.5 md:p-0">
                   <div className="flex flex-col md:flex-row gap-2">
-                    <span className="text-white font-bold">{t("genres")}:</span>
-                    <div className="antialiased text-white">
+                    <dt className="text-white font-bold">{t("genres")}:</dt>
+                    <dd className="antialiased text-white">
                       {(genres ?? []).map((genre: IGenre) => genre.name).join(", ")}
-                    </div>
+                    </dd>
                   </div>
 
                   <div className="flex gap-2">
-                    <div className="font-bold text-white">{t("release_date")}:</div>
-                    <div className="antialiased text-white">{release_date}</div>
+                    <dt className="font-bold text-white">{t("release_date")}:</dt>
+                    <dd className="antialiased text-white">{release_date}</dd>
                   </div>
 
                   <div className="flex gap-2">
-                    <div className="font-bold text-white">{t("status")}:</div>
-                    <div className="antialiased text-white">{status}</div>
+                    <dt className="font-bold text-white">{t("status")}:</dt>
+                    <dd className="antialiased text-white">{status}</dd>
                   </div>
 
                   <div>
-                    <div className="font-bold text-white">{t("overview")}:</div>
-                    <div className="antialiased leading-7 w-full sm:w-[90%] text-white mt-1 p-2.5 sm:p-0">
-                      {overview}
-                    </div>
+                    <dt className="font-bold text-white">{t("overview")}:</dt>
+                    <dd className="antialiased leading-7 w-full sm:w-[90%] text-white mt-1 p-2.5 sm:p-0">{overview}</dd>
                   </div>
-                </div>
+                </dl>
 
                 <MovieToolbar movieId={movieDetails.id ?? 0} />
               </div>
@@ -96,39 +94,43 @@ const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
 
           <div className="mt-2 flex justify-between gap-8 px-4 md:px-10 lg:px-20">
             <div className="flex flex-col w-full md:w-[70%] lg:w-[80%]">
-              <div className="overflow-x-auto h-fit p-2">
+              <section className="overflow-x-auto h-fit p-2">
                 <div className="min-w-max flex gap-3">
                   {credits.cast.slice(0, 9).map((c: ICast) => (
                     <Actor key={c.id} actor={c} />
                   ))}
                 </div>
-              </div>
+              </section>
 
-              <div className="flex md:hidden flex-col gap-2 mt-4 px-4">
-                <div className="flex gap-2">
-                  <span className="font-bold">{t("original_language")}: </span>
-                  <span>{getMovieLanguage(original_language)}</span>
-                </div>
+              <section className="flex md:hidden flex-col gap-2 mt-4 px-4">
+                <dl>
+                  <div className="flex gap-2">
+                    <dt className="font-bold">{t("original_language")}: </dt>
+                    <dd>{getMovieLanguage(original_language)}</dd>
+                  </div>
 
-                <div className="flex gap-2">
-                  <span className="font-bold">{t("budget")}: </span>
-                  <span>${budget.toLocaleString()}</span>
-                </div>
+                  <div className="flex gap-2">
+                    <dt className="font-bold">{t("budget")}: </dt>
+                    <dd>${budget.toLocaleString()}</dd>
+                  </div>
 
-                <div className="flex gap-2">
-                  <span className="font-bold">{t("revenue")}: </span>
-                  <span>${revenue?.toLocaleString()}</span>
-                </div>
+                  <div className="flex gap-2">
+                    <dt className="font-bold">{t("revenue")}: </dt>
+                    <dd>${revenue?.toLocaleString()}</dd>
+                  </div>
+                </dl>
 
-                <span className="font-bold">{t("keywords")}: </span>
-                <div className="flex gap-2 flex-wrap">
-                  {keywords.keywords.map((k: IKeyword) => (
-                    <span className="text-xs rounded-sm cursor-pointer bg-gray-200 p-2" key={k.id}>
-                      {k.name}
-                    </span>
-                  ))}
+                <div>
+                  <h3 className="font-bold">{t("keywords")}: </h3>
+                  <ul className="flex gap-2 flex-wrap">
+                    {keywords.keywords.map((k: IKeyword) => (
+                      <li className="text-xs rounded-sm bg-gray-200 p-2" key={k.id}>
+                        {k.name}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
+              </section>
 
               <Link
                 className="text-md font-semibold hover:text-gray-500 cursor-pointer mt-8"
