@@ -133,8 +133,7 @@
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
 <a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -154,7 +153,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,9 +187,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -214,7 +212,7 @@ import { IApiFunction, IMovie, IPage } from "@/interfaces";
 import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 &nbsp;
-export const UpcomingMovies = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> apiFunctions }: { apiFunctions: IApiFunction }) =&gt; {</span>
+const UpcomingMovies = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> apiFunctions }: { apiFunctions: IApiFunction }) =&gt; {</span>
   const { i18n, t } = <span class="cstat-no" title="statement not covered" >useTranslation();</span>
 &nbsp;
   const {
@@ -226,15 +224,14 @@ export const UpcomingMovies = <span class="cstat-no" title="statement not covere
     status,
   } = <span class="cstat-no" title="statement not covered" >useInfiniteMovieQuery(</span>
     [apiFunctions.getUpcomingMovies.key, i18n.language],
-<span class="fstat-no" title="function not covered" >    ({</span> pageParam }: { pageParam: number }) =&gt;
-<span class="cstat-no" title="statement not covered" >      apiFunctions.getUpcomingMovies.func(i18n.language, pageParam)</span>
+<span class="fstat-no" title="function not covered" >    ({</span> pageParam }: { pageParam: number }) =&gt; <span class="cstat-no" title="statement not covered" >apiFunctions.getUpcomingMovies.func(i18n.language, pageParam)</span>
   );
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className="mt-8"&gt;
-      &lt;div className="px-4 sm:px-8"&gt;
-        &lt;span className="text-2xl font-semibold"&gt;{t("upcoming_movies")}&lt;/span&gt;
-      &lt;/div&gt;
+      &lt;header className="px-4 sm:px-8"&gt;
+        &lt;h1 className="text-2xl font-semibold"&gt;{t("upcoming_movies")}&lt;/h1&gt;
+      &lt;/header&gt;
 &nbsp;
       {error ? (
         &lt;ErrorMessage /&gt;
@@ -248,9 +245,11 @@ export const UpcomingMovies = <span class="cstat-no" title="statement not covere
             &lt;div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7"&gt;
               {upcomingMovies.pages.map(<span class="fstat-no" title="function not covered" >(p</span>age: IPage) =&gt;
 <span class="cstat-no" title="statement not covered" >                page.results.map(<span class="fstat-no" title="function not covered" >(m</span>ovie: IMovie) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >                  &lt;Link key={movie.id} to={`/movie/${movie.id}`}&gt;</span>
-                    &lt;Movie movie={movie} /&gt;
-                  &lt;/Link&gt;
+<span class="cstat-no" title="statement not covered" >                  &lt;article key={movie.id}&gt;</span>
+                    &lt;Link to={`/movie/${movie.id}`}&gt;
+                      &lt;Movie movie={movie} /&gt;
+                    &lt;/Link&gt;
+                  &lt;/article&gt;
                 ))
               )}
             &lt;/div&gt;
@@ -263,11 +262,7 @@ export const UpcomingMovies = <span class="cstat-no" title="statement not covere
                 onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >f</span>etchNextPage()}</span>
                 disabled={!hasNextPage || isFetchingNextPage}
               &gt;
-                {isFetchingNextPage
-                  ? t("loading_more")
-                  : hasNextPage
-                  ? t("load_more")
-                  : t("nothing_to_load")}
+                {isFetchingNextPage ? t("loading_more") : hasNextPage ? t("load_more") : t("nothing_to_load")}
               &lt;/button&gt;
             )}
           &lt;/div&gt;
@@ -276,6 +271,8 @@ export const UpcomingMovies = <span class="cstat-no" title="statement not covere
     &lt;/div&gt;
   );
 };
+&nbsp;
+export default UpcomingMovies;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -283,7 +280,7 @@ export const UpcomingMovies = <span class="cstat-no" title="statement not covere
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-29T14:54:35.312Z
+                at 2025-05-01T11:14:57.297Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

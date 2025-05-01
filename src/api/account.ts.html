@@ -113,19 +113,7 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -133,7 +121,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,11 +132,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,11 +145,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,11 +158,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -191,60 +167,48 @@
 import { IAccount, IMovieList } from "@/interfaces";
 &nbsp;
 /**
- * 
- * @param {string} sessionId 
- * @returns {Promise&lt;IAccount}
+ *
+ * @param {string} sessionId
+ * @returns {Promise&lt;IAccount&gt;}
  */
 export const getAccountDetails = <span class="fstat-no" title="function not covered" >(s</span>essionId: string): Promise&lt;IAccount&gt; =&gt; {
 <span class="cstat-no" title="statement not covered" >  return axios.get(`/account?session_id=${sessionId}`);</span>
 };
 &nbsp;
 /**
- * 
- * @param {string} accountId 
- * @param {string} sessionId 
- * @param {string} language 
+ *
+ * @param {string} accountId
+ * @param {string} sessionId
+ * @param {string} language
  * @returns {Promise&lt;IMovieList[]&gt;}
  */
-export const getFavoriteMovies = <span class="fstat-no" title="function not covered" >(</span>
-  accountId: string,
-  sessionId: string,
-  language: string
-): Promise&lt;IMovieList[]&gt; =&gt; {
+export const getFavoriteMovies = <span class="fstat-no" title="function not covered" >(a</span>ccountId: string, sessionId: string, language: string): Promise&lt;IMovieList[]&gt; =&gt; {
 <span class="cstat-no" title="statement not covered" >  return axios.get(`/account/${accountId}/favorite/movies?language=${language}`, {</span>
     params: { session_id: sessionId },
   });
 };
 &nbsp;
 /**
- * 
- * @param {string} accountId 
- * @param {string} sessionId 
- * @param {string} language 
+ *
+ * @param {string} accountId
+ * @param {string} sessionId
+ * @param {string} language
  * @returns {Promise&lt;IMovieList[]&gt;}
  */
-export const getMoviesInWatchlist = <span class="fstat-no" title="function not covered" >(</span>
-  accountId: string,
-  sessionId: string,
-  language: string
-): Promise&lt;IMovieList[]&gt; =&gt; {
+export const getMoviesInWatchlist = <span class="fstat-no" title="function not covered" >(a</span>ccountId: string, sessionId: string, language: string): Promise&lt;IMovieList[]&gt; =&gt; {
 <span class="cstat-no" title="statement not covered" >  return axios.get(`/account/${accountId}/watchlist/movies?language=${language}`, {</span>
     params: { session_id: sessionId },
   });
 };
 &nbsp;
 /**
- * 
- * @param {string} accountId 
- * @param {string} sessionId 
- * @param {string} language 
+ *
+ * @param {string} accountId
+ * @param {string} sessionId
+ * @param {string} language
  * @returns {&lt;IMovieList[]&gt;}
  */
-export const getRatedMovies = <span class="fstat-no" title="function not covered" >(</span>
-  accountId: string,
-  sessionId: string,
-  language: string
-): Promise&lt;IMovieList[]&gt; =&gt; {
+export const getRatedMovies = <span class="fstat-no" title="function not covered" >(a</span>ccountId: string, sessionId: string, language: string): Promise&lt;IMovieList[]&gt; =&gt; {
 <span class="cstat-no" title="statement not covered" >  return axios.get(`/account/${accountId}/rated/movies?language=${language}`, {</span>
     params: { session_id: sessionId },
   });
@@ -256,7 +220,7 @@ export const getRatedMovies = <span class="fstat-no" title="function not covered
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-29T14:54:35.312Z
+                at 2025-05-01T11:14:57.297Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

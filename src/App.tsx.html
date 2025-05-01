@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -119,8 +119,15 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -139,6 +146,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,27 +191,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import "@/i18n";
+import i18n from "i18next";
+import { useEffect, useCallback, Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import LanguageDetector from "i18next-browser-languagedetector";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 &nbsp;
@@ -188,45 +204,53 @@ import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 &nbsp;
 import AppRoutes from "@/appRoutes";
 import { Navbar } from "@/components/organisms";
-&nbsp;
-import en from "@/locale/en.json";
-import fr from "@/locale/fr.json";
-import ar from "@/locale/ar.json";
+import useUserStore from "@/store/useUserStore";
+import ErrorBoundry from "./errorBoundry";
+import UseScrollToTop from "./hooks/useScrollToTop";
 &nbsp;
 function <span class="fstat-no" title="function not covered" >App() {</span>
   const queryClient = <span class="cstat-no" title="statement not covered" >new QueryClient();</span>
+  const { fontStyle } = <span class="cstat-no" title="statement not covered" >useUserStore();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  i18n</span>
-    .use(initReactI18next)
-    .use(LanguageDetector)
-    .init({
-      detection: {
-        order: ["localStorage", "navigator"],
-      },
-      resources: {
-        en: {
-          translation: en,
-        },
-        fr: {
-          translation: fr,
-        },
-        ar: {
-          translation: ar,
-        },
-      },
-      debug: false,
-    });
+  const updateBodyFontStyle = <span class="cstat-no" title="statement not covered" >useCallback(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (fontStyle === "italic") {</span>
+<span class="cstat-no" title="statement not covered" >      document.body.style.fontStyle = "italic";</span>
+<span class="cstat-no" title="statement not covered" >    } else if (fontStyle === "normal") {</span>
+<span class="cstat-no" title="statement not covered" >      document.body.style.fontStyle = "normal";</span>
+    }
+  }, [fontStyle]);
+&nbsp;
+  const handleDir = <span class="cstat-no" title="statement not covered" >useCallback(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+    const direction = <span class="cstat-no" title="statement not covered" >i18n.dir(i18n.language);</span>
+<span class="cstat-no" title="statement not covered" >    document.documentElement.dir = direction;</span>
+  }, []);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >    updateBodyFontStyle();</span>
+<span class="cstat-no" title="statement not covered" >    handleDir();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    i18n.on("languageChanged", handleDir);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      i18n.off("languageChanged", handleDir);</span>
+    };
+  }, [updateBodyFontStyle, handleDir]);
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;QueryClientProvider client={queryClient}&gt;
-      &lt;LocalizationProvider dateAdapter={AdapterLuxon} adapterLocale="de"&gt;
-        &lt;BrowserRouter&gt;
-          &lt;Navbar /&gt;
-          &lt;ToastContainer hideProgressBar={false} theme="dark" /&gt;
-          &lt;AppRoutes /&gt;
-        &lt;/BrowserRouter&gt;
-      &lt;/LocalizationProvider&gt;
-    &lt;/QueryClientProvider&gt;
+    &lt;Suspense fallback={&lt;div&gt;Loading page...&lt;/div&gt;}&gt;
+      &lt;QueryClientProvider client={queryClient}&gt;
+        &lt;LocalizationProvider dateAdapter={AdapterLuxon} adapterLocale="de"&gt;
+          &lt;BrowserRouter&gt;
+            &lt;UseScrollToTop /&gt;
+            &lt;Navbar /&gt;
+            &lt;ToastContainer hideProgressBar={false} theme="dark" /&gt;
+            &lt;ErrorBoundry&gt;
+              &lt;AppRoutes /&gt;
+            &lt;/ErrorBoundry&gt;
+          &lt;/BrowserRouter&gt;
+        &lt;/LocalizationProvider&gt;
+      &lt;/QueryClientProvider&gt;
+    &lt;/Suspense&gt;
   );
 }
 &nbsp;
@@ -238,7 +262,7 @@ export default App;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-29T14:54:35.312Z
+                at 2025-05-01T11:14:57.297Z
             </div>
         <script src="../prettify.js"></script>
         <script>

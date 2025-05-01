@@ -100,7 +100,19 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -112,7 +124,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -126,7 +149,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,54 +157,67 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span></td><td class="text"><pre class="prettyprint lang-js">import axios from './axiosInstance'
-import { IPostLoginBody } from '@/interfaces'
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import axios from "./axiosInstance";
+import { IPostLoginBody } from "@/interfaces";
+&nbsp;
+interface ILoginResponse {
+  success: boolean;
+  expires_at: string;
+  request_token: string;
+}
+&nbsp;
+interface ISessionResponse {
+  success: boolean;
+  session_id: string;
+}
 &nbsp;
 /**
  * Authenticates the user with the given credentials and request token.
  *
- * @param {Object} loginData 
- * @param {string} loginData.username 
- * @param {string} loginData.password 
- * @param {string} loginData.requestToken 
- * @returns {Promise&lt;AxiosResponse&gt;} 
+ * @param {Object} loginData
+ * @param {string} loginData.username
+ * @param {string} loginData.password
+ * @param {string} loginData.requestToken
+ * @returns {Promise&lt;ILoginResponse&gt;}
  */
-export const login = <span class="fstat-no" title="function not covered" >({</span> username, password, requestToken }: IPostLoginBody) =&gt; {
-<span class="cstat-no" title="statement not covered" >  return axios.post('authentication/token/validate_with_login', {</span>
+export const login = <span class="fstat-no" title="function not covered" >({</span> username, password, requestToken }: IPostLoginBody): Promise&lt;ILoginResponse&gt; =&gt; {
+<span class="cstat-no" title="statement not covered" >  return axios.post("authentication/token/validate_with_login", {</span>
     username,
     password,
-    request_token: requestToken
-  })
-}
+    request_token: requestToken,
+  });
+};
 &nbsp;
 /**
- * 
+ *
  * @param {Object} sessionObject
  * @param {string} requestToken
- * @returns {Promise&lt;AxiosResponse&gt;}
+ * @returns {Promise&lt;ISessionResponse&gt;}
  */
-export const createSession = <span class="fstat-no" title="function not covered" >({</span> requestToken }: { requestToken: string }) =&gt;
-<span class="cstat-no" title="statement not covered" >  axios.post('/authentication/session/new', { request_token: requestToken });</span>
+export const createSession = <span class="fstat-no" title="function not covered" >({</span> requestToken }: { requestToken: string }): Promise&lt;ISessionResponse&gt; =&gt;
+<span class="cstat-no" title="statement not covered" >  axios.post("/authentication/session/new", { request_token: requestToken });</span>
 &nbsp;
 /**
- * 
- * @param sessionId 
- * @returns {Promise&lt;AxiosResponse&gt;}
+ *
+ * @param sessionId
+ * @returns {Promise&lt;ILoginResponse&gt;}
  */
-export const deleteSession = <span class="fstat-no" title="function not covered" >(s</span>essionId: string) =&gt; 
-<span class="cstat-no" title="statement not covered" >  axios.delete('/authentication/session', { data: { session_id: sessionId } });</span>
+export const deleteSession = <span class="fstat-no" title="function not covered" >(s</span>essionId: string) =&gt;
+<span class="cstat-no" title="statement not covered" >  axios.delete("/authentication/session", { data: { session_id: sessionId } });</span>
 &nbsp;
-export const getRequestToken = <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >a</span>xios.get('/authentication/token/new')</span></pre></td></tr></table></pre>
+export const getRequestToken = <span class="fstat-no" title="function not covered" >(): Promise&lt;ILoginResponse&gt; =&gt; <span class="cstat-no" title="statement not covered" >a</span>xios.get("/authentication/token/new");</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-29T14:54:35.312Z
+                at 2025-05-01T11:14:57.297Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
