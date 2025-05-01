@@ -60,7 +60,7 @@ describe("Drawer Component", () => {
       const mockDrawerToggle = vi.fn();
 
       const { getByText } = render(<Drawer isDrawerOpen onDrawerToggle={mockDrawerToggle} />);
-      const frenchLangButton = getByText("French");
+      const frenchLangButton = getByText("french");
       fireEvent.click(frenchLangButton);
 
       expect(i18n.changeLanguage).toHaveBeenCalledWith("fr");

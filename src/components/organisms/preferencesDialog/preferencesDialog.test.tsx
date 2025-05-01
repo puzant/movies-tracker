@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 import { PreferencesDialog } from "./preferencesDialog";
 import usePreferencesDialog from "@/hooks/usePreferencesDialog";
@@ -28,7 +28,7 @@ describe("Preferences Dialog", () => {
     test("should render languages", () => {
       const mockOnClose = vi.fn();
       const { getByText } = render(<PreferencesDialog openDialog onClose={mockOnClose} />);
-      expect(getByText("Arabic")).toBeInTheDocument();
+      expect(getByText("arabic")).toBeInTheDocument();
     });
 
     it("should render accent colors", () => {
@@ -81,7 +81,7 @@ describe("Preferences Dialog", () => {
       const mockOnClose = vi.fn();
       const { setSelectedLanguage } = usePreferencesDialog(mockOnClose);
       const { getByText } = render(<PreferencesDialog openDialog onClose={mockOnClose} />);
-      const languageButton = getByText("French");
+      const languageButton = getByText("french");
 
       fireEvent.click(languageButton);
       expect(setSelectedLanguage).toHaveBeenCalledWith("fr");
