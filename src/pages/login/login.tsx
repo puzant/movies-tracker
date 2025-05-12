@@ -4,14 +4,15 @@ import { Formik, Form, ErrorMessage } from "formik";
 import useLogin from "@/hooks/useLogin";
 import { Input, Button } from "@/components/atoms";
 import { CircularProgress } from "@mui/material";
+import { IApiFunction } from "@/interfaces";
 
 interface LoginFormValues {
   username: string;
   password: string;
 }
 
-const Login = () => {
-  const { loginLoading, error, loginSchema, t, handleLogin, accentColor } = useLogin();
+const Login = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
+  const { loginLoading, error, loginSchema, t, handleLogin, accentColor } = useLogin(apiFunctions);
 
   return (
     <div className="px-12 mt-10 w-full md:w-[90%] lg:w-[70%] m-auto">

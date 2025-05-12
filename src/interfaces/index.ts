@@ -118,6 +118,7 @@ export interface IMoviesListResponse {
   total_pages: number;
   total_results: number;
 }
+
 export interface IMovieList {
   adult: boolean;
   backdrop_path: string;
