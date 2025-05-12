@@ -1,35 +1,34 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import ReactCountryFlag from "react-country-flag";
 
 import { languages } from "@/utils/constants";
 import useNavbar from "@/hooks/useNavbar";
+import { IMovie } from "@/interfaces";
 
 import { Drawer } from "@/components/organisms";
 
+import Box from "@mui/material/Box";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import MovieCreationOutlinedIcon from "@mui/icons-material/MovieCreationOutlined";
+import LinearProgress from "@mui/material/LinearProgress";
+
 import tmdbLogo from "@/assets/tmdb-logo.svg";
 
 export const Navbar = () => {
-  const {
-    t,
-    i18n,
-    deleteSessionMutation,
-    isAuthenticated,
-    sessionId,
-    username,
-    accentColor,
-    searchValue,
-    setSearchValue,
-    isDrawerOpen,
-    setIsDrawerOpen,
-    toggleSearchBar,
-    setToggleSearchBar,
-    handleEnterKeyPress,
-  } = useNavbar();
+  const { ui, auth, user, movie, t, i18n, searchValue, handleInputChange, handleEnterKeyPress } = useNavbar();
+
+  const RenderMovieTitle = ({ movie }: { movie: IMovie }) => (
+    <Link to={`/movie/${movie.id}`} onClick={() => ui.setToggleSearchBar(!ui.toggleSearchBar)}>
+      <div className="text-sm border border-stone-200 px-10 py-1 hover:bg-stone-100 cursor-pointer transition duration-100 ease-in-out">
+        <MovieCreationOutlinedIcon sx={{ fontSize: 18 }} /> {movie.title}
+      </div>
+    </Link>
+  );
 
   return (
     <>
@@ -49,8 +48,8 @@ export const Navbar = () => {
 
           {/* show in mobile view  */}
           <div className="flex md:hidden">
-            <MenuIcon onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
-            <Drawer isDrawerOpen={isDrawerOpen} onDrawerToggle={() => setIsDrawerOpen(!isDrawerOpen)} />
+            <MenuIcon onClick={() => ui.setIsDrawerOpen(!ui.isDrawerOpen)} />
+            <Drawer isDrawerOpen={ui.isDrawerOpen} onDrawerToggle={() => ui.setIsDrawerOpen(!ui.isDrawerOpen)} />
           </div>
         </div>
 
@@ -97,12 +96,9 @@ export const Navbar = () => {
             </Menu>
           </div>
 
-          <SearchIcon
-            sx={{ cursor: "pointer", color: "#729ded", fontSize: 30 }}
-            onClick={() => setToggleSearchBar(!toggleSearchBar)}
-          />
+          <SearchIcon sx={{ cursor: "pointer", color: "#729ded", fontSize: 30 }} onClick={ui.handleToggleSearchBar} />
 
-          {!isAuthenticated ? (
+          {!user.isAuthenticated ? (
             <Link to="/login">
               <span>{t("login")}</span>
             </Link>
@@ -110,13 +106,16 @@ export const Navbar = () => {
             <div className="flex gap-6 items-center">
               <Link
                 to="/profile"
-                style={{ background: accentColor }}
+                style={{ background: ui.accentColor }}
                 className="cursor-pointer flex items-center justify-center text-xl rounded-full w-[12px] h-[12px] p-4"
               >
-                {username.slice(0, 1).toUpperCase()}
+                {user.username.slice(0, 1).toUpperCase()}
               </Link>
 
-              <span className="hidden md:block cursor-pointer" onClick={() => deleteSessionMutation(sessionId)}>
+              <span
+                className="hidden md:block cursor-pointer"
+                onClick={() => auth.deleteSessionMutation(user.sessionId)}
+              >
                 {t("logout")}
               </span>
             </div>
@@ -124,21 +123,44 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {toggleSearchBar && (
+      {ui.toggleSearchBar && (
         <div className="relative">
-          <input
-            className="py-2 px-12 border-2 rounded-sm placeholder:italic text-[15px] md:text-[20px] focus:outline-none w-full"
-            value={searchValue}
-            onKeyDown={handleEnterKeyPress}
-            onChange={(e) => setSearchValue(e.target.value)}
-            placeholder={t("search_movie_placeholder")}
-          />
-          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
-            <SearchIcon />
+          <div className="relative">
+            <input
+              className="py-2 px-10 border-2 rounded-sm placeholder:italic text-[15px] md:text-[18px] focus:outline-none w-full"
+              value={searchValue}
+              ref={ui.inputRef}
+              onKeyDown={handleEnterKeyPress}
+              onChange={handleInputChange}
+              placeholder={t("search_movie_placeholder")}
+            />
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+              <SearchIcon />
+            </div>
+
+            <div className="cursor-pointer text-gray-500 absolute right-3 top-1/2 -translate-y-1/2">
+              <CloseIcon onClick={() => ui.setToggleSearchBar(!ui.toggleSearchBar)} />
+            </div>
           </div>
 
-          <div className="cursor-pointer text-gray-500 absolute right-3 top-1/2 -translate-y-1/2">
-            <CloseIcon onClick={() => setToggleSearchBar(!toggleSearchBar)} />
+          {movie.suggestionsLoading && (
+            <Box sx={{ width: "100%" }}>
+              <LinearProgress />
+            </Box>
+          )}
+
+          <div className="absolute left-0 right-0 bg-white z-50">
+            {!movie.suggestions.length && (
+              <h2 className="bg-stone-100 font-bold px-10 py-2">
+                <TrendingUpIcon sx={{ fontSize: 22 }} /> Trending
+              </h2>
+            )}
+
+            {!movie.suggestions.length &&
+              movie.trendingMovies?.results.slice(0, 8).map((movie: IMovie) => <RenderMovieTitle movie={movie} />)}
+
+            {!movie.suggestionsLoading &&
+              movie.suggestions.slice(0, 10).map((movie: IMovie) => <RenderMovieTitle movie={movie} />)}
           </div>
         </div>
       )}
