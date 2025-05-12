@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { deleteMovieRating } from "@/api";
 import { IDeleteRatingPayload } from "@/interfaces";
+import apiManager from "@/apiManager";
 
 const useDeleteMovieRatingMutation = () => {
   const queryClient = useQueryClient();
 
   const { mutate: deleteRatingMutation, ...mutationState } = useMutation({
-    mutationFn: (payload: IDeleteRatingPayload) => deleteMovieRating(payload),
+    mutationFn: (payload: IDeleteRatingPayload) => apiManager.deleteMovieRating.func(payload),
     onSuccess: (msg) => {
       toast(msg.status_message);
-      queryClient.invalidateQueries({ queryKey: ["movieDetails"] });
+      queryClient.invalidateQueries({ queryKey: [apiManager.deleteMovieRating.key] });
     },
   });
 

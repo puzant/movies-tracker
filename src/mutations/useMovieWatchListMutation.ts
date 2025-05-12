@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { IWatchListPayload } from "@/interfaces";
-import { setMovieInWatchList } from "@/api";
+import apiManager from "@/apiManager";
 
 const useMovieWatchListMutation = () => {
   const queryClient = useQueryClient();
 
   const { mutate: setMovieWatchListMutation, ...mutationState } = useMutation({
-    mutationFn: (payload: IWatchListPayload) => setMovieInWatchList(payload),
+    mutationFn: (payload: IWatchListPayload) => apiManager.setMovieInWatchList.func(payload),
     onSuccess: (msg) => {
       toast(msg.status_message);
-      queryClient.invalidateQueries({ queryKey: ["movieDetails"] });
+      queryClient.invalidateQueries({ queryKey: [apiManager.setMovieInWatchList.key] });
     },
   });
 
