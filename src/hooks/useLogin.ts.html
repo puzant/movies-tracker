@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>0/22</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/21</span>
             </div>
         
             
@@ -131,8 +131,19 @@
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -156,10 +167,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -202,16 +226,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-&nbsp;
-import useRequestTokenQuery from "@/queries/useRequestTokenQuery";
-import useLoginMutation from "@/mutations/useLoginMutation";
-import useCreateSessionMutation from "@/mutations/useCreateSessionMutation";
+import { useQuery, useMutation } from "@tanstack/react-query";
 &nbsp;
 import useUserStore from "@/store/useUserStore";
+import { IApiFunction } from "@/interfaces";
 &nbsp;
 interface ILoginPayload {
   username: string;
   password: string;
+  requestToken?: string;
 }
 &nbsp;
 const loginSchema = <span class="cstat-no" title="statement not covered" >yup.object().shape({</span>
@@ -219,15 +242,28 @@ const loginSchema = <span class="cstat-no" title="statement not covered" >yup.ob
   password: yup.string().required("Password field is required"),
 });
 &nbsp;
-const useLogin = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+const useLogin = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(a</span>piFunctions: IApiFunction) =&gt; {</span>
   const { t } = <span class="cstat-no" title="statement not covered" >useTranslation();</span>
   const navigate = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
 &nbsp;
   const { accentColor } = <span class="cstat-no" title="statement not covered" >useUserStore();</span>
-  const { data: requestToken } = <span class="cstat-no" title="statement not covered" >useRequestTokenQuery();</span>
 &nbsp;
-  const { mutateAsync: loginMutation, isPending: loginLoading, error } = <span class="cstat-no" title="statement not covered" >useLoginMutation();</span>
-  const { mutateAsync: createSessionMutation } = <span class="cstat-no" title="statement not covered" >useCreateSessionMutation();</span>
+  const { data: requestToken } = <span class="cstat-no" title="statement not covered" >useQuery({</span>
+    queryKey: [apiFunctions.getRequestToken.key],
+    queryFn: <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >a</span>piFunctions.getRequestToken.func(),</span>
+  });
+&nbsp;
+  const {
+    mutateAsync: loginMutation,
+    isPending: loginLoading,
+    error,
+  } = <span class="cstat-no" title="statement not covered" >useMutation({</span>
+    mutationFn: <span class="fstat-no" title="function not covered" >(p</span>ayload: ILoginPayload) =&gt; <span class="cstat-no" title="statement not covered" >apiFunctions.login.func(payload),</span>
+  });
+&nbsp;
+  const { mutateAsync: createSessionMutation } = <span class="cstat-no" title="statement not covered" >useMutation({</span>
+    mutationFn: <span class="fstat-no" title="function not covered" >(p</span>ayload: { requestToken: string }) =&gt; <span class="cstat-no" title="statement not covered" >apiFunctions.createSession.func(payload),</span>
+  });
 &nbsp;
   const handleLogin = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (p</span>ayload: ILoginPayload) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    try {</span>
@@ -274,7 +310,7 @@ export default useLogin;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-03T14:53:50.863Z
+                at 2025-05-12T13:06:42.967Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
