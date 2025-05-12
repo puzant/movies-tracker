@@ -6,6 +6,7 @@ const apiManager = {
   getUpcomingMovies: { func: api.getUpcomingMovies, key: "upcomingMovies" },
   searchMovies: { func: api.searchMovies, key: "searchMovies" },
   getMovie: { func: api.getMovie, key: "movieDetails" },
+  getTrendingMovies: { func: api.getTrendingMovies, key: "trendingMovies" },
   getGenres: { func: api.getGenres, key: "genres" },
 
   //  movie related api's
@@ -14,7 +15,7 @@ const apiManager = {
   rateMovie: { func: api.rateMovie, key: "movieDetails" },
   deleteMovieRating: { func: api.deleteMovieRating, key: "movieDetails" },
 
-  //  authenticated related api's
+  //  authentication related api's
   login: { func: api.login, key: "" },
   createSession: { func: api.createSession, key: "session" },
   deleteSession: { func: api.deleteSession, key: "session" },
