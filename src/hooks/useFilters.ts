@@ -1,5 +1,7 @@
 import { useTranslation } from "react-i18next";
-import useGenresQuery from "@/queries/useGenresQuery";
+import { useQuery } from "@tanstack/react-query";
+
+import apiManager from "@/apiManager";
 import useFiltersStore from "@/store/useFiltersStore";
 import useUserStore from "@/store/useUserStore";
 
@@ -7,10 +9,12 @@ export const useFilters = () => {
   const { i18n, t } = useTranslation();
 
   const { accentColor } = useUserStore();
-  const { sortBy, releaseDate, selectedGenres, setSort, setStartDate, setEndDate, setGenres } =
-    useFiltersStore();
+  const { sortBy, releaseDate, selectedGenres, setSort, setStartDate, setEndDate, setGenres } = useFiltersStore();
 
-  const { data: genres, isFetching } = useGenresQuery(i18n.language);
+  const { data: genres, isFetching } = useQuery({
+    queryKey: [apiManager.getGenres.key, i18n.language],
+    queryFn: () => apiManager.getGenres.func(i18n.language),
+  });
 
   return {
     genres,
