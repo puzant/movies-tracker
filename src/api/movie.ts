@@ -10,6 +10,7 @@ import {
   IDeleteRatingPayload,
   IMovie,
   IMovieResponse,
+  IMoviesListResponse,
 } from "@/interfaces";
 
 interface IRateMovieResponse {
@@ -61,7 +62,7 @@ export const getUpcomingMovies = (selectedLanguage: string, page: number = 1): P
  * @param {number} [page=1] - The page number for pagination.
  * @returns {Promise<IMovie[]>} A promise that resolves to a list of movies matching the query.
  */
-export const searchMovies = (query: string, page: number = 1): Promise<IMovie[]> => {
+export const searchMovies = (query: string, page: number = 1): Promise<IMoviesListResponse> => {
   return axios.get("/search/movie", {
     params: {
       query: query,
@@ -167,4 +168,12 @@ export const rateMovie = ({ id, rating, sessionId }: IRatingPayload): Promise<IR
  */
 export const deleteMovieRating = ({ id, sessionId }: IDeleteRatingPayload): Promise<IMovieResponse> => {
   return axios.delete(`/movie/${id}/rating?session_id=${sessionId}`);
+};
+
+/**
+ *
+ * @returns {Promise<IMoviesListResponse>}
+ */
+export const getTrendingMovies = (): Promise<IMoviesListResponse> => {
+  return axios.get(`/trending/movie/day`);
 };
