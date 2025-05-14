@@ -47,7 +47,7 @@ const useNavbar = () => {
 
       try {
         setSuggestionsLoading(true);
-        const response = await apiManager.searchMovies.func(query);
+        const response = await apiManager.searchMovies.func(query, i18n.language);
         setSuggestions(response.results);
       } catch (err) {
         toast("There was an error");

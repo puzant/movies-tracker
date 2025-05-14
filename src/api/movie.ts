@@ -62,11 +62,12 @@ export const getUpcomingMovies = (selectedLanguage: string, page: number = 1): P
  * @param {number} [page=1] - The page number for pagination.
  * @returns {Promise<IMovie[]>} A promise that resolves to a list of movies matching the query.
  */
-export const searchMovies = (query: string, page: number = 1): Promise<IMoviesListResponse> => {
+export const searchMovies = (query: string, language = "en-US", page: number = 1): Promise<IMoviesListResponse> => {
   return axios.get("/search/movie", {
     params: {
       query: query,
       page: page,
+      language: language,
     },
   });
 };

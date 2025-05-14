@@ -152,7 +152,7 @@ export const Navbar = () => {
           <div className="absolute left-0 right-0 bg-white z-50">
             {!movie.suggestions.length && (
               <h2 className="bg-stone-100 font-bold px-10 py-2">
-                <TrendingUpIcon sx={{ fontSize: 22 }} /> Trending
+                <TrendingUpIcon sx={{ fontSize: 22 }} /> {t("trending")}
               </h2>
             )}
 

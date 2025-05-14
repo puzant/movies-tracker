@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import useInfiniteMovieQuery from "@/queries/useInfiniteMovieQuery";
 import { IMovie, IApiFunction, IPage } from "@/interfaces";
@@ -9,6 +10,8 @@ import emptyResults from "@/assets/empty-results.svg";
 
 const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const location = useLocation();
+  const { i18n } = useTranslation();
+
   const searchQuery = new URLSearchParams(location.search).get("query");
 
   const {
@@ -19,7 +22,7 @@ const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
     isFetchingNextPage,
     status,
   } = useInfiniteMovieQuery([apiFunctions.searchMovies.key, searchQuery], ({ pageParam }: { pageParam: number }) =>
-    apiFunctions.searchMovies.func(searchQuery, pageParam)
+    apiFunctions.searchMovies.func(searchQuery, i18n.language, pageParam)
   );
 
   return (
