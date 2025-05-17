@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1747411143691" clover="3.2.0">
-  <project timestamp="1747411143691" name="All files">
-    <metrics statements="590" coveredstatements="183" conditionals="249" coveredconditionals="54" methods="229" coveredmethods="61" elements="1068" coveredelements="298" complexity="0" loc="590" ncloc="590" packages="38" files="63" classes="63"/>
+<coverage generated="1747507725150" clover="3.2.0">
+  <project timestamp="1747507725150" name="All files">
+    <metrics statements="593" coveredstatements="185" conditionals="253" coveredconditionals="57" methods="230" coveredmethods="61" elements="1076" coveredelements="303" complexity="0" loc="593" ncloc="593" packages="38" files="63" classes="63"/>
     <package name="public">
       <metrics statements="83" coveredstatements="0" conditionals="40" coveredconditionals="0" methods="16" coveredmethods="0"/>
       <file name="mockServiceWorker.js" path="/home/runner/work/movies-tracker/movies-tracker/public/mockServiceWorker.js">
@@ -294,15 +294,18 @@
       </file>
     </package>
     <package name="src.components.molecules.movie">
-      <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <metrics statements="9" coveredstatements="8" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="2"/>
       <file name="movie.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/molecules/movie/movie.tsx">
-        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="8" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="20" count="4" type="stmt"/>
+        <metrics statements="9" coveredstatements="8" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="2"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
       </file>
     </package>
     <package name="src.components.molecules.movieRating">
