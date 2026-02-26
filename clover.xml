@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1747507725150" clover="3.2.0">
-  <project timestamp="1747507725150" name="All files">
-    <metrics statements="593" coveredstatements="185" conditionals="253" coveredconditionals="57" methods="230" coveredmethods="61" elements="1076" coveredelements="303" complexity="0" loc="593" ncloc="593" packages="38" files="63" classes="63"/>
+<coverage generated="1772121928795" clover="3.2.0">
+  <project timestamp="1772121928795" name="All files">
+    <metrics statements="596" coveredstatements="185" conditionals="253" coveredconditionals="57" methods="231" coveredmethods="60" elements="1080" coveredelements="302" complexity="0" loc="596" ncloc="596" packages="39" files="64" classes="64"/>
     <package name="public">
       <metrics statements="83" coveredstatements="0" conditionals="40" coveredconditionals="0" methods="16" coveredmethods="0"/>
       <file name="mockServiceWorker.js" path="/home/runner/work/movies-tracker/movies-tracker/public/mockServiceWorker.js">
@@ -145,7 +145,7 @@
       </file>
     </package>
     <package name="src.api">
-      <metrics statements="47" coveredstatements="28" conditionals="13" coveredconditionals="0" methods="24" coveredmethods="4"/>
+      <metrics statements="47" coveredstatements="27" conditionals="13" coveredconditionals="0" methods="24" coveredmethods="3"/>
       <file name="account.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/account.ts">
         <metrics statements="8" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="9" count="4" type="stmt"/>
@@ -168,7 +168,7 @@
         <line num="49" count="4" type="stmt"/>
       </file>
       <file name="axiosInstance.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/axiosInstance.ts">
-        <metrics statements="9" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <metrics statements="9" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
         <line num="3" count="4" type="stmt"/>
         <line num="5" count="4" type="stmt"/>
         <line num="7" count="4" type="stmt"/>
@@ -177,7 +177,7 @@
         <line num="15" count="0" type="stmt"/>
         <line num="18" count="4" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
-        <line num="20" count="8" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
       </file>
       <file name="movie.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/api/movie.ts">
         <metrics statements="23" coveredstatements="13" conditionals="13" coveredconditionals="0" methods="12" coveredmethods="2"/>
@@ -384,6 +384,14 @@
         <line num="20" count="2" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
         <line num="23" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.organisms.footer">
+      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="footer.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/components/organisms/footer/footer.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.components.organisms.movieToolbar">
@@ -826,17 +834,18 @@
       </file>
     </package>
     <package name="src.pages.upcomingMovies">
-      <metrics statements="8" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <metrics statements="9" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="5" coveredmethods="0"/>
       <file name="upcomingMovies.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/pages/upcomingMovies/upcomingMovies.tsx">
-        <metrics statements="8" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="10" count="0" type="stmt"/>
+        <metrics statements="9" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="11" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="57" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.queries">
