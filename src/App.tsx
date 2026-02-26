@@ -10,7 +10,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 
 import AppRoutes from "@/appRoutes";
-import { Navbar } from "@/components/organisms";
+import { Navbar, Footer } from "@/components/organisms";
 import useUserStore from "@/store/useUserStore";
 import ErrorBoundry from "./errorBoundry";
 import UseScrollToTop from "./hooks/useScrollToTop";
@@ -51,9 +51,11 @@ function App() {
             <UseScrollToTop />
             <Navbar />
             <ToastContainer hideProgressBar={false} theme="dark" />
+
             <ErrorBoundry>
               <AppRoutes />
             </ErrorBoundry>
+            <Footer />
           </BrowserRouter>
         </LocalizationProvider>
       </QueryClientProvider>

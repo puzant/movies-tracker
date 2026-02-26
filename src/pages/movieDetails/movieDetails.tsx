@@ -39,7 +39,7 @@ const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
           <LoadingSpinner />
         </div>
       ) : (
-        <div>
+        <div className="pb-4">
           <div
             style={{
               boxShadow: `inset 0 0 0 100vw rgba(0,0,0, 70%)`,

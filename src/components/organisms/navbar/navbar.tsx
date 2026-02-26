@@ -17,7 +17,7 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import MovieCreationOutlinedIcon from "@mui/icons-material/MovieCreationOutlined";
 import LinearProgress from "@mui/material/LinearProgress";
 
-import tmdbLogo from "@/assets/tmdb-logo.svg";
+import tmdbLogo from "@/assets/tmdb-logo-1.svg";
 
 export const Navbar = () => {
   const { ui, auth, user, movie, t, i18n, searchValue, handleInputChange, handleEnterKeyPress } = useNavbar();
@@ -32,7 +32,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="bg-[#172554] px-4 md:px-8 py-5 text-white flex items-center justify-between">
+      <div className="bg-[#172554] px-4 lg:px-8 py-5 text-white flex items-center justify-between">
         <div className="flex flex-row-reverse md:flex-row items-center gap-4">
           <img width="154" height="20" src={tmdbLogo} />
 

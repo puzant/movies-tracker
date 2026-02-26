@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import useUserStore from "@/store/useUserStore";
 import useInfiniteMovieQuery from "@/queries/useInfiniteMovieQuery";
 import { IApiFunction, IMovie, IPage } from "@/interfaces";
 
-import { LoadingSpinner, ErrorMessage } from "@/components/atoms";
+import { LoadingSpinner, ErrorMessage, Button } from "@/components/atoms";
 import { Movie } from "@/components/molecules";
 
 const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const { i18n, t } = useTranslation();
+  const { accentColor } = useUserStore();
 
   const {
     data: upcomingMovies,
@@ -52,13 +54,13 @@ const UpcomingMovies = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
 
           <div className="flex justify-center">
             {status === "success" && (
-              <button
-                className="bg-[#172554] px-4 py-2 rounded-md text-white mt-4"
+              <Button
+                style={{ background: accentColor }}
                 onClick={() => fetchNextPage()}
                 disabled={!hasNextPage || isFetchingNextPage}
               >
                 {isFetchingNextPage ? t("loading_more") : hasNextPage ? t("load_more") : t("nothing_to_load")}
-              </button>
+              </Button>
             )}
           </div>
         </div>

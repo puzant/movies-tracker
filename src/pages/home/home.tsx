@@ -7,7 +7,7 @@ import { Movie } from "@/components/molecules";
 import { Filters, FiltersDialog } from "@/components/organisms";
 
 import FilterListIcon from "@mui/icons-material/FilterList";
-import tmdbLogo from "@/assets/tmdbLogo.svg";
+import tmdbLogo from "@/assets/tmdb-logo-2.svg";
 
 const Home = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const {

@@ -20,7 +20,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import LoginIcon from "@mui/icons-material/Login";
 import MovieIcon from "@mui/icons-material/Movie";
 import LogoutIcon from "@mui/icons-material/Logout";
-import tmdbLogo from "@/assets/tmdb-logo.svg";
+import tmdbLogo from "@/assets/tmdb-logo-1.svg";
 
 export const Drawer = ({ isDrawerOpen, onDrawerToggle }: { isDrawerOpen: boolean; onDrawerToggle: () => void }) => {
   const { i18n, t, isAuthenticated, sessionId, deleteSessionMutation } = useDrawer();
