@@ -3,17 +3,13 @@ import i18n from "i18next";
 import { useEffect, useCallback, Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 
 import AppRoutes from "@/appRoutes";
-import { Navbar, Footer } from "@/components/organisms";
 import useUserStore from "@/store/useUserStore";
-import ErrorBoundry from "./errorBoundry";
-import UseScrollToTop from "./hooks/useScrollToTop";
 
 function App() {
   const queryClient = new QueryClient();
@@ -48,14 +44,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <LocalizationProvider dateAdapter={AdapterLuxon} adapterLocale="de">
           <BrowserRouter>
-            <UseScrollToTop />
-            <Navbar />
-            <ToastContainer hideProgressBar={false} theme="dark" />
-
-            <ErrorBoundry>
-              <AppRoutes />
-            </ErrorBoundry>
-            <Footer />
+            <AppRoutes />
           </BrowserRouter>
         </LocalizationProvider>
       </QueryClientProvider>

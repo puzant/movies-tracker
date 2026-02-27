@@ -35,7 +35,7 @@ const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
       {error ? (
         <ErrorMessage />
       ) : isLoading ? (
-        <div className="flex items-center justify-center mt-12">
+        <div className="flex items-center justify-center my-10">
           <LoadingSpinner />
         </div>
       ) : (
@@ -149,7 +149,7 @@ const MovieDetails = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
               </div>
 
               {reviews?.results.slice(0, 1).map((review: IReview) => (
-                <Review review={review} />
+                <Review key={review.id} review={review} />
               ))}
 
               <Link

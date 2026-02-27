@@ -15,7 +15,7 @@ const Login = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   const { loginLoading, error, loginSchema, t, handleLogin, accentColor } = useLogin(apiFunctions);
 
   return (
-    <div className="px-6 py-4 w-full md:w-[90%] lg:w-[70%] m-auto">
+    <div className="px-6 py-4 lg:py-14 w-full md:w-[90%] lg:w-[70%] m-auto">
       <h1 className="text-2xl">{t("login_to_account")}</h1>
       <p className="mt-1">{t("app_disclaimer")}</p>
 

@@ -26,7 +26,7 @@ const SearchResults = ({ apiFunctions }: { apiFunctions: IApiFunction }) => {
   );
 
   return (
-    <div className="px-4 sm:px-8 py-4">
+    <div className="px-4 sm:px-8 py-4 lg:py-16">
       {error ? (
         <ErrorMessage />
       ) : (
