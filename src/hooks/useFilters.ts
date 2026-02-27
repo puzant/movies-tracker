@@ -11,9 +11,10 @@ export const useFilters = () => {
   const { accentColor } = useUserStore();
   const { sortBy, releaseDate, selectedGenres, setSort, setStartDate, setEndDate, setGenres } = useFiltersStore();
 
-  const { data: genres, isFetching } = useQuery({
+  const { data: genres = [], isFetching } = useQuery({
     queryKey: [apiManager.getGenres.key, i18n.language],
     queryFn: () => apiManager.getGenres.func(i18n.language),
+    select: (res) => res?.genres ?? [],
   });
 
   return {
