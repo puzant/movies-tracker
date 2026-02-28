@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1772121928795" clover="3.2.0">
-  <project timestamp="1772121928795" name="All files">
-    <metrics statements="596" coveredstatements="185" conditionals="253" coveredconditionals="57" methods="231" coveredmethods="60" elements="1080" coveredelements="302" complexity="0" loc="596" ncloc="596" packages="39" files="64" classes="64"/>
+<coverage generated="1772291699416" clover="3.2.0">
+  <project timestamp="1772291699416" name="All files">
+    <metrics statements="598" coveredstatements="184" conditionals="256" coveredconditionals="57" methods="233" coveredmethods="59" elements="1087" coveredelements="300" complexity="0" loc="598" ncloc="598" packages="40" files="65" classes="65"/>
     <package name="public">
       <metrics statements="83" coveredstatements="0" conditionals="40" coveredconditionals="0" methods="16" coveredmethods="0"/>
       <file name="mockServiceWorker.js" path="/home/runner/work/movies-tracker/movies-tracker/public/mockServiceWorker.js">
@@ -95,23 +95,23 @@
       <metrics statements="28" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="9" coveredmethods="0"/>
       <file name="App.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/App.tsx">
         <metrics statements="17" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="19" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="26" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
       </file>
       <file name="errorBoundry.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/errorBoundry.tsx">
         <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
@@ -217,7 +217,6 @@
       <metrics statements="19" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="10" coveredmethods="0"/>
       <file name="index.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/appRoutes/index.tsx">
         <metrics statements="16" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
-        <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -225,14 +224,15 @@
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
       </file>
       <file name="privateRoute.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/appRoutes/privateRoute.tsx">
         <metrics statements="3" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -450,7 +450,7 @@
       </file>
     </package>
     <package name="src.hooks">
-      <metrics statements="168" coveredstatements="48" conditionals="44" coveredconditionals="6" methods="40" coveredmethods="11"/>
+      <metrics statements="169" coveredstatements="47" conditionals="47" coveredconditionals="6" methods="41" coveredmethods="10"/>
       <file name="useDrawer.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useDrawer.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="4" type="stmt"/>
@@ -461,14 +461,15 @@
         <line num="12" count="12" type="stmt"/>
       </file>
       <file name="useFilters.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useFilters.ts">
-        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="8" coveredstatements="7" conditionals="3" coveredconditionals="1" methods="3" coveredmethods="2"/>
         <line num="8" count="4" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
+        <line num="14" count="2" type="cond" truecount="1" falsecount="0"/>
         <line num="16" count="2" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="20" count="2" type="stmt"/>
       </file>
       <file name="useHome.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useHome.ts">
         <metrics statements="13" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
@@ -562,7 +563,7 @@
         <line num="70" count="0" type="stmt"/>
       </file>
       <file name="useNavbar.ts" path="/home/runner/work/movies-tracker/movies-tracker/src/hooks/useNavbar.ts">
-        <metrics statements="45" coveredstatements="33" conditionals="10" coveredconditionals="6" methods="9" coveredmethods="8"/>
+        <metrics statements="45" coveredstatements="32" conditionals="10" coveredconditionals="5" methods="9" coveredmethods="7"/>
         <line num="13" count="4" type="stmt"/>
         <line num="14" count="13" type="stmt"/>
         <line num="15" count="12" type="stmt"/>
@@ -579,7 +580,7 @@
         <line num="32" count="12" type="stmt"/>
         <line num="33" count="2" type="stmt"/>
         <line num="34" count="2" type="stmt"/>
-        <line num="35" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="36" count="0" type="stmt"/>
         <line num="41" count="12" type="stmt"/>
         <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -648,6 +649,13 @@
         <line num="7" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.layouts">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="mainLayout.tsx" path="/home/runner/work/movies-tracker/movies-tracker/src/layouts/mainLayout.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.mocks">
