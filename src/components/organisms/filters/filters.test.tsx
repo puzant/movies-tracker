@@ -20,12 +20,10 @@ vi.mock("@/hooks/useFilters", () => ({
       end: null,
     },
     selectedGenres: [],
-    genres: {
-      genres: [
-        { id: 1, name: "Action" },
-        { id: 2, name: "Drama" },
-      ],
-    },
+    genres: [
+      { id: 1, name: "Action" },
+      { id: 2, name: "Drama" },
+    ],
     t: (key: string) => key,
     setSort: mockSortBy,
     setGenres: mockSetGenres,
